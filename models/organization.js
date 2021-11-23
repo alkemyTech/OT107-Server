@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Organization.init({
     name: DataTypes.STRING,
     image: DataTypes.STRING,
-    addres: DataTypes.STRING,
+    address: DataTypes.STRING,
     phone: DataTypes.INTEGER,
     email: DataTypes.STRING,
     welcomeText: DataTypes.TEXT,
