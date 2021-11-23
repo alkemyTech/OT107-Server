@@ -1,10 +1,8 @@
-const getAll = async (res, req, next) => {
-    try{
-        const data = await "data"
-        return data
-    }catch(e){
-        next(e)
-    }
+const {contacts} = require('../models')
+
+const getAll = async() => {
+        const data = await contacts.findAll()
+        return data 
 }
 
 module.exports = {
