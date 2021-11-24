@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
-const privateKey = fs.readFileSync('./keys/privateKey.pem');
-const publicKey = fs.readFileSync('./keys/publicKey.pem');
+const privateKey = fs.readFileSync('./modules/keys/privateKey.pem');
+const publicKey = fs.readFileSync('./modules/keys/publicKey.pem');
 
 const singOptions = {
   expiresIn: '8h',
