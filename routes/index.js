@@ -5,6 +5,6 @@ const userRoutes = require('./users')
 const organizationRoutes = require('./organizations')
 
 router.use('/users', userRoutes)
-router.use('/organization', organizationRoutes)
+router.use('/organizations', organizationRoutes)
 
 module.exports = router;

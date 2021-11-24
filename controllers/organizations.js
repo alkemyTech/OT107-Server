@@ -1,8 +1,8 @@
-const organizationRepo = require('../repositories/organization')
+const organizationService = require('../services/organizations')
 
 const getAll = async(req, res, next)=>{
     try {
-        const data = await organizationRepo.getAll()
+        const data = await organizationService.getAll()
         res.status(200).json(data)
     } catch (e) {
         next(e)
