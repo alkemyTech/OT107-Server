@@ -3,7 +3,15 @@ const {News} = require('../models/index')
 
 
 const getAll = async (req, res, next) => {
+    try {
+        const news = await News.findAll()
+        
+        return news
 
+    } catch (e) {
+        console.log(e)
+        throw new Error('bad request')
+    }
 }
 
 const create = async (req, res, next) => {
