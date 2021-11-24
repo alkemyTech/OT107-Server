@@ -1,7 +1,7 @@
-const {Organization} = require('../models')
+const Models = require('../models')
 
 const getAll = async()=>{
-    const data = await Organization.findAll({
+    const data = await Models.Organization.findAll({
         attributes: ['name', 'image', 'phone', 'address']
     })
     return data
