@@ -1,42 +1,26 @@
-
-module.exports = function (sequelize, dataTypes) { 
-
-    let alias = "members"
-    
-    let cols = {
-    
-       id :{type: dataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey:true},
-
-       name:{ type: dataTypes.STRING,
-        allowNull: false},
-
-       facebookUrl:{type: dataTypes.STRING},
-
-       instagramUrl:{type: dataTypes.STRING},
-
-       image:{type: dataTypes.STRING, 
-        allowNull:false},
-
-       desription: {type:dataTypes.STRING} , 
-
-       createdAt:{ type:dataTypes.DATE},
-
-       updatedAt: { type:dataTypes.DATE},
-
-       deletedAt: { type:dataTypes.DATE}
-    
-    
+const {Model} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class members extends Model {
+   
+    static associate(models) {
+     
     }
-    
-    let config = {tableName: "members",
-    timestamps: true}
-    
-    let members = sequelize.define(alias, cols ,config);
-    
-    return members
-    
-    
-    
-    }
+  };
+  members.init({  
+     id:DataTypes.INTEGER,
+    name: DataTypes.STRING,
+    facebookUrl: DataTypes.STRING,
+    instagramUrl: DataTypes.STRING,
+    linkedinUrl: DataTypes.STRING,
+    image: DataTypes.STRING,
+    description: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+    deletedAt: DataTypes.DATE
+  }, {
+    sequelize,
+    modelName: 'members',
+    paranoid: true
+  });
+  return members;
+};
