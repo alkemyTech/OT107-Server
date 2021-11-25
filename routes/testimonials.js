@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const testimonialsController = require('../controllers/testimonials');
 const isAdmin = require('../middlewares/auth.js');
+const testimonialsController = require('../controllers/testimonials');
 
 router.get('/', isAdmin, testimonialsController.getAll);
 
