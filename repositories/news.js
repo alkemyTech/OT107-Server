@@ -1,9 +1,9 @@
-const newsRepository = require('../repositories/news')
+const {News} = require('../models/index')
 
 
 const getAll = async (req, res, next) => {
     try {
-        const news = await newsRepository.findAll()
+        const news = await News.findAll()
         
         return news
 
