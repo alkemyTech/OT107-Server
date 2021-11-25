@@ -1,13 +1,12 @@
-const category  = require('../models/index').categories; 
-
+const db = require('../models');
 
 const getAll = async () => {
-    const allCategories = await category.findAll({
-        attributes: ['name']
-    });
-    return allCategories; 
-}
+	const allCategories = await db.categories.findAll({
+		attributes: ['name']
+	});
+	return allCategories; 
+};
 
 module.exports = {
-    getAll,
-}
+	getAll,
+};
