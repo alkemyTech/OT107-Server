@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 const userRoutes = require('./users');
-const contatcsRouter = require('./contacts');
+const testimonialsRoutes = require('./testimonials');
+const contactsRouter = require('./contacts');
 
 router.use('/users', userRoutes);
-router.use('/contacts', contatcsRouter);
+router.use('/testimonials', testimonialsRoutes);
+router.use('/contacts', contactsRouter);
 
 module.exports = router;
