@@ -1,12 +1,13 @@
-const Models = require('../models');
+const db = require('../models');
 
-const getAll = async () => {
-  const data = await Models.Organization.findAll({
+const getOne = async (id) => {
+  const data = await db.Organization.findOne({
+    where: { id },
     attributes: ['name', 'image', 'phone', 'address']
   });
   return data;
 };
 
 module.exports = {
-  getAll
+  getOne
 };

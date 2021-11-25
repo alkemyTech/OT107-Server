@@ -1,10 +1,10 @@
-const organizationRepo = require('../repositories/organizations');
+const organizationRepository = require('../repositories/organizations');
 
-const getAll = async () => {
-  const data = await organizationRepo.getAll();
+const getOne = async (id) => {
+  const data = await organizationRepository.getOne(id);
   return data;
 };
 
 module.exports = {
-  getAll
+  getOne
 };

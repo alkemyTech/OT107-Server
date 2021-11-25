@@ -28,6 +28,4 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.Organization = require('./organizations')(db.sequelize, Sequelize.DataTypes)
-
 module.exports = db;
