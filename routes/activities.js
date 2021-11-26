@@ -5,8 +5,8 @@ const router = express.Router();
 const activitiesController = require('../controllers/activities');
 
 
-const users = require('../middleware/users');
+const usersMiddleware = require('../middleware/auth');
 
-router.get('/', users.admin, activitiesController.getAll);
+router.get('/',usersMiddleware.isAdmin, activitiesController.getAll);
 
 module.exports = router;

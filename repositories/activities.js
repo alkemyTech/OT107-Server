@@ -1,7 +1,7 @@
-const activity = require('../models/index').activities;
+const db = require('../models');
 
 const getAll = async () => {
-  const data = await activity.findAll();
+  const data = await db.activities.findAll();
   return data;
 };
 

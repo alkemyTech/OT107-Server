@@ -1,8 +1,8 @@
-const activitesService = require('../services/activities');
+const activitiesService = require('../services/activities');
 
 const getAll = async (req, res, next) => {
   try {
-    const activities = await activitesService.getAll();
+    const activities = await activitiesService.getAll();
     res.status(200).json({ data: activities });
   } catch (e) {
     next(e);
