@@ -1,13 +1,13 @@
 const {Model} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class members extends Model {
+  class Members extends Model {
    
     static associate(models) {
      
     }
   };
-  members.init({  
-     id:DataTypes.INTEGER,
+  Members.init({  
+     
     name: DataTypes.STRING,
     facebookUrl: DataTypes.STRING,
     instagramUrl: DataTypes.STRING,
@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     deletedAt: DataTypes.DATE
   }, {
     sequelize,
-    modelName: 'members',
+    modelName: 'Members',
     paranoid: true
   });
-  return members;
+  return Members;
 };
