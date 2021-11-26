@@ -7,3 +7,4 @@ router.route('/')
   .get( authMiddleware.isAdmin, newsController.getAll )
 
   module.exports = router;
+

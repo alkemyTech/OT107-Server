@@ -1,6 +1,5 @@
 const newsRepository = require('../repositories/news')
 
-
 const getAll = async (req, res, next) => {
     try {
         const news = await newsRepository.findAll()
@@ -8,7 +7,6 @@ const getAll = async (req, res, next) => {
         return news
 
     } catch (e) {
-        console.log(e)
         throw new Error('bad request')
     }
 }
