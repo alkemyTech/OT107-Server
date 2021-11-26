@@ -1,29 +1,47 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Users extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.belongsTo(models.Role, {as: 'role'});
+      Users.belongsTo(models.Roles, { as: "role" });
     }
-  };
-  User.init({
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    image: DataTypes.STRING,
-    password: DataTypes.STRING,
-    roleId: DataTypes.INTEGER,
-    deletedAt: DataTypes.DATE
-  }, {
-    sequelize,
-    modelName: 'User',
-  });
-  return User;
+  }
+  Users.init(
+    {
+      firstName: DataTypes.STRING,
+      lastName: DataTypes.STRING,
+      email: DataTypes.STRING,
+      image: DataTypes.STRING,
+      password: DataTypes.STRING,
+      roleId: DataTypes.INTEGER,
+      deletedAt: DataTypes.DATE,
+    },
+    {
+      sequelize,
+      modelName: "Users",
+      timestamps: true,
+      paranoid: true,
+      hooks: {
+        beforeCreate: async (user) => {
+          if (user.password) {
+            const salt = await bcrypt.genSaltSync(10, "a");
+            user.password = bcrypt.hashSync(user.password, salt);
+          }
+        },
+        beforeUpdate: async (user) => {
+          if (user.password) {
+            const salt = await bcrypt.genSaltSync(10, "a");
+            user.password = bcrypt.hashSync(user.password, salt);
+          }
+        },
+      },
+    }
+  );
+
+  return Users;
 };
