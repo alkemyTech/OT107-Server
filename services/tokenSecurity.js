@@ -1,31 +1,15 @@
 const auth = require('../modules/auth');
 
 const decodeUserToken = (token) => {
-	const tokenDecoded = auth.decodeToken(token);
-	if (!tokenDecoded) {
-		const e = new Error('Invalid token').status(401);
-		throw e;
-	}
-	return tokenDecoded;
+	return auth.decodeToken(token);
 };
 
-const verifyToken = (req) => {
-	const userToken = req.headers['authorization'];
-	if (!userToken) {
-		const e = new Error('Token not found');
-		throw e;
-	}
+const verifyToken = (userToken) => {
 	const usuarioToken = decodeUserToken(userToken);
-	if(!usuarioToken) {
-		const e = new Error('Invalid Token');
-		throw e;
-	}
 	return usuarioToken.id;
-
 };
-  
 
 module.exports = {  
 	verifyToken,
 	decodeUserToken
-}; 
+};
