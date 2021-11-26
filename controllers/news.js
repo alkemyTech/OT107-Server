@@ -1,8 +1,8 @@
-const serviceNews  = require('../services/news')
+const newsService  = require('../services/news')
 
 const getAll = async (req, res, next) => {
     try {
-        const news = await serviceNews.getAll()
+        const news = await newsService.getAll()
 
         if (news){
             res.status(200).json(news)
@@ -20,7 +20,7 @@ const create = async (req, res, next) => {
     
     try {
         const data = req.body
-        const news = await serviceNews.create(data)
+        const news = await newsService.create(data)
 
         if (news){
             res.sendStatus(204)
@@ -39,7 +39,7 @@ const getById = async (req, res, next) => {
 
         const id = req.params.id
 
-        const news = id ? await serviceNews.getById(id) : null
+        const news = id ? await newsService.getById(id) : null
 
         if (news){
             res.status(200).json(news)
@@ -58,7 +58,7 @@ const update = async (req, res, next) => {
         const data = req.body
         const id = req.params.id
 
-        const news = id ? await serviceNews.update(id, data) : null
+        const news = id ? await newsService.update(id, data) : null
 
         if (news){
             res.sendStatus(204)
@@ -76,7 +76,7 @@ const remove = async (req, res, next) => {
     try {
         const id = req.params.id
 
-        const news = id ? await serviceNews.remove(id) : null
+        const news = id ? await newsService.remove(id) : null
 
         if (news){
             res.sendStatus(204)

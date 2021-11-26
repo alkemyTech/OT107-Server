@@ -5,12 +5,5 @@ const authMiddleware = require('../middlewares/auth')
 
 router.route('/')
   .get( authMiddleware.isAdmin, newsController.getAll )
-  .post( newsController.create )
 
-router.route('/:id')
-  .get( newsController.getById )
-  .patch( newsController.update )
-  .delete( newsController.remove )
-
-
-module.exports = router;
+  module.exports = router;
