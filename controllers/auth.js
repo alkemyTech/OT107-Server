@@ -3,7 +3,7 @@ const usersService = require("../services/users");
 
 const login = async (req, res, next) => {
 	try {
-		const user = await authService.findByEmail(req.body.email);
+		const user = await usersService.findByEmail(req.body.email);
         if(!userEmail){
             res.json({ok: "false"});
             return;
