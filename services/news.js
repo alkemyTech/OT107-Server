@@ -9,9 +9,9 @@ const getAll = async (req, res, next) => {
         return news
 
     } catch (e) {
-        console.log(e)
         throw new Error('bad request')
     }
+
 }
 
 const create = async (req, res, next) => {
