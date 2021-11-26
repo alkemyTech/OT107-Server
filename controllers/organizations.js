@@ -1,8 +1,9 @@
 const organizationService = require('../services/organizations');
+const configuration = require('../config/config');
 
-const getOne = async (req, res, next) => {
+const getOrganizationPublic = async (req, res, next) => {
   try {
-    const data = await organizationService.getOne(1);
+    const data = await organizationService.getOrganizationPublic(configuration.idOrganization);
     res.status(200).json(data);
   } catch (e) {
     next(e);
@@ -10,5 +11,5 @@ const getOne = async (req, res, next) => {
 };
 
 module.exports = {
-  getOne
+  getOrganizationPublic
 };

@@ -1,6 +1,6 @@
 const db = require('../models');
 
-const getOne = async (id) => {
+const getOrganizationPublic = async (id) => {
   const data = await db.Organization.findOne({
     where: { id },
     attributes: ['name', 'image', 'phone', 'address']
@@ -9,5 +9,5 @@ const getOne = async (id) => {
 };
 
 module.exports = {
-  getOne
+  getOrganizationPublic
 };
