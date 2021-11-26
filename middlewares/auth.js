@@ -1,24 +1,23 @@
-const roleService = require('../services/roles') 
+/* eslint-disable consistent-return */
+const rolesServices = require('../services/roles');
+const auth = require('../module/auth');
 
-const isAdmin = async (req,res,next) => {
-    
-    const token = req.header('auth-token')
-    const adminRoleId = await roleService.getAdminRoleId() // should be include this funcionality in services/roles ?
+const isAdmin = async (req, res, next) => {
+  const token = req.header('auth-token');
+  const adminRole = await rolesServices.getByName('admin');
 
-    if (!token) return res.status(401).json({ error: 'Access denied' })
+  if (!token) return res.status(401).json({ error: 'Access denied' });
 
-    try {
-        const user = decodeToken(token)
+  try {
+    const user = auth.decodeToken(token);
 
-        if (user.roleId !== adminRoleId) return res.status(401).json({ error: 'Access denied' })
-        next()
-        
-    } catch (error) {
-        res.status(400).json({error: 'token no es válido'})
-    }
-
-}
+    if (user.roleId !== adminRole.id) return res.status(401).json({ error: 'Access denied' });
+    next();
+  } catch (error) {
+    res.status(400).json({ error: 'token no es válido' });
+  }
+};
 
 module.exports = {
-    isAdmin
-}
+  isAdmin
+};
