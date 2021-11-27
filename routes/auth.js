@@ -5,8 +5,8 @@ const router = express.Router();
 const registerControllers = require('../controllers/register');
 
 
-const registerUsersValidator = require('../middleware/auth');
+const authMiddleware = require('../middleware/auth');
 
-router.post('/register',registerUsersValidator.registerUsersValidator, registerControllers.register);
+router.post('/register',registerUsersValidator.authMiddleware, registerControllers.register);
 
 module.exports = router;
