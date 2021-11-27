@@ -163,9 +163,9 @@ module.exports = {
       createdAt: new Date,
       updatedAt: new Date
     },{
-      firstName: 'Usuario_dePrueba',
+      firstName: 'Usuario_dePrueba1',
       lastName: 'Demo',
-      email: 'test@test.com',
+      email: 'test1@test.com',
       // Important: Password not encrypted yet! 
       password: '5678',
       roleId: 2,
@@ -173,9 +173,9 @@ module.exports = {
       createdAt: new Date,
       updatedAt: new Date
     },{
-      firstName: 'Usuario_dePrueba',
+      firstName: 'Usuario_dePrueba2',
       lastName: 'Demo',
-      email: 'test@test.com',
+      email: 'test2@test.com',
       // Important: Password not encrypted yet! 
       password: '5678',
       roleId: 2,
@@ -183,9 +183,9 @@ module.exports = {
       createdAt: new Date,
       updatedAt: new Date
     },{
-      firstName: 'Usuario_dePrueba',
+      firstName: 'Usuario_dePrueba3',
       lastName: 'Demo',
-      email: 'test@test.com',
+      email: 'test3@test.com',
       // Important: Password not encrypted yet! 
       password: '5678',
       roleId: 2,
@@ -193,9 +193,9 @@ module.exports = {
       createdAt: new Date,
       updatedAt: new Date
     },{
-      firstName: 'Usuario_dePrueba',
+      firstName: 'Usuario_dePrueba4',
       lastName: 'Demo',
-      email: 'test@test.com',
+      email: 'test4@test.com',
       // Important: Password not encrypted yet! 
       password: '5678',
       roleId: 2,
