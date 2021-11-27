@@ -8,10 +8,7 @@ const getAll = async () => {
 };
 
 const getById = async (id) => {
-  const data = await Models.Users.findOne({
-    where: { id },
-    attributes: ['firstName', 'email', 'image']
-  });
+  const data = await Models.Users.findByPk(id);
   return data;
 };
 
