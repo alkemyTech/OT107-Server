@@ -30,7 +30,7 @@ npm start
 
 ## Usuarios
 
-```bash
+``` JSON
 [
   {
     "firstName": "Agustin",
@@ -96,24 +96,24 @@ npm start
     "roleId": 1
   },
   {
-    "firstName": "Usuario_dePrueba",
+    "firstName": "Admin0",
     "lastName": "Demo",
-    "email": "test@test.com",
-    "password": "5678",
+    "email": "test0@test.com",
+    "password": "5678_5498",
     "roleId": 1
   },
   {
-    "firstName": "Usuario_dePrueba",
+    "firstName": "Admin1",
     "lastName": "Demo",
-    "email": "test@test.com",
-    "password": "5678",
+    "email": "test1@test.com",
+    "password": "5678_5498",
     "roleId": 1
   },
   {
-    "firstName": "Usuario_dePrueba",
+    "firstName": "Admin2",
     "lastName": "Demo",
-    "email": "test@test.com",
-    "password": "5678",
+    "email": "test3@test.com",
+    "password": "5678_5498",
     "roleId": 1
   },
   {
@@ -145,30 +145,30 @@ npm start
     "roleId": 2
   },
   {
-    "firstName": "Usuario_dePrueba",
+    "firstName": "Usuario_dePrueba1",
     "lastName": "Demo",
-    "email": "test@test.com",
+    "email": "test1@test.com",
     "password": "5678",
     "roleId": 2
   },
   {
-    "firstName": "Usuario_dePrueba",
+    "firstName": "Usuario_dePrueba2",
     "lastName": "Demo",
-    "email": "test@test.com",
+    "email": "test2@test.com",
     "password": "5678",
     "roleId": 2
   },
   {
-    "firstName": "Usuario_dePrueba",
+    "firstName": "Usuario_dePrueba3",
     "lastName": "Demo",
-    "email": "test@test.com",
+    "email": "test3@test.com",
     "password": "5678",
     "roleId": 2
   },
   {
-    "firstName": "Usuario_dePrueba",
+    "firstName": "Usuario_dePrueba4",
     "lastName": "Demo",
-    "email": "test@test.com",
+    "email": "test4@test.com",
     "password": "5678",
     "roleId": 2
   }
