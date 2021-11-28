@@ -1,6 +1,6 @@
 const { check, validationResult } = require('express-validator');
 
-const registerInputValidation = [
+const registerInputValidation =  [
     check('firstName', 'First Name Required').not().isEmpty(),
     check('lastName', 'Last Name Required').not().isEmpty(),
     check('email', 'Invalid Email').isEmail(),
