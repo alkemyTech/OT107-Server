@@ -8,7 +8,7 @@
     "plugins": [
       "security"
     ],
-    "extends": [ "airbnb", "plugin:import/warnings", "plugin:security/recommended" ],
+    "extends": [ "airbnb-base", "plugin:import/warnings", "plugin:security/recommended" ],
     "parserOptions": {
      "ecmaVersion": 8,
      "sourceType": "module",
@@ -20,6 +20,7 @@
     "rules": {
        "class-methods-use-this": "off",
        "arrow-body-style":"off",
-       "comma-dangle": "off"
+       "comma-dangle": "off",
+       "linebreak-style": 0
     }
 }
