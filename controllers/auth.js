@@ -4,7 +4,7 @@ const usersService = require("../services/users");
 const login = async (req, res, next) => {
 	try {
 		const user = await usersService.findByEmail(req.body.email);
-        if(!userEmail){
+        if(!user){
             res.json({ok: "false"});
             return;
         }
