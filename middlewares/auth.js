@@ -26,7 +26,7 @@ const isOwnUser = async (req, res, next) => {
 
 const isAdmin = async (req, res, next) => {
   const token = req.header('auth-token');
-  const adminRole = await rolesServices.getByName('admin');
+  const adminRole = await rolesServices.getByName('Admin');
 
   if (!token) return res.status(401).json({ error: 'Access denied' });
 
