@@ -1,18 +1,14 @@
-/* eslint-disable no-unused-vars */
-const Models = require('../models');
+const Roles = require('../models/roles');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
-
 const getAll = async () => {
-	const data = await Models.Roles.findAll({
-		attributes: ['name', 'image', 'content']
-	});
+	const data = await Roles.findAll();
 	return data;
 };
 
 const getByName = async (name) => {
-	const data = await Models.Roles.findOne({ where: { name : {[Op.substring]:name}}});
+	const data = await Roles.findOne({ where: { name : {[Op.substring]:name}}});
 	const roleInfo = {
 		id : data.dataValues.id,
 		name : data.dataValues.name,
@@ -21,8 +17,7 @@ const getByName = async (name) => {
 	return roleInfo;
 };
 
-
 module.exports = {
 	getAll,
-	getByName
+	getByName,
 };
