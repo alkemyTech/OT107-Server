@@ -7,6 +7,6 @@ const registerControllers = require('../controllers/register');
 
 const authMiddleware = require('../middleware/auth');
 
-router.post('/register',registerUsersValidator.authMiddleware, registerControllers.register);
+router.post('/register',authMiddleware.registerInputValidation, registerControllers.register);
 
 module.exports = router;
