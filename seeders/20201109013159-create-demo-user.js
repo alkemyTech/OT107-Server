@@ -103,22 +103,22 @@ module.exports = {
       createdAt: new Date,
       updatedAt: new Date
     },{
-      firstName: 'Admin1',
+      firstName: 'User1',
       lastName: 'Demo',
       email: 'test1@test.com',
       // Important: Password not encrypted yet! 
       password: '5678_5498',
-      roleId: 1,
+      roleId: 2,
       image: 'https://www.designevo.com/res/templates/thumb_small/colorful-hand-and-warm-community.png',
       createdAt: new Date,
       updatedAt: new Date
     },{
-      firstName: 'Admin2',
+      firstName: 'User2',
       lastName: 'Demo',
       email: 'test2@test.com',
       // Important: Password not encrypted yet! 
       password: '5678_5498',
-      roleId: 1,
+      roleId: 2,
       image: 'https://www.designevo.com/res/templates/thumb_small/colorful-hand-and-warm-community.png',
       createdAt: new Date,
       updatedAt: new Date

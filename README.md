@@ -103,18 +103,18 @@ npm start
     "roleId": 1
   },
   {
-    "firstName": "Admin1",
+    "firstName": "User1",
     "lastName": "Demo",
     "email": "test1@test.com",
     "password": "5678_5498",
-    "roleId": 1
+    "roleId": 2
   },
   {
-    "firstName": "Admin2",
+    "firstName": "User2",
     "lastName": "Demo",
-    "email": "test3@test.com",
+    "email": "test2@test.com",
     "password": "5678_5498",
-    "roleId": 1
+    "roleId": 2
   },
   {
     "firstName": "Elon",
