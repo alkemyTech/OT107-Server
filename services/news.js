@@ -3,6 +3,14 @@ const {News} = require('../models/index')
 
 
 const getAll = async (req, res, next) => {
+    try {
+        const news = await News.findAll()
+        
+        return news
+
+    } catch (e) {
+        throw new Error('bad request')
+    }
 
 }
 
