@@ -5,6 +5,7 @@ const authMiddleware = require('../middlewares/auth')
 
 router.route('/')
   .get( authMiddleware.isAdmin, newsController.getAll )
+  .post( newsController.create )
 
   module.exports = router;
 

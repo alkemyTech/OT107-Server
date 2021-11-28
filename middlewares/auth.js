@@ -1,3 +1,5 @@
+
+/* eslint-disable consistent-return */
 const rolesServices = require('../services/roles');
 const auth = require('../module/auth');
 
@@ -19,4 +21,5 @@ const isAdmin = async (req, res, next) => {
 
 module.exports = {
   isAdmin
+
 };
