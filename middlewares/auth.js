@@ -1,6 +1,6 @@
 const userService =  require('../services/users');
 const rolesService =  require('../services/roles');
-const securityService =  require('../services/tokenSecurity');
+const auth = require('../modules/auth');
 
 const  isOwnUser = async (req, res, next) => {
 
@@ -8,12 +8,12 @@ const  isOwnUser = async (req, res, next) => {
 
 		const userId = req.body.id;
 		const userToken = req.headers['authorization'];
-
-		const userTokenId = securityService.verifyToken(userToken);
+		const usuarioToken = auth.decodeToken(userToken);
+		const userTokenId = usuarioToken.id;
+		
 		if(userTokenId){
 			if (Number.parseInt(userId) === userTokenId) return next();
 		}
-
 		const user = await userService.getById(userTokenId);
 		if(user){
 			const adminUser = await rolesService.getByName('Admin');
