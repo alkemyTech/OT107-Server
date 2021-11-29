@@ -1,12 +1,9 @@
 const express = require('express');
-
 const router = express.Router();
 
-const router = express.Router();
-const activitiesRouter = require('./activities');
+
 const registerRouter = require('./auth');
 const authMiddleware = require('../middlewares/auth');
-
 const categoriesRoutes = require('./categories');
 const userRoutes = require('./users');
 const testimonialsRoutes = require('./testimonials');
