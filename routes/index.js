@@ -3,7 +3,6 @@ const express = require('express');
 const router = express.Router();
 
 const registerRouter = require('./auth');
-const authMiddleware = require('../middlewares/auth');
 
 const categoriesRoutes = require('./categories');
 const userRoutes = require('./users');
@@ -16,7 +15,7 @@ const newsRouter = require('./news');
 router.use('/organizations', organizationRoutes);
 router.use('/activities', activitiesRouter);
 router.use('/auth', registerRouter);
-router.use('/categories', authMiddleware.isAdmin, categoriesRoutes);
+router.use('/categories', categoriesRoutes);
 router.use('/users', userRoutes);
 router.use('/testimonials', testimonialsRoutes);
 router.use('/contacts', contactsRouter);

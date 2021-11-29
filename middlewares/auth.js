@@ -1,4 +1,4 @@
-const userServices = require('../services/users');
+const usersServices = require('../services/users');
 const rolesServices = require('../services/roles');
 const auth = require('../modules/auth');
 const { check, validationResult } = require('express-validator');
@@ -6,17 +6,15 @@ const { check, validationResult } = require('express-validator');
 const isOwnUser = async (req, res, next) => {
   try {
     const userId = req.body.id;
-    const userToken = req.headers.authorization;
+    const userToken = req.header('auth-token');
     const usuarioToken = auth.decodeToken(userToken);
-    const userTokenId = usuarioToken.id;
-
-    if (userTokenId) {
-      if (Number.parseInt(userId) === userTokenId) return next();
+    if (usuarioToken.id) {
+      if (Number.parseInt(userId, 10) === usuarioToken.id) return next();
     }
-    const user = await userServices.getById(userTokenId);
+    const user = await usersServices.getById(usuarioToken.id);
     if (user) {
       const adminUser = await rolesServices.getByName('Admin');
-      if (user.dataValues.roleId === adminUser.id) return next();
+      if (user.roleId === adminUser.id) return next();
     }
     const e = new Error('not authorized');
     throw e;
@@ -54,8 +52,6 @@ const registerInputValidation = [
     next();
   }
 ];
-
-const usersServices = require('../services/users');
 
 
 const isAuth = async (req, res, next) => {
