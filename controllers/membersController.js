@@ -1,4 +1,4 @@
-const serviceMember = require("../services/membersServices")
+const serviceMember = require("../services/members")
 
 module.exports = { 
 
