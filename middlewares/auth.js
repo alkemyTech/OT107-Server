@@ -41,6 +41,7 @@ const isAdmin = async (req, res, next) => {
   }
 };
 
+<<<<<<< HEAD
 const registerInputValidation =  [
     check('firstName', 'First Name Required').not().isEmpty(),
     check('lastName', 'Last Name Required').not().isEmpty(),
@@ -60,5 +61,45 @@ module.exports = {
   isAdmin,
   isOwnUser,
   registerInputValidation
+=======
+const registerInputValidation = [
+  check('firstName', 'First Name Required').not().isEmpty(),
+  check('lastName', 'Last Name Required').not().isEmpty(),
+  check('email', 'Invalid Email').isEmail(),
+  check('password', 'Invalid Password').not().isEmpty(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: errors.array() });
+    }
+    next();
+  }
+];
+
+const usersServices = require('../services/users');
+
+
+const isAuth = async (req, res, next) => {
+  const token = req.header('x-token');
+  if (!token) return res.status(403).json({ message: 'Acceso no autorizado' });
+
+  try {
+    const { id } = await auth.decodeToken(token);
+    const userAuth = await usersServices.getById(id);
+
+    if (!userAuth) return res.status(403).json({ message: 'El usuario no existe' });
+
+    next();
+  } catch (error) {
+    res.status(403).json(`Token no válido - ${error.message}`);
+  }
+};
+
+module.exports = {
+  isAdmin,
+  isOwnUser,
+  registerInputValidation,
+  isAuth
+>>>>>>> d50f85a6688112975d12614749105bcbf8a0342c
 
 };
