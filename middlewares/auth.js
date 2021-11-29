@@ -41,27 +41,6 @@ const isAdmin = async (req, res, next) => {
   }
 };
 
-<<<<<<< HEAD
-const registerInputValidation =  [
-    check('firstName', 'First Name Required').not().isEmpty(),
-    check('lastName', 'Last Name Required').not().isEmpty(),
-    check('email', 'Invalid Email').isEmail(),
-    check('password', 'Invalid Password').not().isEmpty()
- , 
-    (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ error: errors.array() });
-    }
-    next();
- }
-];
-
-module.exports = {
-  isAdmin,
-  isOwnUser,
-  registerInputValidation
-=======
 const registerInputValidation = [
   check('firstName', 'First Name Required').not().isEmpty(),
   check('lastName', 'Last Name Required').not().isEmpty(),
@@ -100,6 +79,5 @@ module.exports = {
   isOwnUser,
   registerInputValidation,
   isAuth
->>>>>>> d50f85a6688112975d12614749105bcbf8a0342c
 
 };
