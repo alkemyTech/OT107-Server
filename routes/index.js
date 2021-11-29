@@ -3,7 +3,6 @@ const express = require('express');
 const router = express.Router();
 
 const registerRouter = require('./auth');
-
 const categoriesRoutes = require('./categories');
 const userRoutes = require('./users');
 const testimonialsRoutes = require('./testimonials');

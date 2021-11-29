@@ -1,4 +1,6 @@
+
 const usersServices = require('../services/users');
+
 const rolesServices = require('../services/roles');
 const auth = require('../modules/auth');
 const { check, validationResult } = require('express-validator');
@@ -39,21 +41,6 @@ const isAdmin = async (req, res, next) => {
   }
 };
 
-const registerInputValidation = [
-  check('firstName', 'First Name Required').not().isEmpty(),
-  check('lastName', 'Last Name Required').not().isEmpty(),
-  check('email', 'Invalid Email').isEmail(),
-  check('password', 'Invalid Password').not().isEmpty(),
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ error: errors.array() });
-    }
-    next();
-  }
-];
-
-
 const isAuth = async (req, res, next) => {
   const token = req.header('x-token');
   if (!token) return res.status(403).json({ message: 'Acceso no autorizado' });
@@ -70,10 +57,36 @@ const isAuth = async (req, res, next) => {
   }
 };
 
+const registerInputValidation = [
+  check('firstName', 'First Name Required').not().isEmpty(),
+  check('lastName', 'Last Name Required').not().isEmpty(),
+  check('email', 'Invalid Email').isEmail(),
+  check('password', 'Invalid Password').not().isEmpty(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: errors.array() });
+    }
+    next();
+  }
+];
+
+const loginInputValidation = [
+  check('email').exists().isEmail(),
+  check('password').exists().not().isEmpty(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: errors.array() });
+    }
+    next();
+  }
+];
+
 module.exports = {
   isAdmin,
   isOwnUser,
+  isAuth,
   registerInputValidation,
-  isAuth
-
+  loginInputValidation
 };
