@@ -7,12 +7,13 @@ const getAll = async () => {
   return data;
 };
 
-const findByEmail = async (email) => {
-    const data = await Models.Users.findOne({ 
-        where: { email: email } 
-    });
-    return data;
-}
+const findByEmail = async (userEmail) => {
+  const data = await Models.Users.findOne({
+    where: { email: userEmail },
+    raw: true
+  });
+  return data;
+};
 
 module.exports = {
   getAll,

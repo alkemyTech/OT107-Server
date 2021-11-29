@@ -1,25 +1,18 @@
-const jwt = require('../modules/auth');
-const usersService = require("../services/users");
+const usersService = require('../services/users');
 
 const login = async (req, res, next) => {
-	try {
-		const user = await usersService.findByEmail(req.body.email);
-        if(!user){
-            res.json({ok: "false"});
-            return;
-        }
-        if(usersService.validPassword(req.body.password, user.password)){
-            const token = jwt.createToken(user);
-            res.status(200).json({token: token});
-            return;
-        } else {
-            res.json({ok: "false"});
-        }
-	}catch(e){
-		next(e);
-	}
+  try {
+    const jwt = await usersService.login(req.body);
+    if (!jwt) {
+      res.status(401).json({ ok: 'false' });
+    } else {
+      res.status(200).json({ token: jwt });
+    }
+  } catch (e) {
+    next(e);
+  }
 };
 
 module.exports = {
-	login
+  login
 };
