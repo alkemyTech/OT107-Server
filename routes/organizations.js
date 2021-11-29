@@ -4,6 +4,6 @@ const router = express.Router();
 
 const organizationControllers = require('../controllers/organizations');
 
-router.get('/public', organizationControllers.getOrganizationPublic);
+router.get('/', organizationControllers.getOrganizationPublic);
 
 module.exports = router;

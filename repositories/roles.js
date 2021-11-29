@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const Roles = require('../models/roles');
+const models = require('../models/index');
 
 const { Op } = Sequelize;
 
@@ -9,7 +9,7 @@ const getAll = async () => {
 };
 
 const getByName = async (name) => {
-  const data = await Roles.findOne({ where: { name: { [Op.substring]: name } } });
+  const data = await models.Roles.findOne({ where: { name: { [Op.substring]: name } } });
   const roleInfo = {
     id: data.dataValues.id,
     name: data.dataValues.name,
