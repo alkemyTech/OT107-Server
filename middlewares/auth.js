@@ -1,3 +1,4 @@
+  
 const userServices = require('../services/users');
 const rolesServices = require('../services/roles');
 const auth = require('../modules/auth');
@@ -56,9 +57,21 @@ const registerInputValidation =  [
  }
 ];
 
+const loginInputValidation = [
+  check('email').exists().isEmail(),
+  check('password').exists().not().isEmpty(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: errors.array() });
+    }
+    next();
+  }
+];
+
 module.exports = {
   isAdmin,
   isOwnUser,
-  registerInputValidation
-
+  registerInputValidation,
+  loginInputValidation
 };
