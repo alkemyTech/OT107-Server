@@ -1,9 +1,8 @@
-
+const { check, validationResult } = require('express-validator');
 const usersServices = require('../services/users');
 
 const rolesServices = require('../services/roles');
 const auth = require('../modules/auth');
-const { check, validationResult } = require('express-validator');
 
 const isOwnUser = async (req, res, next) => {
   try {

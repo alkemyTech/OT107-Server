@@ -1,13 +1,11 @@
-const serviceMember = require("../services/members")
+const serviceMember = require('../services/members');
 
-module.exports = { 
+module.exports = {
 
-
-getAll: async (req,res,next) => { 
-
+  getAll: async (req, res) => {
     const allMembers = await serviceMember.getAll();
 
-    res.status(200).json(allMembers)
+    res.status(200).json(allMembers);
   }
 
-}
+};

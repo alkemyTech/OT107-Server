@@ -6,10 +6,6 @@
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
     "lint": "eslint controllers/organizations.js"
-<<<<<<< HEAD
-
-=======
->>>>>>> d50f85a6688112975d12614749105bcbf8a0342c
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
