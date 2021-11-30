@@ -4,11 +4,13 @@ const usersServices = require('../services/users');
 const rolesServices = require('../services/roles');
 const auth = require('../modules/auth');
 
-const isOwnUser = async (req, res, next) => {
+const isOwner = async (req, res, next) => {
   try {
     const userId = req.body.id;
-    const userToken = req.header('auth-token');
+    const beartoken = req.headers.authorization;
+    const userToken = beartoken.split(' ')[1];
     const usuarioToken = auth.decodeToken(userToken);
+
     if (usuarioToken.id) {
       if (Number.parseInt(userId, 10) === usuarioToken.id) return next();
     }
@@ -25,7 +27,8 @@ const isOwnUser = async (req, res, next) => {
 };
 
 const isAdmin = async (req, res, next) => {
-  const token = req.header('auth-token');
+  const beartoken = req.headers.authorization;
+  const token = beartoken.split(' ')[1];
   const adminRole = await rolesServices.getByName('Admin');
 
   if (!token) return res.status(401).json({ error: 'Access denied' });
@@ -41,7 +44,8 @@ const isAdmin = async (req, res, next) => {
 };
 
 const isAuth = async (req, res, next) => {
-  const token = req.header('x-token');
+  const beartoken = req.headers.authorization;
+  const token = beartoken.split(' ')[1];
   if (!token) return res.status(403).json({ message: 'Acceso no autorizado' });
 
   try {
@@ -84,7 +88,7 @@ const loginInputValidation = [
 
 module.exports = {
   isAdmin,
-  isOwnUser,
+  isOwner,
   isAuth,
   registerInputValidation,
   loginInputValidation
