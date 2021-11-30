@@ -7,13 +7,19 @@ const getAll = async () => {
   return data;
 };
 
+const create = async (body) => {
+  body.password = bcrypt.hashSync(body.password, 10);
+  const data = await usersRepo.create(body);
+  return data;
+};
+
 const getById = async (id) => {
   const data = await usersRepo.getById(id);
   return data;
 };
 
 const validPassword = async (password, hash) => {
-  return await bcrypt.compareSync(password, hash);
+  return bcrypt.compareSync(password, hash);
 };
 
 const login = async (body) => {
@@ -41,5 +47,6 @@ module.exports = {
   getAll,
   validPassword,
   getById,
-  login
+  login,
+  create
 };

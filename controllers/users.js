@@ -1,4 +1,4 @@
-const usersService = require("../services/users");
+const usersService = require('../services/users');
 
 const getAll = async (req, res, next) => {
   try {
@@ -9,6 +9,8 @@ const getAll = async (req, res, next) => {
   }
 };
 
+
 module.exports = {
   getAll,
+  
 };

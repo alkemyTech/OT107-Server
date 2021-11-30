@@ -6,6 +6,12 @@ const getAll = async () => {
   });
   return data;
 };
+
+const create = async (body, req, res) => {
+  const data = await Models.Users.create(body);
+
+  return data;
+};
 const getById = async (id) => {
   const user = await Models.Users.findByPk(id, {
     attributes: {
@@ -26,5 +32,6 @@ const findByEmail = async (userEmail) => {
 module.exports = {
   getAll,
   getById,
-  findByEmail
+  findByEmail,
+  create
 };
