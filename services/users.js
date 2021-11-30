@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('../modules/auth');
-const usersRepo = require("../repositories/users");
+const usersRepo = require('../repositories/users');
 
 const getAll = async () => {
   const data = await usersRepo.getAll();
@@ -35,7 +35,7 @@ const login = async (body) => {
     const token = jwt.createToken(userData);
     return token;
   }
-};  
+};
 
 module.exports = {
   getAll,

@@ -10,7 +10,7 @@ const organizationRoutes = require('./organizations');
 const contactsRouter = require('./contacts');
 const activitiesRouter = require('./activities');
 const newsRouter = require('./news');
-const membersRoute = require('./members')
+const membersRoute = require('./members');
 
 router.use('/organizations', organizationRoutes);
 router.use('/activities', activitiesRouter);
@@ -20,6 +20,6 @@ router.use('/users', userRoutes);
 router.use('/testimonials', testimonialsRoutes);
 router.use('/contacts', contactsRouter);
 router.use('/news', newsRouter);
-router.use('/members', membersRoute)
+router.use('/members', membersRoute);
 
 module.exports = router;
