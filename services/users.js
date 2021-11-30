@@ -18,10 +18,6 @@ const getById = async (id) => {
   return data;
 };
 
-const validPassword = async (password, hash) => {
-  return bcrypt.compareSync(password, hash);
-};
-
 const login = async (body) => {
   const data = await usersRepo.findByEmail(body.email);
   if (!data) {
