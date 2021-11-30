@@ -9,6 +9,10 @@ const getAll = async () => {
 
 const create = async (body) => {
   body.password = bcrypt.hashSync(body.password, 10);
+  const checkEmail = await usersRepo.findByEmail(body.email);
+  if (checkEmail) {
+    throw new Error('Email already registered');
+  }
   const data = await usersRepo.create(body);
   return data;
 };
@@ -16,10 +20,6 @@ const create = async (body) => {
 const getById = async (id) => {
   const data = await usersRepo.getById(id);
   return data;
-};
-
-const validPassword = async (password, hash) => {
-  return bcrypt.compareSync(password, hash);
 };
 
 const login = async (body) => {
@@ -45,7 +45,6 @@ const login = async (body) => {
 
 module.exports = {
   getAll,
-  validPassword,
   getById,
   login,
   create
