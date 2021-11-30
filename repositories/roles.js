@@ -7,12 +7,7 @@ const getAll = async () => {
 
 const getByName = async (name) => {
   const data = await models.Roles.findOne({ where: { name } });
-  const roleInfo = {
-    id: data.dataValues.id,
-    name: data.dataValues.name,
-    content: data.dataValues.content
-  };
-  return roleInfo;
+  return data;
 };
 
 module.exports = {
