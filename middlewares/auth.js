@@ -6,24 +6,25 @@ const rolesServices = require('../services/roles');
 const auth = require('../modules/auth');
 
 const isOwner = async (req, res, next) => {
-  try {
-    const userId = req.body.id;
-    const beartoken = req.headers.authorization;
-    const userToken = beartoken.split(' ')[1];
-    const usuarioToken = auth.decodeToken(userToken);
+  const userId = req.body.id;
+  const beartoken = req.headers.authorization;
+  const token = beartoken.split(' ')[1];
 
-    if (usuarioToken.id) {
-      if (Number.parseInt(userId, 10) === usuarioToken.id) return next();
-    }
+  if (!token) return res.status(401).json({ error: 'Access denied' });
+  const usuarioToken = auth.decodeToken(token);
+  try {
+    if (Number.parseInt(userId, 10) === usuarioToken.id) return next();
     const user = await usersServices.getById(usuarioToken.id);
-    if (user) {
-      const adminUser = await rolesServices.getByName('Admin');
-      if (user.roleId === adminUser.id) return next();
-    }
-    const e = new Error('not authorized');
+
+    if (!user) return res.status(401).json({ error: 'Access denied' });
+
+    const adminUser = await rolesServices.getByName('Admin');
+    if (user.dataValues.roleId === adminUser.id) return next();
+
+    const e = new Error();
     throw e;
-  } catch (e) {
-    next(e);
+  } catch (error) {
+    res.status(400).json({ error: 'Invalid Token' });
   }
 };
 
