@@ -69,17 +69,6 @@ const registerInputValidation = [
   check('password', 'Invalid Password').not().isEmpty().isStrongPassword(),
   (req, res, next) => {
     const errors = validationResult(req);
-
-    if (req.body.email) {
-      const checkEmail = await usersModel.Users.findOne({
-        where: { email: req.body.email },
-        attributes: ['email']
-      });
-
-      if (checkEmail) {
-        return res.status(400).json({ error: 'The email has already been registered' });
-      }
-    }
     if (!errors.isEmpty()) {
       return res.status(400).json({ error: errors.array() });
     }
