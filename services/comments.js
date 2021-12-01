@@ -1,4 +1,4 @@
-const commentsRepository = require("../repositories/comments");
+const commentsRepository = require('../repositories/comments');
 
 const create = async (user_id, novelty_id, comment) => {
   const newComment = {
@@ -10,6 +10,19 @@ const create = async (user_id, novelty_id, comment) => {
   return data;
 };
 
+const getAll = async () => {
+  const data = await commentsRepository.getAll();
+  return data;
+};
+
+const getByNoveltyID = async (novelty_id) => {
+  const data = await commentsRepository.getAll();
+  const commentaries = data.map((cmm) => cmm.novelty_id === novelty_id);
+  return commentaries;
+};
+
 module.exports = {
+  getAll,
+  getByNoveltyID,
   create,
 };

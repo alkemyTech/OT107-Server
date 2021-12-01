@@ -16,6 +16,16 @@ const create = async (req, res, next) => {
   }
 };
 
+const getAll = async (req, res, next) => {
+  try {
+    const commentaries = await commentsService.getAll();
+    res.status(200).json({ commentaries });
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   create,
+  getAll,
 };
