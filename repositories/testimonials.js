@@ -7,8 +7,7 @@ const getAll = async () => {
   return data;
 };
 
-const create = async (body) => {
-  const { name, image, content } = body;
+const create = async (name, image, content) => {
   const data = await Models.Testimonials.create({
     name,
     image,

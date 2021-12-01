@@ -10,8 +10,9 @@ const getAll = async(req, res, next) => {
 };
 
 const create = async (req, res, next) => {
+  const { name, image, content } = req.body;
   try {
-    const data = await testimonialsService.create(req.body);
+    const data = await testimonialsService.create(name, image, content);
     res.status(200).json(data);
   } catch (e) {
     next(e);
