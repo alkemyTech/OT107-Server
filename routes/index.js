@@ -11,7 +11,7 @@ const contactsRouter = require('./contacts');
 const activitiesRouter = require('./activities');
 const newsRouter = require('./news');
 const membersRoute = require('./members');
-const commentariesRoute = require('./commentaries');
+const commentariesRoute = require('./comments');
 
 router.use('/organizations', organizationRoutes);
 router.use('/activities', activitiesRouter);

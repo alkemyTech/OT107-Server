@@ -1,9 +1,9 @@
-const commentariesServices = require('../services/commentaries');
+const commentsService = require('../services/comments');
 
-const createComment = async (req, res, next) => {
+const create = async (req, res, next) => {
   try {
     const data = req.body;
-    const comment = await commentariesServices.create(
+    const comment = await commentsService.create(
       data.user_id,
       data.novelty_id,
       data.comment
@@ -17,5 +17,5 @@ const createComment = async (req, res, next) => {
 };
 
 module.exports = {
-  createComment,
+  create,
 };
