@@ -7,12 +7,12 @@ const getAll = async () => {
 };
 
 const create = async (data) => {
-  const validData = data;
   // assignment news categoryId from Categories
   const newsCategory = await categoriesRepository.getByName('news');
-  validData.categoryId = newsCategory.id;
+  // eslint-disable-next-line no-param-reassign
+  data.categoryId = newsCategory.id;
 
-  const novelty = await newsRepository.create(validData);
+  const novelty = await newsRepository.create(data);
 
   if (!novelty) throw new Error('bad request');
   return novelty;
