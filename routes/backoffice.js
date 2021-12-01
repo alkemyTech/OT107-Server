@@ -2,9 +2,9 @@ const express = require('express');
 
 const router = express.Router();
 
-const contactsController = require('../controllers/contacts');
 const authMiddleware = require('../middlewares/auth');
+const contactsController = require('../controllers/contacts');
 
-// Aca futuro POST /contacts OT107-56
+router.get('/contacts', authMiddleware.isAdmin, contactsController.getAll);
 
 module.exports = router;
