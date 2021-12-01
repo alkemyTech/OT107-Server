@@ -1,13 +1,14 @@
-const express = require("express");
+const express = require('express');
 
 const router = express.Router();
 
-const commentariesController = require("../controllers/commentaries");
-const authMiddleware = require("../middlewares/auth");
-const commentariesMiddleware = require("../middlewares/commentaries");
+const commentariesController = require('../controllers/commentaries');
+const authMiddleware = require('../middlewares/auth');
+const commentariesMiddleware = require('../middlewares/commentaries');
 
 router
-  .route("/")
+  .route('/')
+  .get(authMiddleware.isAuth, commentariesController.getAll)
   .post(
     authMiddleware.isAuth,
     commentariesMiddleware.commentInputValidation,

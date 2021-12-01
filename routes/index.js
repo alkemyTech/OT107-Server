@@ -22,6 +22,6 @@ router.use('/testimonials', testimonialsRoutes);
 router.use('/contacts', contactsRouter);
 router.use('/news', newsRouter);
 router.use('/members', membersRoute);
-router.use('/commentaries', commentariesRoute);
+router.use('/comments', commentariesRoute);
 
 module.exports = router;
