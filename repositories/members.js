@@ -6,7 +6,7 @@ const getAll = async () => {
 };
 
 
-const createNew = async () => {
+const createNew = async (req,res,next) => {
 
   await Models.Members.create(
     {

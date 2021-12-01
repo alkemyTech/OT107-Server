@@ -6,7 +6,7 @@ const { check, validationResult } = require('express-validator');
 
     const validationErrors = validationResult(req);
 
-    if(!validationErrors.isEmpt()) { res.status(400).send(validationErrors)}
+    if(!validationErrors.isEmpty()) { res.status(400).send(validationErrors)}
 
     next()
 
