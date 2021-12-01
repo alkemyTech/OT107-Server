@@ -1,0 +1,387 @@
+{
+	"info": {
+		"_postman_id": "a0e45825-36c9-4538-ac09-92a4b9e8775f",
+		"name": "Somos_Mas_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register",
+					"item": [
+						{
+							"name": "Registrar Usuario",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "firstName",
+											"value": "Ana",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Santos",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "ana_santos@mailito.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3000/auth/register",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "Usuario Admin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "agustin_tafura@test.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3000/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Usuario Standard",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "e_musk@test.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3000/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"item": []
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get All (isAdmin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4MzA4OTkxLCJleHAiOjE2MzgzMzc3OTF9.Ot2ofkwXVlj3tnEhp30gWn0g03-RXWB78HgtMmxmiYP9JjF5uVjD3WtkF5HP0XNtsVjWCfS5bxr17fb3mpEoyA_pf5DpwWwPtyi08XftmyhSerFwrSAFVOVHnmXZSI5btOlJ8RjOhwHODqEIA_DlpjdPlWfA2wI9lsUDUmBltfM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contacts",
+			"item": [
+				{
+					"name": "Get Contacts (isAdmin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4MzA4OTkxLCJleHAiOjE2MzgzMzc3OTF9.Ot2ofkwXVlj3tnEhp30gWn0g03-RXWB78HgtMmxmiYP9JjF5uVjD3WtkF5HP0XNtsVjWCfS5bxr17fb3mpEoyA_pf5DpwWwPtyi08XftmyhSerFwrSAFVOVHnmXZSI5btOlJ8RjOhwHODqEIA_DlpjdPlWfA2wI9lsUDUmBltfM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/contacts",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Activities",
+			"item": [
+				{
+					"name": "Gat Activities (isAdmin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4MzA4OTkxLCJleHAiOjE2MzgzMzc3OTF9.Ot2ofkwXVlj3tnEhp30gWn0g03-RXWB78HgtMmxmiYP9JjF5uVjD3WtkF5HP0XNtsVjWCfS5bxr17fb3mpEoyA_pf5DpwWwPtyi08XftmyhSerFwrSAFVOVHnmXZSI5btOlJ8RjOhwHODqEIA_DlpjdPlWfA2wI9lsUDUmBltfM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/activities",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"activities"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "News",
+			"item": [
+				{
+					"name": "Get News  (isAdmin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4MzA4OTkxLCJleHAiOjE2MzgzMzc3OTF9.Ot2ofkwXVlj3tnEhp30gWn0g03-RXWB78HgtMmxmiYP9JjF5uVjD3WtkF5HP0XNtsVjWCfS5bxr17fb3mpEoyA_pf5DpwWwPtyi08XftmyhSerFwrSAFVOVHnmXZSI5btOlJ8RjOhwHODqEIA_DlpjdPlWfA2wI9lsUDUmBltfM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/news",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"news"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Organizations",
+			"item": [
+				{
+					"name": "Get Org by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:3000/organizations/public",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"organizations",
+								"public"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Testimonials",
+			"item": [
+				{
+					"name": "Get All (isAdmin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4MzA4OTkxLCJleHAiOjE2MzgzMzc3OTF9.Ot2ofkwXVlj3tnEhp30gWn0g03-RXWB78HgtMmxmiYP9JjF5uVjD3WtkF5HP0XNtsVjWCfS5bxr17fb3mpEoyA_pf5DpwWwPtyi08XftmyhSerFwrSAFVOVHnmXZSI5btOlJ8RjOhwHODqEIA_DlpjdPlWfA2wI9lsUDUmBltfM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/testimonials",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"testimonials"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Members",
+			"item": [
+				{
+					"name": "getAll (isAdmin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4MzA4OTkxLCJleHAiOjE2MzgzMzc3OTF9.Ot2ofkwXVlj3tnEhp30gWn0g03-RXWB78HgtMmxmiYP9JjF5uVjD3WtkF5HP0XNtsVjWCfS5bxr17fb3mpEoyA_pf5DpwWwPtyi08XftmyhSerFwrSAFVOVHnmXZSI5btOlJ8RjOhwHODqEIA_DlpjdPlWfA2wI9lsUDUmBltfM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/members",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

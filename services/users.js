@@ -1,15 +1,26 @@
 const bcrypt = require('bcrypt');
 const jwt = require('../modules/auth');
-const usersRepo = require("../repositories/users");
+const usersRepo = require('../repositories/users');
 
 const getAll = async () => {
   const data = await usersRepo.getAll();
   return data;
 };
 
-const validPassword = async (password, hash) => {
-    return await bcrypt.compareSync(password, hash);
-  };
+const create = async (body) => {
+  body.password = bcrypt.hashSync(body.password, 10);
+  const checkEmail = await usersRepo.findByEmail(body.email);
+  if (checkEmail) {
+    throw new Error('Email already registered');
+  }
+  const data = await usersRepo.create(body);
+  return data;
+};
+
+const getById = async (id) => {
+  const data = await usersRepo.getById(id);
+  return data;
+};
 
 const login = async (body) => {
   const data = await usersRepo.findByEmail(body.email);
@@ -30,10 +41,11 @@ const login = async (body) => {
     const token = jwt.createToken(userData);
     return token;
   }
-};  
+};
 
 module.exports = {
   getAll,
-  validPassword,
-  login
+  getById,
+  login,
+  create
 };
