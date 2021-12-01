@@ -1,23 +1,13 @@
 const models = require('../models/index');
 
 const getAll = async () => {
-  try {
-    const news = await models.News.findAll();
-
-    return news;
-  } catch (e) {
-    throw new Error('bad request');
-  }
+  const news = await models.News.findAll();
+  return news;
 };
 
 const create = async (data) => {
-  try {
-    const newNews = await models.News.create(data);
-
-    return newNews;
-  } catch (error) {
-    throw new Error('bad request');
-  }
+  const novelty = await models.News.create(data);
+  return novelty;
 };
 
 const getById = async () => {
