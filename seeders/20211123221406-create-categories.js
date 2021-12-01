@@ -25,7 +25,7 @@ module.exports = {
         createdAt: new Date,
       },
       {
-        name: "News",
+        name: "news",
         description : "News category.",
         image: "image04.jpg",
         updatedAt : new Date,
