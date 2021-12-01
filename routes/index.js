@@ -12,6 +12,7 @@ const activitiesRouter = require('./activities');
 const newsRouter = require('./news');
 const membersRoute = require('./members');
 const commentsRoutes = require('./comments');
+const slidesRoute = require('./slides');
 
 router.use('/organizations', organizationRoutes);
 router.use('/activities', activitiesRouter);
@@ -23,5 +24,6 @@ router.use('/contacts', contactsRouter);
 router.use('/news', newsRouter);
 router.use('/members', membersRoute);
 router.use('/comments', commentsRoutes);
+router.use('./slides', slidesRoute);
 
 module.exports = router;
