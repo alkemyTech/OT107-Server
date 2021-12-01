@@ -5,6 +5,12 @@ const getAll = async () => {
   return data;
 };
 
+const create = async (body, req, res) => {
+  const data = await db.activities.create(body);
+  return data;
+};
+
 module.exports = {
-  getAll
+  getAll,
+  create
 };
