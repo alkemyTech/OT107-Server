@@ -6,4 +6,6 @@ const authMiddleware = require('../middlewares/auth');
 
 router.get('/', authMiddleware.isAdmin, membersController.getAll);
 
+router.post('/', authMiddleware.isAdmin, membersController.createNew )
+
 module.exports = router;
