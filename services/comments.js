@@ -1,12 +1,12 @@
-const commentsRepo = require("../repositories/comments");
+const commentsRepository = require("../repositories/comments");
 
-const create = async (UserID, NoveltyID, comment) => {
+const create = async (user_id, novelty_id, comment) => {
   const newComment = {
-    user_id: UserID,
-    novelty_id: NoveltyID,
+    user_id,
+    novelty_id,
     body: comment,
   };
-  const data = await commentsRepo.create(newComment);
+  const data = await commentsRepository.create(newComment);
   return data;
 };
 
