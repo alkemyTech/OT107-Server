@@ -1,15 +1,29 @@
 const Models = require("../models");
 
 const getAll = async () => {
-  const data = await Models.Commentaries.findAll();
-  return data;
+  try {
+    const consult = await Models.Commentaries.findAll({
+      attributes: ['user_id', 'novelty_id', 'body']
+    });
+    const data = await consult;
+    return data;
+  } catch (e) {
+    throw new Error("bad request");
+  }
 };
 
+
 const create = async (comment) => {
-  const data = await Models.Commentaries.create({...comment});
-  const comment = await data;
-  return comment
-}
+  try {
+    console.log(comment);
+    const response = await Models.Commentaries.create({ ...comment });
+    
+    return response;
+  } catch (e) {
+    throw new Error("bad request");
+  }
+};
+
 module.exports = {
   getAll,
   create,

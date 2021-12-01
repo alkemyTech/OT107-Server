@@ -1,7 +1,7 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+// const Commentaries = require('./commentaries');
+
 module.exports = (sequelize, DataTypes) => {
   class News extends Model {
     /**
@@ -10,33 +10,39 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // News.belongsTo(models.Category, {as: 'category'});
+      News.hasMany(models.Commentaries, {
+        as: 'Commentaries',
+        foreignKey: 'novelty_id',
+      });
     }
-  };
-  
-  News.init({
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
+  }
+
+  News.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      content: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      categoryId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    image: {
-      type: DataTypes.STRING(1234),
-      allowNull: false
-    },
-    categoryId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-  }, {
-    sequelize,
-    modelName: 'News',
-    deletedAt: 'deletedAt',
-    paranoid:true,
-    timestamps: true,
-  });
+    {
+      sequelize,
+      modelName: 'News',
+      deletedAt: 'deletedAt',
+      paranoid: true,
+      timestamps: true,
+    }
+  );
   return News;
 };

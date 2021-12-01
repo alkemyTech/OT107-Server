@@ -1,5 +1,6 @@
-"use strict";
-const { Model } = require("sequelize");
+'use strict';
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Commentaries extends Model {
     /**
@@ -8,20 +9,29 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Commentaries.belongsTo(models.News, { as: 'novelty' });
     }
   }
   Commentaries.init(
     {
-      user_id: DataTypes.INTEGER,
-      novelty_id: DataTypes.INTEGER,
-      body: DataTypes.STRING,
-      deletedAt: DataTypes.DATE,
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      novelty_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      body: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     {
       sequelize,
-      modelName: "Comentaries",
+      modelName: 'Commentaries',
+      deletedAt: 'deletedAt',
       paranoid: true,
+      timestamps: true,
     }
   );
   return Commentaries;
