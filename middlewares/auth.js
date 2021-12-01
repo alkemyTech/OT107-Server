@@ -1,36 +1,31 @@
 const { check, validationResult } = require('express-validator');
 const usersServices = require('../services/users');
-const findByEmail = require('../controllers/users');
 
 const rolesServices = require('../services/roles');
 const auth = require('../modules/auth');
 
-const isOwner = async (req, res, next) => {
-  const userId = req.body.id;
-  const beartoken = req.headers.authorization;
-  const token = beartoken.split(' ')[1];
-
-  if (!token) return res.status(401).json({ error: 'Access denied' });
-  const usuarioToken = auth.decodeToken(token);
+const isOwnUser = async (req, res, next) => {
+  const userId = req.params.id;
+  const bearertoken = req.headers.authorization;
+  if (!bearertoken) return res.status(401).json({ error: 'Access denied' });
   try {
-    if (Number.parseInt(userId, 10) === usuarioToken.id) return next();
+    const token = bearertoken.split(' ')[1];
+    const usuarioToken = auth.decodeToken(token);
+    if (Number.parseInt(userId) === usuarioToken.id) return next();
     const user = await usersServices.getById(usuarioToken.id);
-
     if (!user) return res.status(401).json({ error: 'Access denied' });
-
     const adminUser = await rolesServices.getByName('Admin');
     if (user.dataValues.roleId === adminUser.id) return next();
-
     const e = new Error();
     throw e;
   } catch (error) {
-    res.status(400).json({ error: 'Invalid Token' });
+    res.status(400).json({ error: 'Access denied' });
   }
 };
 
 const isAdmin = async (req, res, next) => {
-  const beartoken = req.headers.authorization;
-  const token = beartoken.split(' ')[1];
+  const bearertoken = req.headers.authorization;
+  const token = bearertoken.split(' ')[1];
   const adminRole = await rolesServices.getByName('Admin');
 
   if (!token) return res.status(401).json({ error: 'Access denied' });
@@ -46,8 +41,8 @@ const isAdmin = async (req, res, next) => {
 };
 
 const isAuth = async (req, res, next) => {
-  const beartoken = req.headers.authorization;
-  const token = beartoken.split(' ')[1];
+  const bearertoken = req.headers.authorization;
+  const token = bearertoken.split(' ')[1];
   if (!token) return res.status(403).json({ message: 'Acceso no autorizado' });
 
   try {
@@ -90,7 +85,7 @@ const loginInputValidation = [
 
 module.exports = {
   isAdmin,
-  isOwner,
+  isOwnUser,
   isAuth,
   registerInputValidation,
   loginInputValidation
