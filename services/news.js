@@ -1,40 +1,30 @@
-const newsRepository = require('../repositories/news')
+const newsRepository = require('../repositories/news');
 
-const getAll = async (req, res, next) => {
-    try {
-        const news = await newsRepository.findAll()
+const getAll = async () => {
+  const news = await newsRepository.getAll();
+  return news;
+};
 
-        
-        return news
+const create = async () => {
 
-    } catch (e) {
-        throw new Error('bad request')
-    }
+};
 
-}
+const getById = async () => {
 
-const create = async (req, res, next) => {
-    
-}
+};
 
-const getById = async (req, res, next) => {
+const update = async () => {
 
-}
+};
 
-const update = async (req, res, next) => {
+const remove = async () => {
 
-}
-
-const remove = async (req, res, next) => {
-
-}
-
-
+};
 
 module.exports = {
-    getAll, 
-    getById, 
-    create,
-    update,
-    remove
-}
+  getAll,
+  getById,
+  create,
+  update,
+  remove
+};

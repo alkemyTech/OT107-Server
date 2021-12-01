@@ -1,23 +1,16 @@
-const Roles = require('../models/roles');
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
+const models = require('../models/index');
 
 const getAll = async () => {
-	const data = await Roles.findAll();
-	return data;
+  const data = await models.Roles.findAll();
+  return data;
 };
 
 const getByName = async (name) => {
-	const data = await Roles.findOne({ where: { name : {[Op.substring]:name}}});
-	const roleInfo = {
-		id : data.dataValues.id,
-		name : data.dataValues.name,
-		content : data.dataValues.content
-	};
-	return roleInfo;
+  const data = await models.Roles.findOne({ where: { name } });
+  return data;
 };
 
 module.exports = {
-	getAll,
-	getByName,
+  getAll,
+  getByName,
 };

@@ -1,12 +1,10 @@
-const Models = require("../models/index")
+const membersRepository = require('../repositories/members');
 
+const getAll = async () => {
+  const members = await membersRepository.getAll();
+  return members;
+};
 
-module.exports = { getAll: async(req,res, next)=> { 
-
-const members = await Models.Members.findAll()
-console.log(members)
- return members
- 
-}
-
-}
+module.exports = {
+  getAll
+};
