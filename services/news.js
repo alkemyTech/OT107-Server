@@ -12,9 +12,10 @@ const create = async (data) => {
   const newsCategory = await categoriesRepository.getByName('news');
   validData.categoryId = newsCategory.id;
 
-  const newNews = await newsRepository.create(validData);
+  const novelty = await newsRepository.create(validData);
 
-  return newNews;
+  if (!novelty) throw new Error('bad request');
+  return novelty;
 };
 
 const getById = async () => {
