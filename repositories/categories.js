@@ -8,11 +8,18 @@ const getAll = async () => {
 };
 
 const getByName = async (name) => {
-  const data = await db.categories.findOne({ where: { name } });
-  return data;
+
+  const category = await db.categories.findOne({ where: { name } });
+  return category;
+};
+
+const create = async (body) => {
+  const category = await db.categories.create(body);
+  return category;
 };
 
 module.exports = {
   getAll,
   getByName,
+  create
 };
