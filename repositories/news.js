@@ -1,39 +1,41 @@
-const models = require('../models/index')
+const models = require('../models/index');
 
+const getAll = async () => {
+  try {
+    const news = await models.News.findAll();
 
-const getAll = async (req, res, next) => {
-    try {
-        const news = await models.News.findAll()
-        
-        return news
+    return news;
+  } catch (e) {
+    throw new Error('bad request');
+  }
+};
 
-    } catch (e) {
-        throw new Error('bad request')
-    }
-}
+const create = async (data) => {
+  try {
+    const newNews = await models.News.create(data);
 
-const create = async (req, res, next) => {
-    
-}
+    return newNews;
+  } catch (error) {
+    throw new Error('bad request');
+  }
+};
 
-const getById = async (req, res, next) => {
+const getById = async () => {
 
-}
+};
 
-const update = async (req, res, next) => {
+const update = async () => {
 
-}
+};
 
-const remove = async (req, res, next) => {
+const remove = async () => {
 
-}
-
-
+};
 
 module.exports = {
-    getAll, 
-    getById, 
-    create,
-    update,
-    remove
-}
+  getAll,
+  getById,
+  create,
+  update,
+  remove
+};
