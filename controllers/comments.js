@@ -16,8 +16,8 @@ const create = async (req, res, next) => {
 
 const getAll = async (req, res, next) => {
   try {
-    const commentaries = await commentsService.getAll();
-    res.status(200).json({ commentaries });
+    const comments = await commentsService.getAll();
+    res.status(200).json({ comments });
   } catch (e) {
     next(e);
   }
