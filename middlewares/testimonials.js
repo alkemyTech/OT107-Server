@@ -1,8 +1,8 @@
 const { check, validationResult } = require('express-validator');
 
 const inputValidation = [
-  check('name').not().isEmpty(),
-  check('content').not().isEmpty(),
+  check('name').exists().not().isEmpty(),
+  check('content').exists().not().isEmpty(),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
