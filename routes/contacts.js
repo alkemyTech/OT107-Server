@@ -6,6 +6,6 @@ const contactsController = require('../controllers/contacts');
 const contactsMiddleware = require('../middlewares/contacts');
 const authMiddleware = require('../middlewares/auth');
 
-router.post('/', contactsMiddleware.contactsInputValidation, authMiddleware.isAuth,contactsController.create);
+router.post('/', authMiddleware.isAuth, contactsMiddleware.contactsInputValidation, contactsController.create);
 
 module.exports = router;
