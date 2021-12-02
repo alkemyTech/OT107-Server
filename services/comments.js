@@ -17,7 +17,7 @@ const getAll = async () => {
 
 const getByNoveltyID = async (novelty_id) => {
   const data = await commentsRepository.getAll();
-  const commentaries = data.map((cmm) => cmm.novelty_id === novelty_id);
+  const commentaries = data.filter((cmm) => cmm.novelty_id === novelty_id);
   return commentaries;
 };
 
