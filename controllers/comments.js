@@ -5,7 +5,9 @@ const create = async (req, res, next) => {
     const data = req.body;
     const comment = await commentsService.create(data);
     if (comment) {
-      res.status(200).json({ message: 'Posted succesfully!' });
+      res
+        .status(200)
+        .json({ comment: comment.body, createdAt: comment.createdAt });
     }
   } catch (e) {
     next(e);
