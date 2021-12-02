@@ -9,35 +9,20 @@ const getAll = async () => {
 
 const getById = async (id) => {
   const data = await Models.Testimonials.findByPk(id, {
-    attributes: ['name', 'image', 'content']
+    attributes: ['id', 'name', 'image', 'content']
   });
   return data;
 };
 
-const create = async (name, image, content) => {
-  const data = await Models.Testimonials.create({
-    name,
-    image,
-    content
+const update = async (id, body) => {
+  const data = await Models.Testimonials.update(body, {
+    where: { id }
   });
-  return data;
-};
-
-const update = async (id, name, image, content) => {
-  const data = await Models.Testimonials.update(
-    {
-      name,
-      image,
-      content
-    },
-    { where: { id } }
-  );
   return data;
 };
 
 module.exports = {
   getAll,
   getById,
-  create,
   update
 };
