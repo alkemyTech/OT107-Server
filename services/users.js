@@ -1,6 +1,8 @@
+/* eslint-disable no-param-reassign */
 const bcrypt = require('bcrypt');
 const jwt = require('../modules/auth');
 const usersRepo = require('../repositories/users');
+const welcomeEmail = require('./sendWelcomeEmail');
 
 const getAll = async () => {
   const data = await usersRepo.getAll();
@@ -14,6 +16,7 @@ const create = async (body) => {
     throw new Error('Email already registered');
   }
   const data = await usersRepo.create(body);
+  await welcomeEmail.send(body.email);
   return data;
 };
 
