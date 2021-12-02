@@ -2,23 +2,23 @@ const contactsService = require('../services/contacts');
 
 const getAll = async (req, res, next) => {
   try {
-<<<<<<< HEAD
     const contacts = await contactsService.getAll();
-    res.status(200).json({ data: contacts });
+    res.status(200).json(contacts);
   } catch (e) {
-=======
-	const contacts = await contactsService.getAll();
-	res.status(200).json(contacts);
-  }catch(e){
->>>>>>> origin/dev
+    next(e);
+  }
+};
+
+const create = async (req, res, next) => {
+  try {
+    const contact = await contactsService.create(req.body);
+    res.status(200).json(contact);
+  } catch (e) {
     next(e);
   }
 };
 
 module.exports = {
-<<<<<<< HEAD
-  getAll
-=======
-	getAll
->>>>>>> origin/dev
+  getAll,
+  create
 };
