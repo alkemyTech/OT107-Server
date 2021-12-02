@@ -1,12 +1,21 @@
 const newsRepository = require('../repositories/news');
+const categoriesRepository = require('../repositories/categories');
 
 const getAll = async () => {
   const news = await newsRepository.getAll();
   return news;
 };
 
-const create = async () => {
+const create = async (data) => {
+  // assignment news categoryId from Categories
+  const newsCategory = await categoriesRepository.getByName('news');
+  // eslint-disable-next-line no-param-reassign
+  data.categoryId = newsCategory.id;
 
+  const novelty = await newsRepository.create(data);
+
+  if (!novelty) throw new Error('bad request');
+  return novelty;
 };
 
 const getById = async () => {
