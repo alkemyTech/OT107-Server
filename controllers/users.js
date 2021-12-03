@@ -28,9 +28,7 @@ const create = async (req, res, next) => {
     const token = modules.createToken(req.body);
     res.status(200).json({
       token,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email
+      user
     });
   } catch (e) {
     next(e);
