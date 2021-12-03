@@ -8,9 +8,9 @@ const getAll = async (req, res, next) => {
 	}
 };
 
-const createNew = async (req,res,next) => { 
+const create = async (req,res,next) => { 
 
-	try{const members = await  membersService.createNew(req.body); 
+	try{const members = await  membersService.create(req.body); 
 	res.status(200).json(members)}catch(e){	
 		next(e)
 	}
@@ -18,5 +18,5 @@ const createNew = async (req,res,next) => {
 
 module.exports = {
 	getAll,
-	createNew
+	create
 };

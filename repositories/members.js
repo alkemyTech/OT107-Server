@@ -6,7 +6,7 @@ const getAll = async () => {
 };
 
 
-const createNew = async (body) => {
+const create = async (body) => {
 
  const data =  await Models.Members.create(
   body)
@@ -16,5 +16,5 @@ const createNew = async (body) => {
 
 module.exports = {
   getAll,
-  createNew
+  create
 };
