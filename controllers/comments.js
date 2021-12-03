@@ -3,14 +3,21 @@ const commentsService = require('../services/comments');
 const create = async (req, res, next) => {
   try {
     const data = req.body;
-    const comment = await commentsService.create(
-      data.user_id,
-      data.novelty_id,
-      data.comment
-    );
+    const comment = await commentsService.create(data);
     if (comment) {
-      res.status(200).json({ message: 'Posted succesfully!' });
+      res
+        .status(200)
+        .json({ comment: comment.body, createdAt: comment.createdAt });
     }
+  } catch (e) {
+    next(e);
+  }
+};
+
+const getAll = async (req, res, next) => {
+  try {
+    const comments = await commentsService.getAll();
+    res.status(200).json({ comments });
   } catch (e) {
     next(e);
   }
@@ -18,4 +25,5 @@ const create = async (req, res, next) => {
 
 module.exports = {
   create,
+  getAll,
 };

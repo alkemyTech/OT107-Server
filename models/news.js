@@ -1,7 +1,7 @@
-'use strict';
 const {
   Model
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class News extends Model {
     /**
@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // News.belongsTo(models.Category, {as: 'category'});
     }
-  };
-  
+  }
+
   News.init({
     name: {
       type: DataTypes.STRING,
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'News',
     deletedAt: 'deletedAt',
-    paranoid:true,
+    paranoid: true,
     timestamps: true,
   });
   return News;

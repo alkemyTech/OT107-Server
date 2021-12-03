@@ -8,6 +8,7 @@ const commentsMiddleware = require('../middlewares/comments');
 
 router
   .route('/')
+  .get(authMiddleware.isAuth, commentsController.getAll)
   .post(
     authMiddleware.isAuth,
     commentsMiddleware.commentInputValidation,

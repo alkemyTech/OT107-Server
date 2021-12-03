@@ -13,6 +13,7 @@ const newsRouter = require('./news');
 const membersRoute = require('./members');
 const commentsRoutes = require('./comments');
 const slidesRoute = require('./slides');
+const backofficeRouter = require('./backoffice');
 
 router.use('/organizations', organizationRoutes);
 router.use('/activities', activitiesRouter);
@@ -25,5 +26,6 @@ router.use('/news', newsRouter);
 router.use('/members', membersRoute);
 router.use('/comments', commentsRoutes);
 router.use('./slides', slidesRoute);
+router.use('/backoffice', backofficeRouter);
 
 module.exports = router;
