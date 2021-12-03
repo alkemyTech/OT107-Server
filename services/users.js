@@ -16,7 +16,7 @@ const create = async (body) => {
     throw new Error('Email already registered');
   }
   const data = await usersRepo.create(body);
-  await welcomeEmail.send(body.email);
+  await welcomeEmail.send(body.email, 0);
   return data;
 };
 
