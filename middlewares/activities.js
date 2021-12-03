@@ -13,5 +13,5 @@ const activitiesInputValidation = [
 ];
 
 module.exports = {
-    activitiesInputValidation
+  activitiesInputValidation
 };
