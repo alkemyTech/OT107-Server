@@ -23,6 +23,13 @@ module.exports = {
         image: "image03.jpg",
         updatedAt : new Date,
         createdAt: new Date,
+      },
+      {
+        name: "news",
+        description : "News category.",
+        image: "image04.jpg",
+        updatedAt : new Date,
+        createdAt: new Date,
       }
     ], {});
   },
