@@ -3,7 +3,7 @@ const ejs = require('ejs');
 const path = require('path');
 const emailSender = require('../services/emailSender');
 
-const subject = 'Successful registration';
+const subject = 'Registro Exitoso';
 
 const send = async (email, lastName, firstName) => {
   const viewPATH = path.join(__dirname, '..', 'views', 'welcomeEmail.ejs');
