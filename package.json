@@ -25,7 +25,8 @@
     "mysql2": "^2.2.3",
     "node-pre-gyp": "^0.17.0",
     "nodemon": "^2.0.15",
-    "sequelize": "^6.11.0"
+    "sequelize": "^6.11.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "eslint": "^8.3.0",
