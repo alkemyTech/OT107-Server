@@ -5,6 +5,12 @@ const getAll = async () => {
   return data;
 };
 
+const create = async (body) => {
+  const data = await testimonialsRepo.create(body);
+  return data;
+};
+
 module.exports = {
-  getAll
+  getAll,
+  create
 };
