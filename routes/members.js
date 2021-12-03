@@ -7,6 +7,6 @@ const validationMiddleware = require("../middlewares/membersPostValidation")
 
 router.get('/', authMiddleware.isAdmin, membersController.getAll);
 
-router.post('/', authMiddleware.isAdmin, validationMiddleware ,membersController.createNew )
+router.post('/', authMiddleware.isAuth, validationMiddleware.membersValidation ,membersController.createNew )
 
 module.exports = router;

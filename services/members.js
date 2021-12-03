@@ -5,9 +5,10 @@ const getAll = async () => {
   return members;
 };
 
-const createNew = async () => { 
+const createNew = async (body) => { 
 
-  await membersRepository.createNew();
+  const member = await membersRepository.createNew(body);
+  return member 
 }
 
 module.exports = {

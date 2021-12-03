@@ -6,17 +6,12 @@ const getAll = async () => {
 };
 
 
-const createNew = async (req,res,next) => {
+const createNew = async (body) => {
 
-  await Models.Members.create(
-    {
-      name: req.body.name,
-      facebookUrl: req.body.facebookUrl,
-      instagramUrl: req.body.instagramUrl,
-      linkedinUrl: req.body.linkedinUrl,
-      image: req.file.originalname,
-      description: req.body.description
-    })
+ const data =  await Models.Members.create(
+  body)
+
+  return data
 }
 
 module.exports = {

@@ -1,6 +1,6 @@
 const { check, validationResult } = require('express-validator');
 
- const membersValidation = [check("name").not().isEmpty().withMessage("A name is required").bail(),
+ const membersValidation = [check("name").notEmpty().withMessage("A name is required").bail(),
   
 (req,res,next) => { 
 
@@ -8,7 +8,7 @@ const { check, validationResult } = require('express-validator');
 
     if(!validationErrors.isEmpty()) { res.status(400).send(validationErrors)}
 
-    next()
+    next()  
 
 
 
@@ -16,4 +16,4 @@ const { check, validationResult } = require('express-validator');
 
 ]
 
-module.exports = membersValidation
+module.exports = {membersValidation}

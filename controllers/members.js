@@ -10,8 +10,8 @@ const getAll = async (req, res, next) => {
 
 const createNew = async (req,res,next) => { 
 
-	try{ membersService.createNew(); 
-	res.status(200)}catch(e){
+	try{const members = await  membersService.createNew(req.body); 
+	res.status(200).json(members)}catch(e){	
 		next(e)
 	}
 }
