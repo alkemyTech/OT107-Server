@@ -7,12 +7,22 @@ const getAll = async () => {
   return data;
 };
 
-const create = async (body) => {
-  const data = await Models.Testimonials.create(body);
+const getById = async (id) => {
+  const data = await Models.Testimonials.findByPk(id, {
+    attributes: ['id', 'name', 'image', 'content']
+  });
+  return data;
+};
+
+const update = async (id, body) => {
+  const data = await Models.Testimonials.update(body, {
+    where: { id }
+  });
   return data;
 };
 
 module.exports = {
   getAll,
-  create
+  getById,
+  update
 };
