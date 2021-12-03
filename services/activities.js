@@ -5,6 +5,12 @@ const getAll = async () => {
   return activities;
 };
 
+const create = async (body) => {
+  const activities = await activitiesRepository.create(body);
+  return activities;
+};
+
 module.exports = {
-  getAll
+  getAll,
+  create
 };
