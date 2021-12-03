@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 const bcrypt = require('bcrypt');
 const jwt = require('../modules/auth');
 const usersRepo = require('../repositories/users');
