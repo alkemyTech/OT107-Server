@@ -1,4 +1,5 @@
 const usersService = require('../services/users');
+const modules = require('../modules/auth');
 
 const getAll = async (req, res, next) => {
   try {
@@ -24,8 +25,12 @@ const login = async (req, res, next) => {
 const create = async (req, res, next) => {
   try {
     const user = await usersService.create(req.body);
+    const token = modules.createToken(req.body);
     res.status(200).json({
-      firstName: user.firstName, lastName: user.lastName, email: user.email
+      token,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email
     });
   } catch (e) {
     next(e);

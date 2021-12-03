@@ -8,6 +8,7 @@ const getAll = async () => {
 };
 
 const getByName = async (name) => {
+
   const category = await db.categories.findOne({ where: { name } });
   return category;
 };
