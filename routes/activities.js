@@ -7,6 +7,6 @@ const authMiddleware = require('../middlewares/auth');
 const activitiesMioddleware = require('../middlewares/activities');
 
 router.get('/', authMiddleware.isAdmin, activitiesController.getAll);
-router.post('/', (authMiddleware.isAdmin, activitiesMioddleware.activitiesInputValidation), activitiesController.create);
+router.post('/', authMiddleware.isAdmin, activitiesMioddleware.activitiesInputValidation, activitiesController.create);
 
 module.exports = router;

@@ -11,9 +11,9 @@ const getAll = async (req, res, next) => {
 
 const create = async (req, res, next) => {
   try {
-    const activities = await activitiesService.create(req.body);
+    const activity = await activitiesService.create(req.body);
     res.status(200).json(
-      { name: activities.name, content: activities.content }
+      activity
     );
   } catch (e) {
     next(e);
