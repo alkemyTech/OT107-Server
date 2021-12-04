@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.get('/', authMiddleware.isAdmin, slidesControllers.getAll);
 router.delete('/:id', authMiddleware.isAdmin, slidesControllers.remove);
+router.get('/:id', authMiddleware.isAdmin, slidesControllers.getById);
 
 module.exports = router;
