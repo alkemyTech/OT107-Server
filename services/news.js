@@ -18,8 +18,10 @@ const create = async (data) => {
   return novelty;
 };
 
-const getById = async () => {
-
+const getById = async (id) => {
+  const novelty = await newsRepository.getById(id);
+  if (!novelty) throw new Error('bad request');
+  return novelty;
 };
 
 const update = async () => {
