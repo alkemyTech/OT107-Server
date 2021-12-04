@@ -10,7 +10,19 @@ const create = async (body) => {
   return member;
 };
 
+const update = async (id, body) => {
+  const member = await membersRepository.update(id, body);
+  return member;
+};
+
+const memberById = async (id) => {
+  const member = await membersRepository.memberById(id);
+  return member;
+};
+
 module.exports = {
   getAll,
-  create
+  create,
+  update,
+  memberById
 };
