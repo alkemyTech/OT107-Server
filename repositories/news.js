@@ -10,8 +10,9 @@ const create = async (data) => {
   return novelty;
 };
 
-const getById = async () => {
-
+const getById = async (id) => {
+  const novelty = await models.News.findByPk(id);
+  return novelty;
 };
 
 const update = async () => {
