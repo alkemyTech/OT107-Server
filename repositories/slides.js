@@ -7,6 +7,14 @@ const getAll = async () => {
   return slides;
 };
 
+const remove = async (id) => {
+  const slide = await db.Slides.destroy({
+    where: { id }
+  });
+  return slide;
+};
+
 module.exports = {
-  getAll
+  getAll,
+  remove
 };
