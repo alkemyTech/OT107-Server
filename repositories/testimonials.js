@@ -14,8 +14,20 @@ const getById = async (id) => {
   return data;
 };
 
+const create = async (body) => {
+  const data = await Models.Testimonials.create(body);
+  return data;
+};
+
 const update = async (id, body) => {
   const data = await Models.Testimonials.update(body, {
+    where: { id }
+  });
+  return data;
+};
+
+const remove = async (id) => {
+  const data = await Models.Testimonials.destroy({
     where: { id }
   });
   return data;
@@ -24,5 +36,7 @@ const update = async (id, body) => {
 module.exports = {
   getAll,
   getById,
-  update
+  create,
+  update,
+  remove
 };
