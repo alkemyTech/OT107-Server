@@ -22,12 +22,7 @@ const update = async (id, body) => {
     error.status = 404;
     throw error;
   }
-  const categoryUpdateBody = {
-    name: body.name,
-    image: body.image,
-    description: body.description
-  };
-  await categoriesRepository.update(id, categoryUpdateBody);
+  await categoriesRepository.update(id, body);
   const categoryUpdate = await categoriesRepository.getById(id);
   return categoryUpdate;
 };
