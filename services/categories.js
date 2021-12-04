@@ -1,9 +1,20 @@
+/* eslint-disable prefer-destructuring */
 const categoriesRepository = require('../repositories/categories');
 const newsRepository = require('../repositories/news');
 
 const getAll = async () => {
   const categories = categoriesRepository.getAll();
   return categories;
+};
+
+const getById = async (id) => {
+  const category = await categoriesRepository.getById(id);
+  if (!category) {
+    const error = new Error('La categoria no existe!');
+    error.status = 404;
+    throw error;
+  }
+  return category;
 };
 
 const create = async (body) => {
@@ -32,8 +43,22 @@ const remove = async (id) => {
   await categoriesRepository.remove(id);
 };
 
+const update = async (id, body) => {
+  const category = await categoriesRepository.getById(id);
+  if (!category) {
+    const error = new Error('La categoria no existe');
+    error.status = 404;
+    throw error;
+  }
+  await categoriesRepository.update(id, body);
+  const categoryUpdate = await categoriesRepository.getById(id);
+  return categoryUpdate;
+};
+
 module.exports = {
   getAll,
+  getById,
   create,
-  remove
+  remove,
+  update
 };

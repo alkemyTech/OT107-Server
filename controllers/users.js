@@ -35,9 +35,25 @@ const create = async (req, res, next) => {
   }
 };
 
+const update = async (req, res, next) => {
+  try {
+    const bodyUpdate = req.body;
+    const user = await usersService.update(
+      req.params.id,
+      bodyUpdate
+    );
+    res.status(200).json({
+      user,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
+
 module.exports = {
   getAll,
   login,
-  create
-
+  create,
+  update,
 };

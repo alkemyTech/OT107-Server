@@ -29,9 +29,22 @@ const findByEmail = async (userEmail) => {
   return data;
 };
 
+const update = async (id, changes) => {
+  const userUpdate = await Models.Users.update(
+    { firstName: changes.firstName, lastName: changes.lastName },
+    {
+      where: {
+        id:id,
+      }
+    }
+  );
+  return userUpdate;
+};
+
 module.exports = {
   getAll,
   getById,
   findByEmail,
-  create
+  create,
+  update
 };
