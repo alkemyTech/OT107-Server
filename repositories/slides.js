@@ -7,6 +7,14 @@ const getAll = async () => {
   return slides;
 };
 
+const getById = async (id) => {
+  const slide = await db.Slides.findOne({
+    where: { id }
+  });
+  return slide;
+};
+
 module.exports = {
-  getAll
+  getAll,
+  getById
 };
