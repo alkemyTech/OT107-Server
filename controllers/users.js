@@ -54,11 +54,22 @@ const update = async (req, res, next) => {
     next(e);
   }
 };
+const getById = async (req, res, next) => {
+  try {
+    const user = await usersService.getById(req.params.tokenizedUserId);
+    res.status(200).json({
+      user,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
 
 module.exports = {
   getAll,
   login,
-  create,
   remove,
   update,
+  create,
+  getById,
 };
