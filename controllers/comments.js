@@ -23,7 +23,18 @@ const getAll = async (req, res, next) => {
   }
 };
 
+const update = async (req, res, next) => {
+  try {
+    const bodyUpdate = req.body;
+    const comment = await commentsService.update(req.params.id, bodyUpdate);
+    res.status(200).json({ comment });
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   create,
   getAll,
+  update
 };

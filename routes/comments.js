@@ -15,4 +15,6 @@ router
     commentsController.create
   );
 
+router.put('/:id', commentsMiddleware.isOwnComment, commentsController.update);
+
 module.exports = router;
