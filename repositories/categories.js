@@ -22,9 +22,15 @@ const create = async (body) => {
   return category;
 };
 
+const update = async (id, data) => {
+  const category = await db.categories.update(data, { where: { id } });
+  return category;
+};
+
 module.exports = {
   getAll,
   getByName,
-  getById,
-  create
+  create,
+  update,
+  getById
 };

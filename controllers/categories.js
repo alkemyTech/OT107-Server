@@ -31,8 +31,18 @@ const create = async (req, res, next) => {
   }
 };
 
+const update = async (req, res, next) => {
+  try {
+    const category = await categoriesService.update(req.params.id, req.body);
+    res.status(200).json(category);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAll,
+  create,
+  update
   getById,
-  create
 };
