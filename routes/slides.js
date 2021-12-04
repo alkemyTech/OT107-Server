@@ -5,6 +5,6 @@ const authMiddleware = require('../middlewares/auth');
 const router = express.Router();
 
 router.get('/', authMiddleware.isAdmin, slidesControllers.getAll);
-router.get('/:id', slidesControllers.getById);
+router.get('/:id', authMiddleware.isAdmin, slidesControllers.getById);
 
 module.exports = router;
