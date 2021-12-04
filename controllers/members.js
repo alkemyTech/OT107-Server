@@ -28,8 +28,18 @@ const update = async (req, res, next) => {
   }
 };
 
+const destroy = async (req, res, next) => {
+  try {
+    await membersService.destroy(req.params.id);
+    res.status(200).json('The member was removed succesfully');
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   getAll,
   create,
-  update
+  update,
+  destroy
 };

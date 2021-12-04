@@ -11,4 +11,6 @@ router.post('/', authMiddleware.isAuth, validationMiddleware.membersValidation, 
 
 router.put('/:id', authMiddleware.isAuth, validationMiddleware.membersValidation, validationMiddleware.memberExist, membersController.update);
 
+router.delete('/:id', authMiddleware.isAuth, validationMiddleware.memberExist, membersController.destroy);
+
 module.exports = router;

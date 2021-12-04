@@ -22,9 +22,14 @@ const memberById = async (memberId) => {
   return member;
 };
 
+const destroy = async (memberId) => {
+  await Models.Members.destroy({ where: { id: memberId } });
+};
+
 module.exports = {
   getAll,
   create,
   update,
-  memberById
+  memberById,
+  destroy
 };
