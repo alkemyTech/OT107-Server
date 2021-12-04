@@ -49,12 +49,12 @@ const login = async (body) => {
   }
 };
 
-const deleteUser = async (id) => {
+const remove = async (id) => {
   const user = await usersRepo.getById(id);
   if (!user) {
     throw new Error('Usuario inexistente');
   }
-  const deletedUser = await usersRepo.deleteUser(id);
+  const deletedUser = await usersRepo.remove(id);
   return deletedUser;
 };
 module.exports = {
@@ -62,5 +62,5 @@ module.exports = {
   getById,
   login,
   create,
-  deleteUser,
+  remove,
 };

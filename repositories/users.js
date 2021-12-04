@@ -29,7 +29,7 @@ const findByEmail = async (userEmail) => {
   return data;
 };
 
-const deleteUser = async (id) => {
+const remove = async (id) => {
   await Models.Users.destroy({ where: { id } });
   return true;
 };
@@ -39,5 +39,5 @@ module.exports = {
   getById,
   findByEmail,
   create,
-  deleteUser
+  remove
 };
