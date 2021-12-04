@@ -7,8 +7,30 @@ const getAll = async (req, res, next) => {
   } catch (e) {
     next(e);
   }
-};
+}
+
+const remove = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    await slidesServices.remove(id);
+    res.status(200).json({ msg: 'slide remove successfully' });
+  } catch (e) {
+    next(e);
+  }
+}
+
+const getById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const slide = await slidesServices.getById(id);
+    res.status(200).json(slide);
+  } catch (e) {
+    next(e);
+  }
+}
 
 module.exports = {
-  getAll
+  getAll,
+  remove,
+  getById
 };

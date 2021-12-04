@@ -34,6 +34,17 @@ const create = async (req, res, next) => {
     next(e);
   }
 };
+const update = async (req, res, next) => {
+  try {
+    const bodyUpdate = req.body;
+    const user = await usersService.update(req.params.id, bodyUpdate);
+    res.status(200).json({
+      user,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
 
 const getById = async (req, res, next) => {
   try {
@@ -48,6 +59,7 @@ const getById = async (req, res, next) => {
 module.exports = {
   getAll,
   login,
+  update,
   create,
-  getById
+  getById,
 };

@@ -25,27 +25,26 @@ const isOwnUser = async (req, res, next) => {
 
 const isAdmin = async (req, res, next) => {
   const bearertoken = req.headers.authorization;
-  const token = bearertoken.split(' ')[1];
-  const adminRole = await rolesServices.getByName('Admin');
-
-  if (!token) return res.status(401).json({ error: 'Access denied' });
+  if (!bearertoken) return res.status(401).json({ error: 'Access denied' });
 
   try {
+    const token = bearertoken.split(' ')[1];
+    const adminRole = await rolesServices.getByName('Admin');
     const user = auth.decodeToken(token);
 
     if (user.roleId !== adminRole.id) return res.status(401).json({ error: 'Access denied' });
     next();
   } catch (error) {
-    res.status(400).json({ error: 'token no es válido' });
+    res.status(400).json({ error: 'Invalid token' });
   }
 };
 
 const isAuth = async (req, res, next) => {
   const bearertoken = req.headers.authorization;
-  const token = bearertoken.split(' ')[1];
-  if (!token) return res.status(403).json({ message: 'Acceso no autorizado' });
+  if (!bearertoken) return res.status(403).json({ message: 'Access denied' });
 
   try {
+    const token = bearertoken.split(' ')[1];
     const { id } = await auth.decodeToken(token);
     const userAuth = await usersServices.getById(id);
     req.params.tokenizedUserId = userAuth.id;
@@ -53,7 +52,7 @@ const isAuth = async (req, res, next) => {
 
     next();
   } catch (error) {
-    res.status(403).json(`Token no válido - ${error.message}`);
+    res.status(403).json(`Invalid token - ${error.message}`);
   }
 };
 

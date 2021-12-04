@@ -1,20 +1,20 @@
-const {Model} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Members extends Model {
-   
     static associate(models) {
-     
+
     }
-  };
-  Members.init({  
+  }
+  Members.init({
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true
     },
-     
-    name:{
+
+    name: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true
     },
-    instagramUrl:{
+    instagramUrl: {
       type: DataTypes.STRING,
       allowNull: true
     },
@@ -44,10 +44,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Members',
-    tableName: "members",
+    tableName: 'members',
     paranoid: true
   });
   return Members;
 };
-
-
