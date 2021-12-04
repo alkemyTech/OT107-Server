@@ -28,10 +28,11 @@ const update = async (id, body) => {
   const existNovelty = await newsRepository.getById(id);
   if (!existNovelty) throw new Error('bad request');
 
-  // assignment news categoryId from Categories
-  const newsCategory = await categoriesRepository.getByName('news');
-  // eslint-disable-next-line no-param-reassign
-  body.categoryId = newsCategory.id;
+  if (body.categoryId) {
+    const checkCategoryId = await categoriesRepository.getById(body.categoryId);
+    if (!checkCategoryId) throw new Error('bad request');
+  }
+
   const updateNovelty = await newsRepository.update(id, body);
   if (!updateNovelty) throw new Error('bad request');
 
