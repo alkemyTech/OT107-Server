@@ -15,7 +15,11 @@ const create = async (body) => {
     throw new Error('Email already registered');
   }
   const data = await usersRepo.create(body);
-  await welcomeEmail.send(data.dataValues.email, data.dataValues.lastName, data.dataValues.firstName);
+  await welcomeEmail.send(
+    data.dataValues.email,
+    data.dataValues.lastName,
+    data.dataValues.firstName
+  );
   return data;
 };
 
@@ -45,9 +49,18 @@ const login = async (body) => {
   }
 };
 
+const deleteUser = async (id) => {
+  const user = await usersRepo.getById(id);
+  if (!user) {
+    throw new Error('Usuario inexistente');
+  }
+  const deletedUser = await usersRepo.deleteUser(id);
+  return deletedUser;
+};
 module.exports = {
   getAll,
   getById,
   login,
-  create
+  create,
+  deleteUser,
 };

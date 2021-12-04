@@ -35,9 +35,21 @@ const create = async (req, res, next) => {
   }
 };
 
+const deleteUser = async (req, res, next) => {
+  try {
+    if (req.params.id !== res.locals.uid.toString()) {
+      throw new Error('Sin autorizacion');
+    }
+    await usersService.deleteUser(req.params.id);
+    res.status(204).json({ message: "Borrado con exito!" });
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   getAll,
   login,
-  create
-
+  create,
+  deleteUser,
 };

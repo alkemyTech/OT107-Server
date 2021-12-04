@@ -11,6 +11,7 @@ const isOwnUser = async (req, res, next) => {
   try {
     const token = bearertoken.split(' ')[1];
     const usuarioToken = auth.decodeToken(token);
+    res.locals.uid = usuarioToken.id;
     if (Number.parseInt(userId) === usuarioToken.id) return next();
     const user = await usersServices.getById(usuarioToken.id);
     if (!user) return res.status(401).json({ error: 'Access denied' });
