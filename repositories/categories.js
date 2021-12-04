@@ -21,8 +21,7 @@ const getById = async (id) => {
   return category;
 };
 const remove = async (id) => {
-  const category = await db.categories.destroy({ where: { id } });
-  return category;
+  await db.categories.destroy({ where: { id } });
 };
 
 module.exports = {
