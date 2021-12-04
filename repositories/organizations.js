@@ -8,6 +8,22 @@ const getOrganizationPublic = async (id) => {
   return data;
 };
 
+const update = async (id, body) => {
+  const data = await db.Organization.update(body, {
+    where: { id }
+  });
+  return data;
+};
+
+const getOrganizationAllData = async (id) => {
+  const data = await db.Organization.findOne({
+    where: { id }
+  });
+  return data;
+};
+
 module.exports = {
-  getOrganizationPublic
+  getOrganizationPublic,
+  update,
+  getOrganizationAllData
 };
