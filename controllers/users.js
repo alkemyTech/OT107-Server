@@ -41,7 +41,22 @@ const remove = async (req, res, next) => {
       throw new Error('Sin autorizacion');
     }
     await usersService.remove(req.params.id);
-    res.status(204).json({ message: "Borrado con exito!" });
+    res.status(204).json({ message: 'Borrado con exito!' });
+  } catch (e) {
+    next(e);
+  }
+};
+
+const update = async (req, res, next) => {
+  try {
+    const bodyUpdate = req.body;
+    const user = await usersService.update(
+      req.params.id,
+      bodyUpdate
+    );
+    res.status(200).json({
+      user,
+    });
   } catch (e) {
     next(e);
   }
@@ -52,4 +67,5 @@ module.exports = {
   login,
   create,
   remove,
+  update,
 };

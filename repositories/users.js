@@ -7,7 +7,7 @@ const getAll = async () => {
   return data;
 };
 
-const create = async (body, req, res) => {
+const create = async (body) => {
   const data = await Models.Users.create(body);
 
   return data;
@@ -34,10 +34,23 @@ const remove = async (id) => {
   return true;
 };
 
+const update = async (id, changes) => {
+  const userUpdate = await Models.Users.update(
+    { firstName: changes.firstName, lastName: changes.lastName },
+    {
+      where: {
+        id,
+      },
+    }
+  );
+  return userUpdate;
+};
+
 module.exports = {
   getAll,
   getById,
   findByEmail,
   create,
-  remove
+  remove,
+  update,
 };
