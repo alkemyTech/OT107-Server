@@ -16,15 +16,12 @@ const getById = async (id) => {
 };
 
 const update = async (id, body) => {
-  console.log('id',id)
-  console.log('body',body)
   const novelty = await models.News.update(body, {
     where: {
       id
     },
   });
 
-  console.log('novelty', novelty);
   return novelty;
 };
 
