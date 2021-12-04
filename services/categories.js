@@ -16,14 +16,14 @@ const getById = async (id) => {
   return category;
 };
 
-const create = (body) => {
+const create = async (body) => {
   const name = body.name;
-  const category = categoriesRepository.getByName(name);
+  const category = await categoriesRepository.getByName(name);
   if (category) {
     const error = new Error('Category already exists.');
     throw error;
   }
-  return categoriesRepository.create(body);
+  return await categoriesRepository.create(body);
 };
 
 module.exports = {
