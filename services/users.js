@@ -45,9 +45,22 @@ const login = async (body) => {
   }
 };
 
+const update = async (id, body) => {
+  const changes = {
+    firstName: body.firstName,
+    lastName: body.lastName,
+  };
+  const userUpdate = await usersRepo.update(id, changes);
+  if (!userUpdate) {
+    throw new Error('Error en los datos a actualizar');
+  }
+  return userUpdate;
+};
+
 module.exports = {
   getAll,
   getById,
   login,
-  create
+  create,
+  update
 };
