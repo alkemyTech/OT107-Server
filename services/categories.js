@@ -15,7 +15,25 @@ const create = async (body) => {
   return await categoriesRepository.create(body);
 };
 
+const update = async (id, body) => {
+  const category = await categoriesRepository.getById(id);
+  if (!category) {
+    const error = new Error('La categoria no existe');
+    error.status = 404;
+    throw error;
+  }
+  const categoryUpdateBody = {
+    name: body.name,
+    image: body.image,
+    description: body.description
+  };
+  await categoriesRepository.update(id, categoryUpdateBody);
+  const categoryUpdate = await categoriesRepository.getById(id);
+  return categoryUpdate;
+};
+
 module.exports = {
   getAll,
-  create
+  create,
+  update
 };
