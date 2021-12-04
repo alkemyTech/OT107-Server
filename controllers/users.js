@@ -1,5 +1,5 @@
-const usersService = require('../services/users');
-const modules = require('../modules/auth');
+const usersService = require("../services/users");
+const modules = require("../modules/auth");
 
 const getAll = async (req, res, next) => {
   try {
@@ -14,7 +14,7 @@ const login = async (req, res, next) => {
   try {
     const jwt = await usersService.login(req.body);
     if (!jwt) {
-      res.status(401).json({ ok: 'false' });
+      res.status(401).json({ ok: "false" });
     } else {
       res.status(200).json({ token: jwt });
     }
@@ -28,20 +28,16 @@ const create = async (req, res, next) => {
     const token = modules.createToken(req.body);
     res.status(200).json({
       token,
-      user
+      user,
     });
   } catch (e) {
     next(e);
   }
 };
-
 const update = async (req, res, next) => {
   try {
     const bodyUpdate = req.body;
-    const user = await usersService.update(
-      req.params.id,
-      bodyUpdate
-    );
+    const user = await usersService.update(req.params.id, bodyUpdate);
     res.status(200).json({
       user,
     });
@@ -50,10 +46,20 @@ const update = async (req, res, next) => {
   }
 };
 
-
+const getById = async (req, res, next) => {
+  try {
+    const user = await usersService.getById(res.locals.uid);
+    res.status(200).json({
+      user,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
 module.exports = {
   getAll,
   login,
-  create,
   update,
+  create,
+  getById,
 };
