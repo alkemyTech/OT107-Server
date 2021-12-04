@@ -17,8 +17,17 @@ const getById = async (id) => {
   return slide;
 };
 
+const update = async (id, body) => {
+  const exist = await slidesRepository.getById(id);
+  if (!exist) throw new Error('slide no exist');
+  await slidesRepository.update(id, body);
+  const slide = await slidesRepository.getById(id);
+  return slide;
+};
+
 module.exports = {
   getAll,
   remove,
-  getById
+  getById,
+  update
 };
