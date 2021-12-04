@@ -23,10 +23,16 @@ const remove = async () => {
 
 };
 
+const getByCategoryId = async (categoryId) => {
+  const response = await models.News.findAll({ where: { categoryId } });
+  return response;
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
-  remove
+  remove,
+  getByCategoryId
 };

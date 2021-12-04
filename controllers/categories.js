@@ -21,7 +21,17 @@ const create = async (req, res, next) => {
   }
 };
 
+const remove = async (req, res, next) => {
+  try {
+    const response = await categoriesService.remove(req.params.id);
+    res.status(200).json({ msg: `Category ${req.params.id} removed succesfully`, response });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAll,
-  create
+  create,
+  remove
 };
