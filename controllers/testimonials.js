@@ -18,6 +18,15 @@ const getById = async (req, res, next) => {
   }
 };
 
+const create = async (req, res, next) => {
+  try {
+    const data = await testimonialsService.create(req.body);
+    res.status(200).json(data);
+  } catch (e) {
+    next(e);
+  }
+};
+
 const update = async (req, res, next) => {
   try {
     await testimonialsService.update(req.params, req.body);
@@ -28,8 +37,19 @@ const update = async (req, res, next) => {
   }
 };
 
+const remove = async (req, res, next) => {
+  try {
+    const data = await testimonialsService.remove(req.params);
+    res.status(200).json(data);
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   getAll,
   getById,
-  update
+  create,
+  update,
+  remove
 };
