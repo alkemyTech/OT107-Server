@@ -9,6 +9,7 @@ router.route('/')
   .get(authMiddleware.isAdmin, newsController.getAll)
   .post(authMiddleware.isAdmin, newsMiddleware.newsInputValidation, newsController.create);
 router.route('/:id')
-  .get(authMiddleware.isAdmin, newsController.getById);
+  .get(authMiddleware.isAdmin, newsController.getById)
+  .delete(authMiddleware.isAdmin, newsController.remove);
 
 module.exports = router;

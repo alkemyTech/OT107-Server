@@ -24,12 +24,15 @@ const getById = async (id) => {
   return novelty;
 };
 
-const update = async () => {
+const update = async (id, body) => {
 
 };
 
-const remove = async () => {
+const remove = async (id) => {
+  const existNovelty = await newsRepository.getById(id);
+  if (!existNovelty) throw new Error('bad request');
 
+  await newsRepository.remove(id);
 };
 
 module.exports = {
