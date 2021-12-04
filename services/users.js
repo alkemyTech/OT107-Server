@@ -49,27 +49,32 @@ const login = async (body) => {
   }
 };
 
-const remove = async (id) => {
-  const user = await usersRepo.getById(id);
+const remove = async (req) => {
+  if (req.params.id !== req.params.tokenizedUserId.toString() || req.params.adminRole !== 1) {
+    throw new Error('Sin autorizacion');
+  }
+  const user = await usersRepo.getById(req.params.id);
   if (!user) {
     throw new Error('Usuario inexistente');
   }
-  const deletedUser = await usersRepo.remove(id);
+  const deletedUser = await usersRepo.remove(req.params.id);
   return deletedUser;
 };
 
-const update = async (id, body) => {
+const update = async (req) => {
+  if (req.params.id !== req.params.tokenizedUserId.toString() || req.params.adminRole !== 1) {
+    throw new Error('Sin autorizacion');
+  }
   const changes = {
-    firstName: body.firstName,
-    lastName: body.lastName,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
   };
-  const userUpdate = await usersRepo.update(id, changes);
+  const userUpdate = await usersRepo.update(req.params.id, changes);
   if (!userUpdate) {
     throw new Error('Error en los datos a actualizar');
   }
   return userUpdate;
 };
-
 
 module.exports = {
   getAll,
