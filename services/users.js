@@ -15,7 +15,11 @@ const create = async (body) => {
     throw new Error('Email already registered');
   }
   const data = await usersRepo.create(body);
-  await welcomeEmail.send(data.dataValues.email, data.dataValues.lastName, data.dataValues.firstName);
+  await welcomeEmail.send(
+    data.dataValues.email,
+    data.dataValues.lastName,
+    data.dataValues.firstName
+  );
   return data;
 };
 
@@ -45,12 +49,27 @@ const login = async (body) => {
   }
 };
 
-const update = async (id, body) => {
+const remove = async (req) => {
+  if (req.params.id !== req.params.tokenizedUserId.toString() || req.params.adminRole !== 1) {
+    throw new Error('Sin autorizacion');
+  }
+  const user = await usersRepo.getById(req.params.id);
+  if (!user) {
+    throw new Error('Usuario inexistente');
+  }
+  const deletedUser = await usersRepo.remove(req.params.id);
+  return deletedUser;
+};
+
+const update = async (req) => {
+  if (req.params.id !== req.params.tokenizedUserId.toString() || req.params.adminRole !== 1) {
+    throw new Error('Sin autorizacion');
+  }
   const changes = {
-    firstName: body.firstName,
-    lastName: body.lastName,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
   };
-  const userUpdate = await usersRepo.update(id, changes);
+  const userUpdate = await usersRepo.update(req.params.id, changes);
   if (!userUpdate) {
     throw new Error('Error en los datos a actualizar');
   }
@@ -62,5 +81,6 @@ module.exports = {
   getById,
   login,
   create,
+  remove,
   update
 };
