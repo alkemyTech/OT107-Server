@@ -39,8 +39,11 @@ const update = async (id, body) => {
   return novelty;
 };
 
-const remove = async () => {
+const remove = async (id) => {
+  const existNovelty = await newsRepository.getById(id);
+  if (!existNovelty) throw new Error('bad request');
 
+  await newsRepository.remove(id);
 };
 
 module.exports = {

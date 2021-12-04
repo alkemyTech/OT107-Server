@@ -23,7 +23,7 @@ const create = async (req, res, next) => {
 
 const getById = async (req, res, next) => {
   try {
-    const id = req.params.id;
+    const { id } = req.params;
     const novelty = await newsService.getById(id);
 
     res.status(200).json(novelty);
@@ -34,8 +34,8 @@ const getById = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   try {
-    const id = req.params.id;
-    const body = req.body;
+    const { id } = req.params;
+    const { body } = req;
     const novelty = await newsService.update(id, body);
 
     res.status(200).json(novelty);
@@ -45,7 +45,14 @@ const update = async (req, res, next) => {
 };
 
 const remove = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await newsService.remove(id);
 
+    res.sendStatus(204);
+  } catch (e) {
+    next(e);
+  }
 };
 
 module.exports = {
