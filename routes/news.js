@@ -11,5 +11,6 @@ router.route('/')
 router.route('/:id')
   .get(authMiddleware.isAdmin, newsController.getById)
   .put(authMiddleware.isAdmin, newsMiddleware.newsInputValidation, newsController.update);
+  .delete(authMiddleware.isAdmin, newsController.remove);
 
 module.exports = router;

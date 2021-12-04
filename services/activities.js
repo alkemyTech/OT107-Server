@@ -10,7 +10,25 @@ const create = async (body) => {
   return activities;
 };
 
+const getById = async (params) => {
+  const id = params.id;
+  const activity = await activitiesRepository.getById(id);
+  if (!activity) {
+    const error = new Error('The activity does not exist.');
+    throw error;
+  }
+  return activity;
+};
+
+const update = async (params, body) => {
+  const id = params.id;
+  const activity = await activitiesRepository.update(id, body);
+  return activity;
+};
+
 module.exports = {
   getAll,
-  create
+  getById,
+  create,
+  update
 };
