@@ -17,7 +17,7 @@ const create = async (body) => {
   return category;
 };
 const getById = async (id) => {
-  const category = await db.categories.findByPk(id);
+  const category = await db.categories.findOne({ where: { id } });
   return category;
 };
 const remove = async (id) => {
