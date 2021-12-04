@@ -7,6 +7,11 @@ const getAll = async () => {
   return allCategories;
 };
 
+const getById = async (id) => {
+  const response = await db.categories.findByPk(id);
+  return response;
+};
+
 const getByName = async (name) => {
   const category = await db.categories.findOne({ where: { name } });
   return category;
@@ -19,11 +24,6 @@ const create = async (body) => {
 
 const update = async (id, data) => {
   const category = await db.categories.update(data, { where: { id } });
-  return category;
-};
-
-const getById = async (id) => {
-  const category = await db.categories.findByPk(id);
   return category;
 };
 
