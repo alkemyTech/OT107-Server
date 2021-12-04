@@ -5,14 +5,13 @@ const getAll = async () => {
   return data;
 };
 
-
 const create = async (body) => {
+  const data = await Models.Members.create(
+    body
+  );
 
- const data =  await Models.Members.create(
-  body)
-
-  return data
-}
+  return data;
+};
 
 module.exports = {
   getAll,
