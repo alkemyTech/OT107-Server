@@ -20,8 +20,8 @@ const memberById = async (id) => {
   return member;
 };
 
-const destroy = async (id) => {
-  await membersRepository.destroy(id);
+const remove = async (id) => {
+  await membersRepository.remove(id);
 };
 
 module.exports = {
@@ -29,5 +29,5 @@ module.exports = {
   create,
   update,
   memberById,
-  destroy
+  remove
 };

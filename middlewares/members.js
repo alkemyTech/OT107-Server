@@ -1,5 +1,4 @@
 const { check, validationResult } = require('express-validator');
-const membersService = require('../services/members');
 
 const membersValidation = [check('name')
   .notEmpty()
@@ -17,11 +16,4 @@ const membersValidation = [check('name')
 }
 ];
 
-const memberExist = [async (req, res, next) => {
-  const member = await membersService.memberById(req.params.id);
-
-  if (!member) { res.status(400).send('Not matching member'); }
-  next();
-}];
-
-module.exports = { membersValidation, memberExist };
+module.exports = { membersValidation };

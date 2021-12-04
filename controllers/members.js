@@ -28,9 +28,13 @@ const update = async (req, res, next) => {
   }
 };
 
-const destroy = async (req, res, next) => {
+const remove = async (req, res, next) => {
   try {
-    await membersService.destroy(req.params.id);
+    const member = await membersService.memberById(req.params.id);
+
+    if (!member) { res.status(400).send('Not matching member'); }
+
+    await membersService.remove(req.params.id);
     res.status(200).json('The member was removed succesfully');
   } catch (e) {
     next(e);
@@ -41,5 +45,5 @@ module.exports = {
   getAll,
   create,
   update,
-  destroy
+  remove
 };
