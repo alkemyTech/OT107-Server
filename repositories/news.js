@@ -16,7 +16,14 @@ const getById = async (id) => {
 };
 
 const update = async (id, body) => {
+  const novelty = await models.News.update(body, {
+    where: {
+      id
+    },
+  });
 
+
+  return novelty;
 };
 
 const remove = async (id) => {
