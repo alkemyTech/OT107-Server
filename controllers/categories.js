@@ -31,6 +31,16 @@ const create = async (req, res, next) => {
   }
 };
 
+
+const remove = async (req, res, next) => {
+  try {
+    await categoriesService.remove(req.params.id);
+    res.status(200).json({ msg: `Category ${req.params.id} removed succesfully` });
+   } catch (error) {
+    next(error);
+  }
+};
+
 const update = async (req, res, next) => {
   try {
     const category = await categoriesService.update(req.params.id, req.body);
@@ -42,7 +52,8 @@ const update = async (req, res, next) => {
 
 module.exports = {
   getAll,
-  create,
-  update
   getById,
+  create,
+  remove,
+  update
 };
