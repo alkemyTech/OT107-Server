@@ -16,7 +16,7 @@ const isOwnUser = async (req, res, next) => {
     const user = await usersServices.getById(usuarioToken.id);
     if (!user) return res.status(401).json({ error: 'Access denied' });
     const adminUser = await rolesServices.getByName('Admin');
-    req.params.adminRole = adminUser.roleId;
+    req.params.adminRole = user.dataValues.roleId;
     if (user.dataValues.roleId === adminUser.id) return next();
     const e = new Error();
     throw e;
