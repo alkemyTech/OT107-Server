@@ -48,7 +48,9 @@ const isAuth = async (req, res, next) => {
     const token = bearertoken.split(' ')[1];
     const { id } = await auth.decodeToken(token);
     const userAuth = await usersServices.getById(id);
-    if (!userAuth) return res.status(403).json({ message: 'The user does not exist' });
+    req.params.tokenizedUserId = userAuth.id;
+    if (!userAuth) return res.status(403).json({ message: 'El usuario no existe' });
+
     next();
   } catch (error) {
     res.status(403).json(`Invalid token - ${error.message}`);
