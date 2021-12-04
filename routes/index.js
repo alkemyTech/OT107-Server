@@ -25,7 +25,7 @@ router.use('/contacts', contactsRouter);
 router.use('/news', newsRouter);
 router.use('/members', membersRoute);
 router.use('/comments', commentsRoutes);
-router.use('./slides', slidesRoute);
+router.use('/slides', slidesRoute);
 router.use('/backoffice', backofficeRouter);
 
 module.exports = router;

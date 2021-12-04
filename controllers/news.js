@@ -23,7 +23,7 @@ const create = async (req, res, next) => {
 
 const getById = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id;
     const novelty = await newsService.getById(id);
 
     res.status(200).json(novelty);
