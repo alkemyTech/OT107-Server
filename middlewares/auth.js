@@ -48,7 +48,7 @@ const isAuth = async (req, res, next) => {
   try {
     const { id } = await auth.decodeToken(token);
     const userAuth = await usersServices.getById(id);
-
+    res.locals.uid = userAuth.id;
     if (!userAuth) return res.status(403).json({ message: 'El usuario no existe' });
 
     next();
