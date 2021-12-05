@@ -10,6 +10,10 @@ const create = async (body) => {
   return member;
 };
 
+const remove = async (id) => {
+  await membersRepository.remove(id);
+};
+
 const update = async (id, body) => {
   const memberVerified = await membersRepository.getById(id);
 
@@ -28,6 +32,7 @@ const getById = async (id) => {
 module.exports = {
   getAll,
   create,
+  remove,
   update,
   getById
 };

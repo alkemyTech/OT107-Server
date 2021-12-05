@@ -18,6 +18,19 @@ const create = async (req, res, next) => {
   }
 };
 
+const remove = async (req, res, next) => {
+  try {
+    const member = await membersService.memberById(req.params.id);
+
+    if (!member) { res.status(400).send('Not matching member'); }
+
+    await membersService.remove(req.params.id);
+    res.status(200).json('The member was removed succesfully');
+  } catch (e) {
+    next(e);
+  }
+};
+
 const update = async (req, res, next) => {
   try {
     const member = await membersService.update(req.params.id, req.body);
@@ -30,5 +43,6 @@ const update = async (req, res, next) => {
 module.exports = {
   getAll,
   create,
+  remove,
   update
 };
