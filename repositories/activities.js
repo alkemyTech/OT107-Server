@@ -10,7 +10,21 @@ const create = async (body, req, res) => {
   return data;
 };
 
+const update = async (id, body) => {
+  const data = await db.Activities.update(body, {
+    where: { id }
+  });
+  return data;
+};
+
+const getById = async (id) => {
+  const activity = await db.Activities.findByPk(id);
+  return activity;
+};
+
 module.exports = {
   getAll,
-  create
+  create,
+  update,
+  getById
 };

@@ -20,7 +20,28 @@ const create = async (req, res, next) => {
   }
 };
 
+const getById = async (req, res, next) => {
+  try {
+    const activity = await activitiesService.getById(req.params);
+    res.status(200).json(activity);
+  } catch (e) {
+    next(e);
+  }
+};
+
+const update = async (req, res, next) => {
+  try {
+    await activitiesService.update(req.params, req.body);
+    const activity = await activitiesService.getById(req.params);
+    res.status(200).json(activity);
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   getAll,
-  create
+  getById,
+  create,
+  update
 };

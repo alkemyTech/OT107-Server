@@ -15,7 +15,19 @@ const getAll = async () => {
   return data;
 };
 
+const getById = async (id) => {
+  const data = await commentsRepository.getById(id);
+  return data;
+};
+
+const update = async (id, bodyUpdate) => {
+  const data = await commentsRepository.update(id, bodyUpdate);
+  return data;
+};
+
 module.exports = {
   getAll,
   create,
+  update,
+  getById
 };

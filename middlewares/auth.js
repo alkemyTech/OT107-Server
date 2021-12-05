@@ -11,10 +11,12 @@ const isOwnUser = async (req, res, next) => {
   try {
     const token = bearertoken.split(' ')[1];
     const usuarioToken = auth.decodeToken(token);
+    req.params.tokenizedUserId = usuarioToken.id;
     if (Number.parseInt(userId) === usuarioToken.id) return next();
     const user = await usersServices.getById(usuarioToken.id);
     if (!user) return res.status(401).json({ error: 'Access denied' });
     const adminUser = await rolesServices.getByName('Admin');
+    req.params.adminRole = user.dataValues.roleId;
     if (user.dataValues.roleId === adminUser.id) return next();
     const e = new Error();
     throw e;
@@ -47,7 +49,9 @@ const isAuth = async (req, res, next) => {
     const token = bearertoken.split(' ')[1];
     const { id } = await auth.decodeToken(token);
     const userAuth = await usersServices.getById(id);
-    if (!userAuth) return res.status(403).json({ message: 'The user does not exist' });
+    req.params.tokenizedUserId = userAuth.id;
+    if (!userAuth) return res.status(403).json({ message: 'El usuario no existe' });
+
     next();
   } catch (error) {
     res.status(403).json(`Invalid token - ${error.message}`);

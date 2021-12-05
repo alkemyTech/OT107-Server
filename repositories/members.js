@@ -12,6 +12,15 @@ const create = async (body) => {
 
   return data;
 };
+const update = async (memberid, body) => {
+  const data = await Models.Members.update(body, { where: { id: memberid } });
+  return data;
+};
+
+const getById = async (memberId) => {
+  const member = await Models.Members.findOne({ where: { id: memberId } });
+  return member;
+};
 
 const remove = async (memberId) => {
   await Models.Members.destroy({ where: { id: memberId } });
@@ -20,6 +29,7 @@ const remove = async (memberId) => {
 module.exports = {
   getAll,
   create,
-
-  remove
+  remove,
+  update,
+  getById
 };
