@@ -30,8 +30,14 @@ const getOrganizationAllData = async (id) => {
   return data;
 };
 
+const getById = async (id) => {
+  const data = await db.Organization.findByPk(id);
+  return data;
+};
+
 module.exports = {
   getOrganizationPublic,
   update,
-  getOrganizationAllData
+  getOrganizationAllData,
+  getById
 };
