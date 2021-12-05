@@ -9,4 +9,6 @@ router.get('/', authMiddleware.isAdmin, membersController.getAll);
 
 router.post('/', authMiddleware.isAuth, validationMiddleware.membersValidation, membersController.create);
 
+router.put('/:id', authMiddleware.isAuth, validationMiddleware.membersValidation, validationMiddleware.memberExist, membersController.update);
+
 module.exports = router;
