@@ -10,16 +10,6 @@ const create = async (body) => {
   return member;
 };
 
-const update = async (id, body) => {
-  const member = await membersRepository.update(id, body);
-  return member;
-};
-
-const memberById = async (id) => {
-  const member = await membersRepository.memberById(id);
-  return member;
-};
-
 const remove = async (id) => {
   await membersRepository.remove(id);
 };
@@ -27,7 +17,6 @@ const remove = async (id) => {
 module.exports = {
   getAll,
   create,
-  update,
-  memberById,
+
   remove
 };
