@@ -5,6 +5,11 @@ const getOrganizationPublic = async (id) => {
   return data;
 };
 
+const getById = async (id) => {
+  const data = await organizationRepository.getById(id);
+  return data;
+};
+
 const update = async (id, body) => {
   await organizationRepository.update(id, body);
   const data = await organizationRepository.getOrganizationAllData(id);
@@ -13,5 +18,6 @@ const update = async (id, body) => {
 
 module.exports = {
   getOrganizationPublic,
-  update
+  update,
+  getById
 };
