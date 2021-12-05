@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c5a86af8-7642-4da3-8270-affee09e3b94",
+		"_postman_id": "c9f671cb-fe23-4509-83f8-1fc614111e8b",
 		"name": "Somos_Mas_Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -630,6 +630,108 @@
 							"port": "3000",
 							"path": [
 								"news"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete New by Id (isAdmin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMzNzkyLCJleHAiOjE2Mzg3NjI1OTJ9.jsUWt3VvUpBM1ausdUZ6wQfw5Sx_-59Lv2Kd3B9u3YJmKFj3oXR7Gq7idlP9HeTCQBX-8wqA3diqJes3lojoR8BrpsYlzCY5U5dLMIvnv73nAkz6welm0EPQSeCBWJpAIs48WVeb2B3Ryq5qVNJ4K8M8ML53U1fIUxla2rbAoFc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4MjQ3MDI0LCJleHAiOjE2MzgyNzU4MjR9.IuoQXQFtf6JMBKkJWQ-fEj_n44HuPW48veRL1KPsl3SoEgMgeSMeMW1oGTNfXbGEsEi1RTOQU-V2DSzmLzCdHy106xtAJvlO3bnCFuzsSxbbPGci_-eYm_3kAosrpwyQ-BMS3N0vqthtvxC-x8gGdaB-Vl48KSEY2y4mgxmvZX4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/news/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"news",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update New by Id (isAdmin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzQxNzIzLCJleHAiOjE2Mzg3NzA1MjN9.cOMPugYHl73TYbJFhkZJU3tvZf1y3OQk48PonBaaDMJSClUdjAoS6ri5fConSrS9KNLnA-dwa7pcymfSMO0JR3vXimoIAW6rNB4IK_2lxPI0cFWdxMkcXZU_saIpxtLpb4yUCWBqebF9upoq5QFuho5QjpZJpF7rQpLR182u7oc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"updated 1\",\r\n    \"content\": \"updates 1\",\r\n    \"categoryId\": \"2\",\r\n    \"image\": \"imageUpdated.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/news/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"news",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get New by Id (isAdmin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzQxNzIzLCJleHAiOjE2Mzg3NzA1MjN9.cOMPugYHl73TYbJFhkZJU3tvZf1y3OQk48PonBaaDMJSClUdjAoS6ri5fConSrS9KNLnA-dwa7pcymfSMO0JR3vXimoIAW6rNB4IK_2lxPI0cFWdxMkcXZU_saIpxtLpb4yUCWBqebF9upoq5QFuho5QjpZJpF7rQpLR182u7oc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/news/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"news",
+								"1"
 							]
 						}
 					},
