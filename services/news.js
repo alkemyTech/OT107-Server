@@ -30,7 +30,7 @@ const update = async (id, body) => {
 
   if (body.categoryId) {
     const checkCategoryId = await categoriesRepository.getById(body.categoryId);
-    if (!checkCategoryId) throw new Error('bad request');
+    if (!checkCategoryId) throw new Error('CategoryId does not exist');
   }
 
   const updateNovelty = await newsRepository.update(id, body);
