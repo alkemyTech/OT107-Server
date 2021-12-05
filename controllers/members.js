@@ -20,7 +20,7 @@ const create = async (req, res, next) => {
 
 const remove = async (req, res, next) => {
   try {
-    const member = await membersService.memberById(req.params.id);
+    const member = await membersService.getById(req.params.id);
 
     if (!member) { res.status(400).send('Not matching member'); }
 
