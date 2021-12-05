@@ -1,144 +1,12 @@
 {
 	"info": {
-		"_postman_id": "f549848e-2243-44d1-b3ba-c9aed4e1d8bd",
+		"_postman_id": "20324aab-d9b8-4e31-9e0d-6948f93efe53",
 		"name": "Somos_Mas_Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Activities",
-			"item": [
-				{
-					"name": "Get All (isAdmin)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMwNDE5LCJleHAiOjE2Mzg3NTkyMTl9.Sp0IIhqKEzO3j97XVNn9vteRef9YBnFeU9pvmjHZriK2-FheKAxHNzwgQbt6quNK5n7_-1htjBK_lRcGARlOzTdpk5Wmp6o-eZ12DVFSHUS21sp16LbuSTbqSIRO_CvQ4kHz5Vt114gGBg0QExhe0OJisUvaswbt2UnUiHEO04M",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/activities",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"activities"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create (isAdmin)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMwNDE5LCJleHAiOjE2Mzg3NTkyMTl9.Sp0IIhqKEzO3j97XVNn9vteRef9YBnFeU9pvmjHZriK2-FheKAxHNzwgQbt6quNK5n7_-1htjBK_lRcGARlOzTdpk5Wmp6o-eZ12DVFSHUS21sp16LbuSTbqSIRO_CvQ4kHz5Vt114gGBg0QExhe0OJisUvaswbt2UnUiHEO04M",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Nueva Actividad",
-									"type": "text"
-								},
-								{
-									"key": "content",
-									"value": "Lorem lorem",
-									"type": "text"
-								},
-								{
-									"key": "image",
-									"value": "imagen.jpg",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3000/activities",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"activities"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update (isAdmin)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMwNDE5LCJleHAiOjE2Mzg3NTkyMTl9.Sp0IIhqKEzO3j97XVNn9vteRef9YBnFeU9pvmjHZriK2-FheKAxHNzwgQbt6quNK5n7_-1htjBK_lRcGARlOzTdpk5Wmp6o-eZ12DVFSHUS21sp16LbuSTbqSIRO_CvQ4kHz5Vt114gGBg0QExhe0OJisUvaswbt2UnUiHEO04M",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Nuevo nombre",
-									"type": "text"
-								},
-								{
-									"key": "content",
-									"value": "",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "image",
-									"value": "",
-									"type": "text",
-									"disabled": true
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3000/activities/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"activities",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Auth",
+			"name": "Users",
 			"item": [
 				{
 					"name": "Register",
@@ -158,17 +26,17 @@
 										},
 										{
 											"key": "lastName",
-											"value": "Vallejos",
+											"value": "Santos",
 											"type": "text"
 										},
 										{
 											"key": "email",
-											"value": "sebastiangalvan.ar@gmail.com",
+											"value": "ana_santos@mailito.com",
 											"type": "text"
 										},
 										{
 											"key": "password",
-											"value": "123456789Ab!",
+											"value": "1234",
 											"type": "text"
 										}
 									]
@@ -261,36 +129,20 @@
 							"response": []
 						}
 					]
-				}
-			]
-		},
-		{
-			"name": "Back Office",
-			"item": [
+				},
 				{
-					"name": "getAll (isAdmin)",
+					"name": "Get All",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMxMzYxLCJleHAiOjE2Mzg3NjAxNjF9.j5u72U--NhZ_UQmYkLCw0xSAqa-docx25enTYMFGRu-uIOzf4D0SMWChHwrxer8BXMN7Iqalk37M-UuY6IUnsMuIjebBffeMIgv42k4DAgh_H4NVWE5QN0g8NR4EgQ4dUp5KhsaNPDQTUopfPR4M38ohSnYbf7Jq9TEuxHdxxW4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/backoffice/contacts",
+							"raw": "localhost:3000/users",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"backoffice",
-								"contacts"
+								"users"
 							]
 						}
 					},
@@ -299,21 +151,15 @@
 			]
 		},
 		{
+			"name": "Roles",
+			"item": []
+		},
+		{
 			"name": "Categories",
 			"item": [
 				{
 					"name": "Get All (isAdmin)",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMxMzYxLCJleHAiOjE2Mzg3NjAxNjF9.j5u72U--NhZ_UQmYkLCw0xSAqa-docx25enTYMFGRu-uIOzf4D0SMWChHwrxer8BXMN7Iqalk37M-UuY6IUnsMuIjebBffeMIgv42k4DAgh_H4NVWE5QN0g8NR4EgQ4dUp5KhsaNPDQTUopfPR4M38ohSnYbf7Jq9TEuxHdxxW4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [
 							{
@@ -334,343 +180,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Get All (isAdmin) - Response OK",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NTcxODgwLCJleHAiOjE2Mzg2MDA2ODB9.hEbQuTOlivRtoT129BZ0ljXxeLMMgIZVhshFMj9Kix4ClT5_lRGdeGjBx-M4vd-EepvArnkroo-vEoFesRvM7fInXxYt0r-crg9pvImjbQP_o0nkEZyaxRQ3xHaTo1y7UZaeQN3OQEYMNvvHn-6J8o1jpkkVRg6un1vLSyy4KZM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "localhost:3000/categories",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"categories"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get All (isAdmin) - Response Token no válido",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NTcxODgwLCJleHAiOjE2Mzg2MDA2ODB9.hEbQuTOlivRtoT129BZ0ljXxeLMMgIZVhshFMj9Kix4ClT5_lRGdeGjBx-M4vd-EepvArnkroo-vEoFesRvM7fInXxYt0r-crg9pvImjbQP_o0nkEZyaxRQ3xHaTo1y7UZaeQN3OQEYMNvvHn-",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "localhost:3000/categories",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"categories"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get All (isAdmin) - Response Access Denied",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzNzEyNjM3MTIzNzEyNSwiaWF0IjoxNjM4NTcyNDE5LCJleHAiOjE2Mzg2MDEyMTl9.Dz1T98mGPJkor-ylpSR9wUY9AGAb9DRgiTqQ0qy7tztUCBeYcRsBDN38yvh0f-GpYFHY2oGktouDnW_V3VttL8k0CUOco2j2rU6G7Z_V_RPN0Umz2B1QoCvdZz7PEF0lc8tGa8c_fsJCUGuLtE-A_nkmJhwVFG68JKdpOG-gnBA",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "localhost:3000/categories",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"categories"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get By ID (IsAdmin)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMxMzYxLCJleHAiOjE2Mzg3NjAxNjF9.j5u72U--NhZ_UQmYkLCw0xSAqa-docx25enTYMFGRu-uIOzf4D0SMWChHwrxer8BXMN7Iqalk37M-UuY6IUnsMuIjebBffeMIgv42k4DAgh_H4NVWE5QN0g8NR4EgQ4dUp5KhsaNPDQTUopfPR4M38ohSnYbf7Jq9TEuxHdxxW4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/categories/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"categories",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update (isAdmin)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMxMzYxLCJleHAiOjE2Mzg3NjAxNjF9.j5u72U--NhZ_UQmYkLCw0xSAqa-docx25enTYMFGRu-uIOzf4D0SMWChHwrxer8BXMN7Iqalk37M-UuY6IUnsMuIjebBffeMIgv42k4DAgh_H4NVWE5QN0g8NR4EgQ4dUp5KhsaNPDQTUopfPR4M38ohSnYbf7Jq9TEuxHdxxW4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Categoria",
-									"type": "text"
-								},
-								{
-									"key": "image",
-									"value": "imagen001.jog",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "Desc a partir de ahora ",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3000/categories/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"categories",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete (isAdmin)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMxMzYxLCJleHAiOjE2Mzg3NjAxNjF9.j5u72U--NhZ_UQmYkLCw0xSAqa-docx25enTYMFGRu-uIOzf4D0SMWChHwrxer8BXMN7Iqalk37M-UuY6IUnsMuIjebBffeMIgv42k4DAgh_H4NVWE5QN0g8NR4EgQ4dUp5KhsaNPDQTUopfPR4M38ohSnYbf7Jq9TEuxHdxxW4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/categories/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"categories",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Comments",
-			"item": [
-				{
-					"name": "GetAll (isAuth)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMxMzYxLCJleHAiOjE2Mzg3NjAxNjF9.j5u72U--NhZ_UQmYkLCw0xSAqa-docx25enTYMFGRu-uIOzf4D0SMWChHwrxer8BXMN7Iqalk37M-UuY6IUnsMuIjebBffeMIgv42k4DAgh_H4NVWE5QN0g8NR4EgQ4dUp5KhsaNPDQTUopfPR4M38ohSnYbf7Jq9TEuxHdxxW4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/comments",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"comments"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update (isOwnComment)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMxMzYxLCJleHAiOjE2Mzg3NjAxNjF9.j5u72U--NhZ_UQmYkLCw0xSAqa-docx25enTYMFGRu-uIOzf4D0SMWChHwrxer8BXMN7Iqalk37M-UuY6IUnsMuIjebBffeMIgv42k4DAgh_H4NVWE5QN0g8NR4EgQ4dUp5KhsaNPDQTUopfPR4M38ohSnYbf7Jq9TEuxHdxxW4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "body",
-									"value": "Lorem",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3000/comments/2",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"comments",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crete (isAuth)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMxMzYxLCJleHAiOjE2Mzg3NjAxNjF9.j5u72U--NhZ_UQmYkLCw0xSAqa-docx25enTYMFGRu-uIOzf4D0SMWChHwrxer8BXMN7Iqalk37M-UuY6IUnsMuIjebBffeMIgv42k4DAgh_H4NVWE5QN0g8NR4EgQ4dUp5KhsaNPDQTUopfPR4M38ohSnYbf7Jq9TEuxHdxxW4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "novelty_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "user_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "body",
-									"value": "Lorem",
-									"type": "text"
-								},
-								{
-									"key": "comment",
-									"value": "Lorem** 2",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3000/comments",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"comments"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -678,35 +187,16 @@
 			"name": "Contacts",
 			"item": [
 				{
-					"name": "Create (isAuth)",
+					"name": "Get Contacts (isAdmin)",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMxMzYxLCJleHAiOjE2Mzg3NjAxNjF9.j5u72U--NhZ_UQmYkLCw0xSAqa-docx25enTYMFGRu-uIOzf4D0SMWChHwrxer8BXMN7Iqalk37M-UuY6IUnsMuIjebBffeMIgv42k4DAgh_H4NVWE5QN0g8NR4EgQ4dUp5KhsaNPDQTUopfPR4M38ohSnYbf7Jq9TEuxHdxxW4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Julian",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "julian@gmail.com",
-									"type": "text"
-								}
-							]
-						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4MjgyNDUxLCJleHAiOjE2MzgzMTEyNTF9.DL0NjcOkfnaacf3gaTNraGUkwc3sIG0lRfZhw8zVl5tdTDQ-Wt3Ebh0nLtIjFzz3DtC3MI_jsbzfgm68WKdZlah_1egE7x6gKouT-I2IkVk2-tIObhjUKv47Vvcp70yrBQAYczvml3JvceFzF8GLigjbDWsvXjVTpvPAr_eedfk",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:3000/contacts",
 							"host": [
@@ -723,149 +213,27 @@
 			]
 		},
 		{
-			"name": "Members",
+			"name": "Activities",
 			"item": [
 				{
-					"name": "Get All (isAdmin)",
+					"name": "Gat Activities (isAdmin)",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMxMzYxLCJleHAiOjE2Mzg3NjAxNjF9.j5u72U--NhZ_UQmYkLCw0xSAqa-docx25enTYMFGRu-uIOzf4D0SMWChHwrxer8BXMN7Iqalk37M-UuY6IUnsMuIjebBffeMIgv42k4DAgh_H4NVWE5QN0g8NR4EgQ4dUp5KhsaNPDQTUopfPR4M38ohSnYbf7Jq9TEuxHdxxW4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [
 							{
 								"key": "auth-token",
-								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4MjgyNjc5LCJleHAiOjE2MzgzMTE0Nzl9.SZ5e_1XuWnpXn5N72xjImh8v7uEHGWPLHVGx7lc4vzBcInUmwz2zvRcizcF2Xs5BDDyglnRmB6x5HIilf4WbKcUYRaf_1uA2pTi7Hov2VjMbkJkcxDagj9tEOQtrbi0bjX_KsCGQg4XsyvTo_26quOHlDF8zbTT4vjdZLcBB71Y",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4MjQ3MDI0LCJleHAiOjE2MzgyNzU4MjR9.IuoQXQFtf6JMBKkJWQ-fEj_n44HuPW48veRL1KPsl3SoEgMgeSMeMW1oGTNfXbGEsEi1RTOQU-V2DSzmLzCdHy106xtAJvlO3bnCFuzsSxbbPGci_-eYm_3kAosrpwyQ-BMS3N0vqthtvxC-x8gGdaB-Vl48KSEY2y4mgxmvZX4",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:3000/members",
+							"raw": "localhost:3000/activities",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"members"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create (isAuth)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMxMzYxLCJleHAiOjE2Mzg3NjAxNjF9.j5u72U--NhZ_UQmYkLCw0xSAqa-docx25enTYMFGRu-uIOzf4D0SMWChHwrxer8BXMN7Iqalk37M-UuY6IUnsMuIjebBffeMIgv42k4DAgh_H4NVWE5QN0g8NR4EgQ4dUp5KhsaNPDQTUopfPR4M38ohSnYbf7Jq9TEuxHdxxW4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Marcos",
-									"type": "text"
-								},
-								{
-									"key": "image",
-									"value": "image.jpg",
-									"description": "No esta en el express-validator ",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3000/members",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"members"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update (isAuth)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMxMzYxLCJleHAiOjE2Mzg3NjAxNjF9.j5u72U--NhZ_UQmYkLCw0xSAqa-docx25enTYMFGRu-uIOzf4D0SMWChHwrxer8BXMN7Iqalk37M-UuY6IUnsMuIjebBffeMIgv42k4DAgh_H4NVWE5QN0g8NR4EgQ4dUp5KhsaNPDQTUopfPR4M38ohSnYbf7Jq9TEuxHdxxW4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Leo",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3000/members/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"members",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete (isAuth)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMxMzYxLCJleHAiOjE2Mzg3NjAxNjF9.j5u72U--NhZ_UQmYkLCw0xSAqa-docx25enTYMFGRu-uIOzf4D0SMWChHwrxer8BXMN7Iqalk37M-UuY6IUnsMuIjebBffeMIgv42k4DAgh_H4NVWE5QN0g8NR4EgQ4dUp5KhsaNPDQTUopfPR4M38ohSnYbf7Jq9TEuxHdxxW4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/members/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"members",
-								"1"
+								"activities"
 							]
 						}
 					},
@@ -878,20 +246,7 @@
 			"item": [
 				{
 					"name": "Get News  (isAdmin)",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMzNzkyLCJleHAiOjE2Mzg3NjI1OTJ9.jsUWt3VvUpBM1ausdUZ6wQfw5Sx_-59Lv2Kd3B9u3YJmKFj3oXR7Gq7idlP9HeTCQBX-8wqA3diqJes3lojoR8BrpsYlzCY5U5dLMIvnv73nAkz6welm0EPQSeCBWJpAIs48WVeb2B3Ryq5qVNJ4K8M8ML53U1fIUxla2rbAoFc",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [
 							{
@@ -900,15 +255,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "localhost:3000/news",
 							"host": [
@@ -917,45 +263,6 @@
 							"port": "3000",
 							"path": [
 								"news"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get News (isAdmin) - Upload Image (Test)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NTczMjEwLCJleHAiOjE2Mzg2MDIwMTB9.C7_H8w_d8z0LM9q3l-iF8QVcsDDegFFN1VwG45QIpnddqQWscrn0p-mRcXFeKnzSssHumBgfdtOAx8NmXqYZgdkej9VdFbigqHqlAgYjSqJFWcayNHb8EodPDhna0PjAxYKHwOvU-DSH7ntK5p2FbJFUmcm75HhLBA_4u_ENwXY",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "image",
-									"type": "file",
-									"src": "/F:/Dev/2021.11.15 » Alkemy » Aceleración/Sem 2 - Inicio Proyecto/Otros/01.jpg"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3000/news/test",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"news",
-								"test"
 							]
 						}
 					},
@@ -997,240 +304,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "New Request",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Ahora somos mas ",
-									"type": "text"
-								},
-								{
-									"key": "image",
-									"value": "iamge.jpg",
-									"type": "text"
-								},
-								{
-									"key": "phone",
-									"value": "3235223",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "email@protonmail.com",
-									"type": "text"
-								},
-								{
-									"key": "welcomeText",
-									"value": "Holaaa",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3000/organizations/public",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"organizations",
-								"public"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Slides",
-			"item": [
-				{
-					"name": "Get All (isAdmin)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMzNzkyLCJleHAiOjE2Mzg3NjI1OTJ9.jsUWt3VvUpBM1ausdUZ6wQfw5Sx_-59Lv2Kd3B9u3YJmKFj3oXR7Gq7idlP9HeTCQBX-8wqA3diqJes3lojoR8BrpsYlzCY5U5dLMIvnv73nAkz6welm0EPQSeCBWJpAIs48WVeb2B3Ryq5qVNJ4K8M8ML53U1fIUxla2rbAoFc",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/slides",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"slides"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get By Id (isAdmin)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMzNzkyLCJleHAiOjE2Mzg3NjI1OTJ9.jsUWt3VvUpBM1ausdUZ6wQfw5Sx_-59Lv2Kd3B9u3YJmKFj3oXR7Gq7idlP9HeTCQBX-8wqA3diqJes3lojoR8BrpsYlzCY5U5dLMIvnv73nAkz6welm0EPQSeCBWJpAIs48WVeb2B3Ryq5qVNJ4K8M8ML53U1fIUxla2rbAoFc",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/slides/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"slides",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create ( (isAdmin))",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "image",
-									"value": "img.jpg",
-									"description": "Desde el from-data",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "text",
-									"value": "Lorem",
-									"type": "text"
-								},
-								{
-									"key": "order",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "organizationId",
-									"value": "1",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3000/slides",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"slides"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update (isAdmin)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMzNzkyLCJleHAiOjE2Mzg3NjI1OTJ9.jsUWt3VvUpBM1ausdUZ6wQfw5Sx_-59Lv2Kd3B9u3YJmKFj3oXR7Gq7idlP9HeTCQBX-8wqA3diqJes3lojoR8BrpsYlzCY5U5dLMIvnv73nAkz6welm0EPQSeCBWJpAIs48WVeb2B3Ryq5qVNJ4K8M8ML53U1fIUxla2rbAoFc",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "text",
-									"value": "Lorem",
-									"type": "text"
-								},
-								{
-									"key": "order",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "organizationId",
-									"value": "1",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3000/slides/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"slides",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete (isAdmin)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMzNzkyLCJleHAiOjE2Mzg3NjI1OTJ9.jsUWt3VvUpBM1ausdUZ6wQfw5Sx_-59Lv2Kd3B9u3YJmKFj3oXR7Gq7idlP9HeTCQBX-8wqA3diqJes3lojoR8BrpsYlzCY5U5dLMIvnv73nAkz6welm0EPQSeCBWJpAIs48WVeb2B3Ryq5qVNJ4K8M8ML53U1fIUxla2rbAoFc",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/slides/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"slides",
-								"1"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -1245,7 +318,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM0NzU2LCJleHAiOjE2Mzg3NjM1NTZ9.ipMuDOBjxSDzB8LMcC_bAohtAVtne7i925jqSONAHvUtkys6vXRWkjM8wfNoIznWKGYJwGQYRkr6T9RXwbDzstCvFrcc9kzBnxO7cgzE6RQqTw7JDyLZoTNHdIRlp3WPKBMvSco8F1pzceqbrtWeTLqmBPs5vAX_BRwIwXU1npM",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM2OTQ5LCJleHAiOjE2Mzg3NjU3NDl9.jTYc3Ndsuqv74liHfFH2VVoW_h6ln-G1fKmbcRCWdZVqKXRzA8oo67FHJXd-gBkUKaFITuAaFgprnUwAPDUuvWNPAu3GPhNSHX82H0PJkdbWPnIKsoIxa10wbH6jYxWXDycnpeMVdNSmpwKe0TWAsBPOWyS-o4Xq78XlEdprb0E",
 									"type": "string"
 								}
 							]
@@ -1273,7 +346,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM0NzU2LCJleHAiOjE2Mzg3NjM1NTZ9.ipMuDOBjxSDzB8LMcC_bAohtAVtne7i925jqSONAHvUtkys6vXRWkjM8wfNoIznWKGYJwGQYRkr6T9RXwbDzstCvFrcc9kzBnxO7cgzE6RQqTw7JDyLZoTNHdIRlp3WPKBMvSco8F1pzceqbrtWeTLqmBPs5vAX_BRwIwXU1npM",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM2OTQ5LCJleHAiOjE2Mzg3NjU3NDl9.jTYc3Ndsuqv74liHfFH2VVoW_h6ln-G1fKmbcRCWdZVqKXRzA8oo67FHJXd-gBkUKaFITuAaFgprnUwAPDUuvWNPAu3GPhNSHX82H0PJkdbWPnIKsoIxa10wbH6jYxWXDycnpeMVdNSmpwKe0TWAsBPOWyS-o4Xq78XlEdprb0E",
 									"type": "string"
 								}
 							]
@@ -1281,14 +354,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/testimonials/1",
+							"raw": "localhost:3000/testimonials/3",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"testimonials",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -1302,7 +375,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM0NzU2LCJleHAiOjE2Mzg3NjM1NTZ9.ipMuDOBjxSDzB8LMcC_bAohtAVtne7i925jqSONAHvUtkys6vXRWkjM8wfNoIznWKGYJwGQYRkr6T9RXwbDzstCvFrcc9kzBnxO7cgzE6RQqTw7JDyLZoTNHdIRlp3WPKBMvSco8F1pzceqbrtWeTLqmBPs5vAX_BRwIwXU1npM",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM2OTQ5LCJleHAiOjE2Mzg3NjU3NDl9.jTYc3Ndsuqv74liHfFH2VVoW_h6ln-G1fKmbcRCWdZVqKXRzA8oo67FHJXd-gBkUKaFITuAaFgprnUwAPDUuvWNPAu3GPhNSHX82H0PJkdbWPnIKsoIxa10wbH6jYxWXDycnpeMVdNSmpwKe0TWAsBPOWyS-o4Xq78XlEdprb0E",
 									"type": "string"
 								}
 							]
@@ -1311,7 +384,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Testimonial 4\",\r\n    \"image\": \"https://i1.sndcdn.com/artworks-000218066450-drfbyj-t500x500.jpg\",\r\n    \"content\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie eros vel erat consequat sagittis sed et lacus.\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Testimonial 4\",\r\n    \"image\": \"https://i1.sndcdn.com/artworks-000218066450-drfbyj-t500x500.jpg\",\r\n    \"content\": \"Fui parte de la comunidad participativa de la iglesia San Bernardo, que esta ubicada en villa crespo, donde se realizaba la noche de la caridad y participe como voluntario y como scout de la colecta en el año 2013, a causa de las inundaciones de La Plaata y alrededores.\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1339,7 +412,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4MzY1NjA3LCJleHAiOjE2MzgzOTQ0MDd9.MDMIJjp8iUBhDE_GCT6-tIUYoQcmOyIhPXYYZ4HlZlI-DS2TxoYi9H0VnYAhINZycxzk-4q90GP2f-Lh6Fg53GKiYHLR_hhAdEZ562INZ4KmpEHVTyJ2fFMNZZBks0INM50TBd3fS4ojs8aN5J4pU4cJTGlv3l2_bnrmH0O8uFE",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM2OTQ5LCJleHAiOjE2Mzg3NjU3NDl9.jTYc3Ndsuqv74liHfFH2VVoW_h6ln-G1fKmbcRCWdZVqKXRzA8oo67FHJXd-gBkUKaFITuAaFgprnUwAPDUuvWNPAu3GPhNSHX82H0PJkdbWPnIKsoIxa10wbH6jYxWXDycnpeMVdNSmpwKe0TWAsBPOWyS-o4Xq78XlEdprb0E",
 									"type": "string"
 								}
 							]
@@ -1348,7 +421,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"image\": \"https://i1.sndcdn.com/artworks-000218066450-drfbyj-t500x500.jpg\",\r\n    \"content\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie eros vel erat consequat sagittis sed et lacus.\"\r\n}",
+							"raw": "{\r\n    \"image\": \"https://i1.sndcdn.com/artworks-000218066450-drfbyj-t500x500.jpg\",\r\n    \"content\": \"Fui parte de la comunidad participativa de la iglesia San Bernardo, que esta ubicada en villa crespo, donde se realizaba la noche de la caridad y participe como voluntario y como scout de la colecta en el año 2013, a causa de las inundaciones de La Plaata y alrededores.\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1376,7 +449,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4MzY1NjA3LCJleHAiOjE2MzgzOTQ0MDd9.MDMIJjp8iUBhDE_GCT6-tIUYoQcmOyIhPXYYZ4HlZlI-DS2TxoYi9H0VnYAhINZycxzk-4q90GP2f-Lh6Fg53GKiYHLR_hhAdEZ562INZ4KmpEHVTyJ2fFMNZZBks0INM50TBd3fS4ojs8aN5J4pU4cJTGlv3l2_bnrmH0O8uFE",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM2OTQ5LCJleHAiOjE2Mzg3NjU3NDl9.jTYc3Ndsuqv74liHfFH2VVoW_h6ln-G1fKmbcRCWdZVqKXRzA8oo67FHJXd-gBkUKaFITuAaFgprnUwAPDUuvWNPAu3GPhNSHX82H0PJkdbWPnIKsoIxa10wbH6jYxWXDycnpeMVdNSmpwKe0TWAsBPOWyS-o4Xq78XlEdprb0E",
 									"type": "string"
 								}
 							]
@@ -1413,12 +486,88 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4Mzk5NDg4LCJleHAiOjE2Mzg0MjgyODh9.kHnYVe6xNa8Vg1FQNY-ngXXpEHS0yvvHn70rN2yBwWHWFSg9Qc2gfnIRxQXqluF_2wlQ-CStI20ToAPVBq1oCSW1IZ8wT7T3vbDyBkV3O23xKnBvbrYK0plZslBzQdwoieBE6ko0GcpoytRAni4pSLAk2oFKfv0yEuRtpflCON8",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM2OTQ5LCJleHAiOjE2Mzg3NjU3NDl9.jTYc3Ndsuqv74liHfFH2VVoW_h6ln-G1fKmbcRCWdZVqKXRzA8oo67FHJXd-gBkUKaFITuAaFgprnUwAPDUuvWNPAu3GPhNSHX82H0PJkdbWPnIKsoIxa10wbH6jYxWXDycnpeMVdNSmpwKe0TWAsBPOWyS-o4Xq78XlEdprb0E",
 									"type": "string"
 								}
 							]
 						},
 						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Testimonial 4\",\r\n    \"image\": \"https://i1.sndcdn.com/artworks-000218066450-drfbyj-t500x500.jpg\",\r\n    \"content\": \"Liderar equipos que generan impacto social a traves de intercambios profesionales o sociales. Trabajando con las metas de desarrollo sostenible de la ONU. Apoyando a ONG para la construcción de sus avances.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/testimonials/4",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"testimonials",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update (isAdmin) - Error: Testimonial does not exist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM2OTQ5LCJleHAiOjE2Mzg3NjU3NDl9.jTYc3Ndsuqv74liHfFH2VVoW_h6ln-G1fKmbcRCWdZVqKXRzA8oo67FHJXd-gBkUKaFITuAaFgprnUwAPDUuvWNPAu3GPhNSHX82H0PJkdbWPnIKsoIxa10wbH6jYxWXDycnpeMVdNSmpwKe0TWAsBPOWyS-o4Xq78XlEdprb0E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Testimonial 4\",\r\n    \"image\": \"https://i1.sndcdn.com/artworks-000218066450-drfbyj-t500x500.jpg\",\r\n    \"content\": \"Liderar equipos que generan impacto social a traves de intercambios profesionales o sociales. Trabajando con las metas de desarrollo sostenible de la ONU. Apoyando a ONG para la construcción de sus avances.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/testimonials/200",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"testimonials",
+								"200"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete (isAdmin) - Response OK",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM2OTQ5LCJleHAiOjE2Mzg3NjU3NDl9.jTYc3Ndsuqv74liHfFH2VVoW_h6ln-G1fKmbcRCWdZVqKXRzA8oo67FHJXd-gBkUKaFITuAaFgprnUwAPDUuvWNPAu3GPhNSHX82H0PJkdbWPnIKsoIxa10wbH6jYxWXDycnpeMVdNSmpwKe0TWAsBPOWyS-o4Xq78XlEdprb0E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -1444,19 +593,19 @@
 					"response": []
 				},
 				{
-					"name": "Update (isAdmin) - Error: Testimonial does not exist",
+					"name": "Delete (isAdmin) - Error: Testimonial does not exist",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4MzcwMTk2LCJleHAiOjE2MzgzOTg5OTZ9.I47LA0jCrgRjvPK6yZCoF6bwAzAVMoazZU7pFg0_eTCqpbVcCXRMGcQFuEoqwOFHMVjRhOYAgstgnon76LRkTQsZ2Wl76UXlIpZim5SRw7kRi5t4HAW0vaJ0V1mG5bZQh5_9y3NkyaruH9TO4cdgujH1UtaAV39uJOHkhpGIt5g",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM2OTQ5LCJleHAiOjE2Mzg3NjU3NDl9.jTYc3Ndsuqv74liHfFH2VVoW_h6ln-G1fKmbcRCWdZVqKXRzA8oo67FHJXd-gBkUKaFITuAaFgprnUwAPDUuvWNPAu3GPhNSHX82H0PJkdbWPnIKsoIxa10wbH6jYxWXDycnpeMVdNSmpwKe0TWAsBPOWyS-o4Xq78XlEdprb0E",
 									"type": "string"
 								}
 							]
 						},
-						"method": "PUT",
+						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -1468,47 +617,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/testimonials/200",
+							"raw": "localhost:3000/testimonials/40",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"testimonials",
-								"200"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "New Request",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM0NzU2LCJleHAiOjE2Mzg3NjM1NTZ9.ipMuDOBjxSDzB8LMcC_bAohtAVtne7i925jqSONAHvUtkys6vXRWkjM8wfNoIznWKGYJwGQYRkr6T9RXwbDzstCvFrcc9kzBnxO7cgzE6RQqTw7JDyLZoTNHdIRlp3WPKBMvSco8F1pzceqbrtWeTLqmBPs5vAX_BRwIwXU1npM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "localhost:3000/testimonials/3",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"testimonials",
-								"3"
+								"40"
 							]
 						}
 					},
@@ -1517,125 +633,96 @@
 			]
 		},
 		{
-			"name": "Users",
+			"name": "Members",
 			"item": [
 				{
-					"name": "Get All",
+					"name": "Get All (isAdmin)",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4MjgyNjc5LCJleHAiOjE2MzgzMTE0Nzl9.SZ5e_1XuWnpXn5N72xjImh8v7uEHGWPLHVGx7lc4vzBcInUmwz2zvRcizcF2Xs5BDDyglnRmB6x5HIilf4WbKcUYRaf_1uA2pTi7Hov2VjMbkJkcxDagj9tEOQtrbi0bjX_KsCGQg4XsyvTo_26quOHlDF8zbTT4vjdZLcBB71Y",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "localhost:3000/users",
+							"raw": "localhost:3000/members",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"users"
+								"members"
 							]
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "Slides",
+			"item": [
 				{
-					"name": "Update (isOwnUser)",
+					"name": "Create Slides (isAdmin) - Upload Image S3",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM1MDcyLCJleHAiOjE2Mzg3NjM4NzJ9.QtavPUi3Qj4THjdukBy6eQAoGV5exBB8ADTGRhw42VCvG0fZ3ZVkc9jQyNZmAkEkK8mf3Zw69vYpUF8-oo-9V6iYsviZxrpOMP3E12QqOBQ-KEBC6uBbrEYEVbWBRAb8LLEm1nWw1WvRZeEzdOd29fu7YiFPt2q7PW9gy7yCQEw",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM2OTQ5LCJleHAiOjE2Mzg3NjU3NDl9.jTYc3Ndsuqv74liHfFH2VVoW_h6ln-G1fKmbcRCWdZVqKXRzA8oo67FHJXd-gBkUKaFITuAaFgprnUwAPDUuvWNPAu3GPhNSHX82H0PJkdbWPnIKsoIxa10wbH6jYxWXDycnpeMVdNSmpwKe0TWAsBPOWyS-o4Xq78XlEdprb0E",
 									"type": "string"
 								}
 							]
 						},
-						"method": "PATCH",
+						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
+							"mode": "formdata",
+							"formdata": [
 								{
-									"key": "firstName",
-									"value": "Mariano",
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Forest/Desktop/Slide-ONG.jpg"
+								},
+								{
+									"key": "imageUrl",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "Slide text",
+									"type": "text"
+								},
+								{
+									"key": "order",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "organizationId",
+									"value": "1",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "localhost:3000/users/1",
+							"raw": "localhost:3000/slides",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"users",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete (isOwnUser)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzM1MDcyLCJleHAiOjE2Mzg3NjM4NzJ9.QtavPUi3Qj4THjdukBy6eQAoGV5exBB8ADTGRhw42VCvG0fZ3ZVkc9jQyNZmAkEkK8mf3Zw69vYpUF8-oo-9V6iYsviZxrpOMP3E12QqOBQ-KEBC6uBbrEYEVbWBRAb8LLEm1nWw1WvRZeEzdOd29fu7YiFPt2q7PW9gy7yCQEw",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/users/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"users",
-								"1"
+								"slides"
 							]
 						}
 					},
 					"response": []
 				}
 			]
-		}
-	],
-	"auth": {
-		"type": "bearer",
-		"bearer": [
-			{
-				"key": "token",
-				"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM4NzMxMzYxLCJleHAiOjE2Mzg3NjAxNjF9.j5u72U--NhZ_UQmYkLCw0xSAqa-docx25enTYMFGRu-uIOzf4D0SMWChHwrxer8BXMN7Iqalk37M-UuY6IUnsMuIjebBffeMIgv42k4DAgh_H4NVWE5QN0g8NR4EgQ4dUp5KhsaNPDQTUopfPR4M38ohSnYbf7Jq9TEuxHdxxW4",
-				"type": "string"
-			}
-		]
-	},
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
 		}
 	]
 }
