@@ -20,8 +20,7 @@ const create = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   try {
-    await membersService.update(req.params.id, req.body);
-    const member = await membersService.memberById(req.params.id);
+    const member = await membersService.update(req.params.id, req.body);
     res.status(200).json(member);
   } catch (e) {
     next(e);

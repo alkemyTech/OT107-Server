@@ -11,12 +11,17 @@ const create = async (body) => {
 };
 
 const update = async (id, body) => {
+  const memberVerified = await membersRepository.getById(id);
+
+  if (!memberVerified) {
+    throw new Error('Not matching member');
+  }
   const member = await membersRepository.update(id, body);
   return member;
 };
 
-const memberById = async (id) => {
-  const member = await membersRepository.memberById(id);
+const getById = async (id) => {
+  const member = await membersRepository.getById(id);
   return member;
 };
 
@@ -24,5 +29,5 @@ module.exports = {
   getAll,
   create,
   update,
-  memberById
+  getById
 };

@@ -17,7 +17,7 @@ const update = async (memberid, body) => {
   return data;
 };
 
-const memberById = async (memberId) => {
+const getById = async (memberId) => {
   const member = await Models.Members.findOne({ where: { id: memberId } });
   return member;
 };
@@ -26,5 +26,5 @@ module.exports = {
   getAll,
   create,
   update,
-  memberById
+  getById
 };
