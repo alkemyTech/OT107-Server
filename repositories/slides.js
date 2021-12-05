@@ -24,6 +24,13 @@ const getLastOrder = async () => {
   return lastOrder;
 };
 
+const update = async (id, body) => {
+  const slide = await db.Slides.update(body, {
+    where: { id }
+  });
+  return slide;
+};
+
 const remove = async (id) => {
   const slide = await db.Slides.destroy({
     where: { id }
@@ -36,5 +43,6 @@ module.exports = {
   getById,
   getLastOrder,
   create,
+  update,
   remove
 };

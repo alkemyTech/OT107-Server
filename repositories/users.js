@@ -2,12 +2,12 @@ const Models = require('../models/index');
 
 const getAll = async () => {
   const data = await Models.Users.findAll({
-    attributes: ['firstName', 'email', 'image']
+    attributes: ['firstName', 'email', 'image'],
   });
   return data;
 };
 
-const create = async (body, req, res) => {
+const create = async (body) => {
   const data = await Models.Users.create(body);
 
   return data;
@@ -15,8 +15,8 @@ const create = async (body, req, res) => {
 const getById = async (id) => {
   const user = await Models.Users.findByPk(id, {
     attributes: {
-      exclude: ['password']
-    }
+      exclude: ['password'],
+    },
   });
   return user;
 };
@@ -24,14 +24,33 @@ const getById = async (id) => {
 const findByEmail = async (userEmail) => {
   const data = await Models.Users.findOne({
     where: { email: userEmail },
-    raw: true
+    raw: true,
   });
   return data;
+};
+
+const remove = async (id) => {
+  await Models.Users.destroy({ where: { id } });
+  return true;
+};
+
+const update = async (id, changes) => {
+  const userUpdate = await Models.Users.update(
+    { firstName: changes.firstName, lastName: changes.lastName },
+    {
+      where: {
+        id,
+      },
+    }
+  );
+  return userUpdate;
 };
 
 module.exports = {
   getAll,
   getById,
   findByEmail,
-  create
+  create,
+  remove,
+  update,
 };

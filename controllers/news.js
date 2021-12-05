@@ -33,11 +33,26 @@ const getById = async (req, res, next) => {
 };
 
 const update = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const body = req.body;
+    const novelty = await newsService.update(id, body);
 
+    res.status(200).json(novelty);
+  } catch (e) {
+    next(e);
+  }
 };
 
 const remove = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await newsService.remove(id);
 
+    res.sendStatus(204);
+  } catch (e) {
+    next(e);
+  }
 };
 
 module.exports = {

@@ -28,6 +28,14 @@ const create = async (image, body) => {
   return slide;
 };
 
+const update = async (id, body) => {
+  const exist = await slidesRepository.getById(id);
+  if (!exist) throw new Error('slide no exist');
+  await slidesRepository.update(id, body);
+  const slide = await slidesRepository.getById(id);
+  return slide;
+};
+
 const remove = async (id) => {
   const slide = await slidesRepository.remove(id);
   if (!slide) throw new Error('slide no exist');
@@ -38,5 +46,6 @@ module.exports = {
   getAll,
   getById,
   create,
+  update,
   remove
 };

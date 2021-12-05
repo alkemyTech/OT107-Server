@@ -15,12 +15,28 @@ const getById = async (id) => {
   return novelty;
 };
 
-const update = async () => {
+const update = async (id, body) => {
+  const novelty = await models.News.update(body, {
+    where: {
+      id
+    },
+  });
 
+
+  return novelty;
 };
 
-const remove = async () => {
+const remove = async (id) => {
+  await models.News.destroy({
+    where: {
+      id
+    },
+  });
+};
 
+const getByCategoryId = async (categoryId) => {
+  const response = await models.News.findAll({ where: { categoryId } });
+  return response;
 };
 
 module.exports = {
@@ -28,5 +44,6 @@ module.exports = {
   getById,
   create,
   update,
-  remove
+  remove,
+  getByCategoryId
 };

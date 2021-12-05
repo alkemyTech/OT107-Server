@@ -24,12 +24,27 @@ const getById = async (id) => {
   return novelty;
 };
 
-const update = async () => {
+const update = async (id, body) => {
+  const existNovelty = await newsRepository.getById(id);
+  if (!existNovelty) throw new Error('bad request');
 
+  if (body.categoryId) {
+    const checkCategoryId = await categoriesRepository.getById(body.categoryId);
+    if (!checkCategoryId) throw new Error('bad request');
+  }
+
+  const updateNovelty = await newsRepository.update(id, body);
+  if (!updateNovelty) throw new Error('bad request');
+
+  const novelty = await newsRepository.getById(id);
+  return novelty;
 };
 
-const remove = async () => {
+const remove = async (id) => {
+  const existNovelty = await newsRepository.getById(id);
+  if (!existNovelty) throw new Error('bad request');
 
+  await newsRepository.remove(id);
 };
 
 module.exports = {

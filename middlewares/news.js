@@ -3,7 +3,7 @@ const filesModule = require('../modules/filesHandler');
 
 const newsInputValidation = [
   check('name').exists().notEmpty().isLength({ min: 3 }),
-  check('content').exists().notEmpty().isLength({ min: 5 }),
+  check('content').exists().notEmpty().isLength({ min: 3 }),
   check('image').exists().notEmpty().custom((value) => {
     filesModule.isImage(value);
     return true;
