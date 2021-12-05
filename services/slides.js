@@ -19,10 +19,9 @@ const create = async (image, body) => {
   const nextOrder = await slidesRepository.getLastOrder() + 1;
 
   const newSlide = {
+    ...body,
     imageUrl: uploadImage.Location,
-    text: body.text,
-    order: body.order || nextOrder,
-    organizationId: config.idOrganization
+    order: body.order || nextOrder
   };
 
   const slide = await slidesRepository.create(newSlide);
