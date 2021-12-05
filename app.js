@@ -8,7 +8,6 @@ require('dotenv').config();
 const fileUpload = require('express-fileupload');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 
 const app = express();
 app.use(cors());
