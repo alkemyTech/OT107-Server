@@ -50,7 +50,7 @@ const login = async (body) => {
 };
 
 const remove = async (req) => {
-  if (req.params.id !== req.params.tokenizedUserId.toString() || req.params.adminRole !== 1) {
+  if (req.params.id !== req.params.tokenizedUserId.toString() && req.params.adminRole >= 2) {
     throw new Error('Sin autorizacion');
   }
   const user = await usersRepo.getById(req.params.id);
@@ -62,7 +62,7 @@ const remove = async (req) => {
 };
 
 const update = async (req) => {
-  if (req.params.id !== req.params.tokenizedUserId.toString() || req.params.adminRole !== 1) {
+  if (req.params.id !== req.params.tokenizedUserId.toString() && req.params.adminRole >= 2) {
     throw new Error('Sin autorizacion');
   }
   const changes = {

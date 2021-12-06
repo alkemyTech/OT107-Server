@@ -39,8 +39,8 @@ const update = async (req, res, next) => {
 
 const remove = async (req, res, next) => {
   try {
-    const data = await testimonialsService.remove(req.params);
-    res.status(200).json(data);
+    await testimonialsService.remove(req.params);
+    res.status(200).json('message: Testimonial has been removed');
   } catch (e) {
     next(e);
   }
