@@ -1,27 +1,26 @@
+'use strict';
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('Slides', [
+    await queryInterface.bulkInsert('Comments', [
       {
-        imageUrl: 'imagen1.jpg',
-        text: 'esta es la imagen 1',
-        order: 1,
-        organizationId: 1,
+        novelty_id: 1,
+        user_id: '1',
+        body: 'seed test comments',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        imageUrl: 'imagen2.jpg',
-        text: 'esta es la imagen 2',
-        order: 2,
-        organizationId: 1,
+        novelty_id: 2,
+        user_id: 2,
+        body: 'seed test comments',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        imageUrl: 'imagen3.jpg',
-        text: 'esta es la imagen 3',
-        order: 3,
-        organizationId: 1,
+        novelty_id: 3,
+        user_id: 3,
+        body: 'seed test comments',
         createdAt: new Date(),
         updatedAt: new Date()
       }
