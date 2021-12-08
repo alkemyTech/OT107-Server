@@ -6,7 +6,7 @@ const categoriesController = require('../controllers/categories');
 const authMiddleware = require('../middlewares/auth');
 const categoriesMiddleware = require('../middlewares/categories');
 
-router.get('/', categoriesController.getAll);
+router.get('/', authMiddleware.isAuth, categoriesController.getAll);
 router.get('/:id', authMiddleware.isAdmin, categoriesController.getById);
 router.delete('/:id', authMiddleware.isAdmin, categoriesController.remove);
 router.put('/:id', authMiddleware.isAdmin, categoriesController.update);
