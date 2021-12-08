@@ -23,9 +23,20 @@ const update = async (id, data) => {
   return comment;
 };
 
+const getByNovelty = async (novelty) => {
+  const comments = await Models.Comments.findAll({
+    attributes: ['body'],
+    order: [['createdAt', 'ASC']],
+    where: {
+      novelty_id: novelty,
+    },
+  });
+  return comments;
+};
 module.exports = {
   getAll,
   create,
   getById,
-  update
+  update,
+  getByNovelty
 };
