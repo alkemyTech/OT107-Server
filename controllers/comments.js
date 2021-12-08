@@ -33,8 +33,18 @@ const update = async (req, res, next) => {
   }
 };
 
+const remove = async (req, res, next) => {
+  try {
+    await commentsService.remove(req.params.id);
+    res.status(204).json({ message: 'Commentario eliminado' });
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   create,
   getAll,
-  update
+  update,
+  remove
 };

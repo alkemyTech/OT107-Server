@@ -23,9 +23,14 @@ const update = async (id, data) => {
   return comment;
 };
 
+const remove = async (id) => {
+  await Models.Comments.destroy({ where: { id } });
+};
+
 module.exports = {
   getAll,
   create,
   getById,
-  update
+  update,
+  remove
 };
