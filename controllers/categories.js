@@ -3,8 +3,10 @@ const categoriesService = require('../services/categories');
 
 const getAll = async (req, res, next) => {
   try {
-    const categories = await categoriesService.getAll();
-    res.status(200).json(categories);
+    const page = !Number.isNaN(req.query.page) && req.query.page > 1 ? req.query.page : 1;
+    const limit = 10;
+    const data = await categoriesService.getAll(page, limit);
+    res.status(200).json(data);
   } catch (error) {
     next(error);
   }
@@ -31,12 +33,11 @@ const create = async (req, res, next) => {
   }
 };
 
-
 const remove = async (req, res, next) => {
   try {
     await categoriesService.remove(req.params.id);
     res.status(200).json({ msg: `Category ${req.params.id} removed succesfully` });
-   } catch (error) {
+  } catch (error) {
     next(error);
   }
 };

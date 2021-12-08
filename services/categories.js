@@ -2,9 +2,12 @@
 const categoriesRepository = require('../repositories/categories');
 const newsRepository = require('../repositories/news');
 
-const getAll = async () => {
-  const categories = categoriesRepository.getAll();
-  return categories;
+const getAll = async (page, limit) => {
+  const offset = limit * (page - 1);
+  const data = await categoriesRepository.getAll(offset, limit);
+  if (page > 1) data.linkPrev = `/categories?page=${page - 1}&limit=${limit}`;
+  if (data.count > offset + limit) data.linkNext = `/categories?page=${Number.parseInt(page, 10) + 1}&limit=${limit}`;
+  return data;
 };
 
 const getById = async (id) => {

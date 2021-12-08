@@ -1,28 +1,29 @@
 const db = require('../models');
 
-const getAll = async () => {
-  const allCategories = await db.categories.findAll({
-    attributes: ['name']
+const getAll = async (offset, limit) => {
+  const data = await db.Categories.findAndCountAll({
+    limit,
+    offset,
   });
-  return allCategories;
+  return data;
 };
 const getById = async (id) => {
-  const category = await db.categories.findByPk(id);
+  const category = await db.Categories.findByPk(id);
   return category;
 };
 const getByName = async (name) => {
-  const category = await db.categories.findOne({ where: { name } });
+  const category = await db.Categories.findOne({ where: { name } });
   return category;
 };
 const create = async (body) => {
-  const category = await db.categories.create(body);
+  const category = await db.Categories.create(body);
   return category;
 };
 const remove = async (id) => {
-  await db.categories.destroy({ where: { id } });
+  await db.Categories.destroy({ where: { id } });
 };
 const update = async (id, data) => {
-  const category = await db.categories.update(data, { where: { id } });
+  const category = await db.Categories.update(data, { where: { id } });
   return category;
 };
 
