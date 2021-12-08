@@ -30,7 +30,7 @@ const findByEmail = async (userEmail) => {
 };
 
 const remove = async (id) => {
-  await Models.Users.destroy({ where: { id:id } });
+  await Models.Users.destroy({ where: { id } });
   return true;
 };
 
@@ -39,7 +39,7 @@ const update = async (id, changes) => {
     { firstName: changes.firstName, lastName: changes.lastName },
     {
       where: {
-        id:id,
+        id,
       },
     }
   );
