@@ -12,7 +12,6 @@ const getAll = async (page, protocol, host, baseUrl) => {
     {
       page, protocol, host, baseUrl
     },
-    'members'
   );
   const members = await membersRepository.getPages(
     limit,
