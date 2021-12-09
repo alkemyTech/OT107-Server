@@ -1,9 +1,11 @@
-/* eslint-disable consistent-return */
 const categoriesService = require('../services/categories');
 
 const getAll = async (req, res, next) => {
   try {
-    const categories = await categoriesService.getAll();
+    const page = req.query.page || 1;
+    const { protocol, baseUrl } = req;
+    const host = req.get('host');
+    const categories = await categoriesService.getAll(page, protocol, host, baseUrl);
     res.status(200).json(categories);
   } catch (error) {
     next(error);
@@ -22,7 +24,7 @@ const getById = async (req, res, next) => {
 const create = async (req, res, next) => {
   try {
     const category = await categoriesService.create(req.body);
-    return res.status(200).json({
+    res.status(200).json({
       msg: `Category created: ${req.body.name}`,
       category
     });
@@ -31,12 +33,11 @@ const create = async (req, res, next) => {
   }
 };
 
-
 const remove = async (req, res, next) => {
   try {
     await categoriesService.remove(req.params.id);
     res.status(200).json({ msg: `Category ${req.params.id} removed succesfully` });
-   } catch (error) {
+  } catch (error) {
     next(error);
   }
 };
