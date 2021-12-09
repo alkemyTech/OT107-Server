@@ -16,5 +16,6 @@ router
   );
 
 router.put('/:id', commentsMiddleware.isOwnComment, commentsController.update);
+router.delete('/:id', commentsMiddleware.isOwnComment, commentsController.remove);
 
 module.exports = router;

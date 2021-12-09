@@ -33,10 +33,16 @@ const getByNovelty = async (novelty) => {
   });
   return comments;
 };
+
+const remove = async (id) => {
+  await Models.Comments.destroy({ where: { id } });
+};
+
 module.exports = {
   getAll,
   create,
   getById,
   update,
-  getByNovelty
+  getByNovelty,
+  remove
 };
