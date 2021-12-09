@@ -25,12 +25,10 @@ const update = async (id, bodyUpdate) => {
   return data;
 };
 
-const getByNovelty = async (req) => {
-  const { id } = req.params;
+const getByNovelty = async (id) => {
   const data = await commentsRepository.getByNovelty(id);
   return data;
 };
-
 
 module.exports = {
   getAll,
