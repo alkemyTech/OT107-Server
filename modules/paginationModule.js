@@ -1,4 +1,4 @@
-const pagination = (limit, count, req, model) => {
+const pagination = (limit, count, req) => {
   const lastPage = Math.ceil(count / limit);
   const page = Number(req.page);
   let previousPageUrl = null;
@@ -9,7 +9,7 @@ const pagination = (limit, count, req, model) => {
     error.status = 400;
     throw error;
   }
-  const urlBase = `${req.protocol}://${req.host}/${model}`;
+  const urlBase = `${req.protocol}://${req.host}${req.baseUrl}`;
 
   if (page > 1) {
     previousPageUrl = `${urlBase}?page=${page - 1}`;
