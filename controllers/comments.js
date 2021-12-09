@@ -33,8 +33,20 @@ const update = async (req, res, next) => {
   }
 };
 
+const getByNovelty = async (req, res, next) => {
+  try {
+    const comments = await commentsService.getByNovelty(req.body.id);
+    res.status(200).json({
+      comments,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   create,
   getAll,
-  update
+  update,
+  getByNovelty
 };
