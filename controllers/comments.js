@@ -33,6 +33,17 @@ const update = async (req, res, next) => {
   }
 };
 
+const getByNovelty = async (req, res, next) => {
+  try {
+    const comments = await commentsService.getByNovelty(req.body.id);
+    res.status(200).json({
+      comments,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
 const remove = async (req, res, next) => {
   try {
     await commentsService.remove(req.params.id);
@@ -46,5 +57,6 @@ module.exports = {
   create,
   getAll,
   update,
+  getByNovelty,
   remove
 };
