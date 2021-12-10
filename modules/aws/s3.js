@@ -2,6 +2,7 @@ const S3 = require('aws-sdk/clients/s3');
 const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const filesHandlerModule = require('../filesHandler');
 
 const region = process.env.AWS_REGION;
 const accessKeyId = process.env.AWS_ACCESS_KEY;
@@ -27,6 +28,14 @@ const uploadToBucket = async (file, awsBucketName) => {
   return fileUpload;
 };
 
+const uploadImage = async (image, awsBucketName) => {
+  const fileName = image.name || image.fieldname || image.originalname.toLowerCase();
+  filesHandlerModule.isImage(fileName);
+  const imageUploaded = await uploadToBucket(image, awsBucketName);
+  return imageUploaded;
+};
+
 module.exports = {
-  uploadToBucket
+  uploadToBucket,
+  uploadImage
 };
