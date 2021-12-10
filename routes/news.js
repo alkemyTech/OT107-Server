@@ -9,7 +9,7 @@ const paginateMiddleware = require('../middlewares/pagination');
 
 router.route('/:id/comments').get(authMiddleware.isAuth,commentsController.getByNovelty);
 router.route('/')
-  .get(authMiddleware.isAdmin, paginateMiddleware.pageValidation, newsController.getAll)
+  .get(authMiddleware.isAuth, paginateMiddleware.pageValidation, newsController.getAll)
   .post(authMiddleware.isAdmin, newsMiddleware.newsInputValidation, newsController.create);
 router.route('/:id')
   .get(authMiddleware.isAdmin, newsController.getById)
