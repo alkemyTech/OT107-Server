@@ -30,10 +30,6 @@ const testimonialsController = require('../controllers/testimonials');
  *         content:
  *           type: text
  *           nullable: false
- */
-
-/**
- * @swagger
  * example:
  *    id: 1
  *    name: Testimonial 1
@@ -43,6 +39,9 @@ const testimonialsController = require('../controllers/testimonials');
  *      a la fundación con otras ongs, y con diferentes instituciones
  *      tanto privadas como estatales. Colaboro con la formación de
  *      grupos de voluntarios y en las acciones de desarrollo de fondos.
+ * tags:
+ *   name: Testimonials
+ *   description: Testimonials endpoints DOCs
  */
 
 /**
@@ -52,6 +51,7 @@ const testimonialsController = require('../controllers/testimonials');
  *     summary: Return all testimonials, Admin Token required
  *     security:
  *       - bearerAuth: []
+ *     tags: [Testimonials]
  *     responses:
  *       '200':
  *         description: A JSON array of testimonials with name, image and content
@@ -67,6 +67,7 @@ router.get('/', authMiddleware.isAdmin, testimonialsController.getAll);
  *     summary: Return a testimonial by id, Admin Token required
  *     security:
  *       - bearerAuth: []
+ *     tags: [Testimonials]
  *     parameters:
  *       - in: path
  *         name: id
@@ -91,6 +92,7 @@ router.get('/:id', authMiddleware.isAdmin, testimonialsController.getById);
  *     summary: Create testimonial, Admin Token required
  *     security:
  *       - bearerAuth: []
+ *     tags: [Testimonials]
  *     requestBody:
  *       description: name (required), image and content (required)
  *       content:
@@ -130,6 +132,7 @@ router.post('/', authMiddleware.isAdmin, testimonialsMiddleware.inputValidation,
  *     summary: Edit testimonial, Admin Token required
  *     security:
  *       - bearerAuth: []
+ *     tags: [Testimonials]
  *     parameters:
  *       - in: path
  *         name: id
@@ -173,6 +176,7 @@ router.put('/:id', authMiddleware.isAdmin, testimonialsController.update);
  *     summary: Edit testimonial, Admin Token required
  *     security:
  *       - bearerAuth: []
+ *     tags: [Testimonials]
  *     parameters:
  *       - in: path
  *         name: id
