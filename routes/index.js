@@ -1,8 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
-const swaggerUi = require('swagger-ui-express');
-const swaggerSpecs = require('../modules/swagger');
+
 const registerRouter = require('./auth');
 const categoriesRoutes = require('./categories');
 const userRoutes = require('./users');
@@ -15,6 +14,7 @@ const membersRoute = require('./members');
 const commentsRoutes = require('./comments');
 const slidesRoute = require('./slides');
 const backofficeRouter = require('./backoffice');
+const apiDocsRouter = require('./api-docs');
 
 router.use('/organizations', organizationRoutes);
 router.use('/activities', activitiesRouter);
@@ -28,6 +28,6 @@ router.use('/members', membersRoute);
 router.use('/comments', commentsRoutes);
 router.use('/slides', slidesRoute);
 router.use('/backoffice', backofficeRouter);
-router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+router.use('/api-docs', apiDocsRouter);
 
 module.exports = router;
