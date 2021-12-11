@@ -75,6 +75,12 @@ const paginateMiddleware = require('../middlewares/pagination');
  *    responses:
  *      '200':
  *          description: Success
+ *          content:
+ *            application/json:
+ *              schema:
+ *              type: array
+ *              items:
+ *                $ref:'#components/schemes/news'
  *      '400':
  *          description: invalid token
  *      '401':
@@ -96,6 +102,12 @@ router
  *    responses:
  *        '200':
  *            description: Success
+ *            content:
+ *              application/json:
+ *                schema:
+ *                type: array
+ *                items:
+ *                  $ref:'#components/schemes/news'
  *        '400':
  *            description: invalid token
  *        '401':
@@ -128,12 +140,18 @@ router.get("/", authMiddleware.isAdmin, paginateMiddleware.pageValidation, newsC
  *                 type: integer
  *     tags: [News]
  *     responses:
- *          '200':
- *              description: Success
- *          '400':
- *              description: invalid token
- *          '401':
- *              description: access denied
+ *         '200':
+ *             description: Success
+ *             content:
+ *               application/json:
+ *                 schema:
+ *                 type: array
+ *                 items:
+ *                   $ref:'#components/schemes/news'
+ *         '400':
+ *             description: invalid token
+ *         '401':
+ *             description: access denied
  */
 router.post(
   "/",
@@ -159,12 +177,18 @@ router.post(
  *            minimun: 1
  *     tags: [News]
  *     responses:
- *          '200':
- *              description: Success
- *          '400':
- *              description: invalid token
- *          '401':
- *              description: access denied
+ *         '200':
+ *             description: Success
+ *             content:
+ *               application/json:
+ *                 schema:
+ *                 type: array
+ *                 items:
+ *                   $ref:'#components/schemes/news'
+ *         '400':
+ *             description: invalid token
+ *         '401':
+ *             description: access denied
  */
 router.route("/:id").get(authMiddleware.isAdmin, newsController.getById);
 /**
@@ -202,6 +226,12 @@ router.route("/:id").get(authMiddleware.isAdmin, newsController.getById);
  *    responses:
  *        '200':
  *            description: Success
+ *            content:
+ *              application/json:
+ *                schema:
+ *                type: array
+ *                items:
+ *                  $ref:'#components/schemes/news'
  *        '400':
  *            description: invalid token
  *        '401':
@@ -242,20 +272,8 @@ router
  *                    $ref:'#components/schemes/news'
  *          '400':
  *              description: invalid token
- *              content:
- *                application/json:
- *                    schema:
- *                    type: array
- *                    items:
- *                      $ref:'#components/schemes/news'
  *          '401':
  *              description: access denied
- *              content:
- *                application/json:
- *                    schema:
- *                    type: array
- *                    items:
- *                      $ref:'#components/schemes/news'
  */
 router.route("/:id").delete(authMiddleware.isAdmin, newsController.remove);
 
