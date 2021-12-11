@@ -5,6 +5,22 @@ const getAll = async () => {
   return news;
 };
 
+const getPages = async (limit, offset) => {
+  const news = await models.News.findAll({
+    attributes: {
+      exclude: ['deletedAt', 'createdAt', 'updatedAt']
+    },
+    limit,
+    offset
+  });
+  return news;
+};
+
+const count = async () => {
+  const data = await models.News.count();
+  return data;
+};
+
 const create = async (data) => {
   const novelty = await models.News.create(data);
   return novelty;
@@ -45,5 +61,7 @@ module.exports = {
   create,
   update,
   remove,
-  getByCategoryId
+  getByCategoryId,
+  getPages,
+  count
 };
