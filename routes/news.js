@@ -143,7 +143,7 @@ router.get("/", authMiddleware.isAdmin, newsController.getAll);
  * /news/:
  *  post:
  *     summary: Create a novelty
- *     securyty:
+ *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: body
@@ -196,7 +196,7 @@ router.post(
  * /news/{noveltyId}:
  *  post:
  *     summary: Get a novelty by id
- *     securyty:
+ *     security:
  *       - bearerAuth: []
  *     parameters:
  *        - name: id
@@ -240,7 +240,7 @@ router.route("/:id").get(authMiddleware.isAdmin, newsController.getById);
  * /news/{noveltyId}:
  *  put:
  *    summary: Update novelty by id
- *    securyty:
+ *    security:
  *     - bearerAuth: []
  *    parameters:
  *     - name: id
@@ -305,7 +305,7 @@ router
  * /news/{noveltyId}:
  *  delete:
  *     summary: Delete a novelty by id
- *     securyty:
+ *     security:
  *       - bearerAuth: []
  *     parameters:
  *        - name: id
