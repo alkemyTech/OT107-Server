@@ -147,19 +147,21 @@ router.get("/", authMiddleware.isAdmin, paginateMiddleware.pageValidation, newsC
  *     summary: Create a novelty
  *     security:
  *       - bearerAuth: []
- *     parameters:
- *       - in: body
- *     schema:
- *       type: object
- *       properties:
- *         name:
- *           type: string
- *         content:
- *           type: string
- *         image:
- *           type: string
- *         categoryId:
- *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               content:
+ *                 type: string
+ *               image:
+ *                 type: string
+ *               categoryId:
+ *                 type: integer
  *     tags: [News]
  *     responses:
  *          '200':
@@ -245,29 +247,29 @@ router.route("/:id").get(authMiddleware.isAdmin, newsController.getById);
  *    security:
  *     - bearerAuth: []
  *    parameters:
- *     - name: id
- *       in: path
- *       required: true
- *       description: novelty id
- *       schema:
- *         type: integer
- *         format: int64
- *         minimun: 1
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: novelty id
+ *         schema:
+ *           type: integer
+ *           format: int64
+ *           minimun: 1
  *    requestBody:
  *      required: true
  *      content:
- *        - in: body
+ *        application/json:
  *          schema:
- *          type: object
- *          properties:
- *            name:
- *              type: string
- *            content:
- *              type: string
- *            image:
- *              type: string
- *            categoryId:
- *              type: integer
+ *           type: object
+ *           properties:
+ *             name:
+ *               type: string
+ *             content:
+ *               type: string
+ *             image:
+ *               type: string
+ *             categoryId:
+ *               type: integer
  *    tags: [News]
  *    responses:
  *        '200':
