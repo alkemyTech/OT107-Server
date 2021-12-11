@@ -6,11 +6,11 @@ const optionsSwagger = {
     info: {
       title: 'ONG - Somos Más',
       description: '',
-      version: '1.0.0',
-      servers: [
-        { url: 'http://localhost:3000' }
-      ]
+      version: '1.0.0'
     },
+    servers: [
+      { url: 'http://localhost:3000' }
+    ],
   },
   apis: ['./routes/*.js'],
 };
