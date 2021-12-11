@@ -33,10 +33,28 @@ const remove = async (id) => {
   return data;
 };
 
+const getPages = async (limit, offset) => {
+  const testimonials = await Models.Testimonials.findAll({
+    attributes: {
+      exclude: ['deletedAt', 'createdAt', 'updatedAt']
+    },
+    limit,
+    offset
+  });
+  return testimonials;
+};
+
+const count = async () => {
+  const data = await Models.Testimonials.count();
+  return data;
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
-  remove
+  remove,
+  count,
+  getPages
 };
