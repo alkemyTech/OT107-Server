@@ -5,8 +5,9 @@ const router = express.Router();
 const categoriesController = require('../controllers/categories');
 const authMiddleware = require('../middlewares/auth');
 const categoriesMiddleware = require('../middlewares/categories');
+const paginateMiddleware = require('../middlewares/pagination');
 
-router.get('/', authMiddleware.isAdmin, categoriesController.getAll);
+router.get('/', authMiddleware.isAuth, paginateMiddleware.pageValidation, categoriesController.getAll);
 router.get('/:id', authMiddleware.isAdmin, categoriesController.getById);
 router.delete('/:id', authMiddleware.isAdmin, categoriesController.remove);
 router.put('/:id', authMiddleware.isAdmin, categoriesController.update);

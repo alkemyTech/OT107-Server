@@ -1,10 +1,31 @@
 /* eslint-disable prefer-destructuring */
 const categoriesRepository = require('../repositories/categories');
 const newsRepository = require('../repositories/news');
+const paginationModule = require('../modules/paginationModule');
 
-const getAll = async () => {
-  const categories = categoriesRepository.getAll();
-  return categories;
+const limit = 10;
+const getAll = async (page, protocol, host, baseUrl) => {
+  const countCategories = await categoriesRepository.count();
+
+  const pagination = paginationModule.pagination(
+    limit,
+    countCategories,
+    {
+      page, protocol, host, baseUrl
+    },
+  );
+  const categories = await categoriesRepository.getPages(
+    limit,
+    pagination.offset
+  );
+  const response = {
+    count: countCategories,
+    lastPage: pagination.lastPage,
+    previousPage: pagination.previousPageUrl,
+    nextPage: pagination.nextPageUrl,
+    data: categories
+  };
+  return response;
 };
 
 const getById = async (id) => {
