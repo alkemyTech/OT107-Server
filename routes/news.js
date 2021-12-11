@@ -1,10 +1,12 @@
 const express = require("express");
 
 const router = express.Router();
+
 const newsController = require("../controllers/news");
 const commentsController = require("../controllers/comments");
 const authMiddleware = require("../middlewares/auth");
 const newsMiddleware = require("../middlewares/news");
+const paginateMiddleware = require('../middlewares/pagination');
 
 /**
  * @swagger
@@ -136,7 +138,7 @@ router
  *                    $ref:'#components/schemes/news'
  */
 
-router.get("/", authMiddleware.isAdmin, newsController.getAll);
+router.get("/", authMiddleware.isAdmin, paginateMiddleware.pageValidation, newsController.getAll);
 
 /**
  * @swagger
@@ -344,5 +346,6 @@ router
  *                      $ref:'#components/schemes/news'
  */
 router.route("/:id").delete(authMiddleware.isAdmin, newsController.remove);
+
 
 module.exports = router;

@@ -1,9 +1,31 @@
 const newsRepository = require('../repositories/news');
 const categoriesRepository = require('../repositories/categories');
+const paginationModule = require('../modules/paginationModule');
 
-const getAll = async () => {
-  const news = await newsRepository.getAll();
-  return news;
+const limit = 10;
+
+const getAll = async (page, protocol, host, baseUrl) => {
+  const countNews = await newsRepository.count();
+
+  const pagination = paginationModule.pagination(
+    limit,
+    countNews,
+    {
+      page, protocol, host, baseUrl
+    },
+  );
+  const news = await newsRepository.getPages(
+    limit,
+    pagination.offset
+  );
+  const response = {
+    countNews,
+    lastPage: pagination.lastPage,
+    previousPage: pagination.previousPageUrl,
+    nextPage: pagination.nextPageUrl,
+    data: news
+  };
+  return response;
 };
 
 const create = async (data) => {

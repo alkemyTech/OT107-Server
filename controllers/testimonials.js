@@ -2,7 +2,7 @@ const testimonialsService = require('../services/testimonials');
 
 const getAll = async (req, res, next) => {
   try {
-    const data = await testimonialsService.getAll();
+    const data = await testimonialsService.getAll(req.query.page || 1, req.protocol, req.get('host'), req.baseUrl);
     res.status(200).json(data);
   } catch (e) {
     next(e);
