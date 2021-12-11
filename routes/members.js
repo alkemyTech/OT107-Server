@@ -73,6 +73,12 @@ const validationMiddleware = require('../middlewares/members');
  *      security:
  *          - bearerAuth: []
  *      tags: [Members]
+ *      parameters:
+ *          - name: page
+ *            in: query
+ *            schema:
+ *                type: integer
+ *            description: pagination page query
  *      responses:
  *          '200':
  *              description: list of members
