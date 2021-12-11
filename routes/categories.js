@@ -60,23 +60,14 @@ const categoriesMiddleware = require('../middlewares/categories');
  *              description: Success
  *              content:
  *                  application/json:
- *                      schema: array
- *                      items:
- *                          $ref:'#components/schemes/categories'
+ *                      schema: 
+ *                         type: array
+ *                         items:
+ *                            $ref:' #components/schemes/categories'
  *          400:
  *              description: invalid token
- *              content:
- *                  application/json:
- *                      schema: array
- *                      items:
- *                          $ref:'#components/schemes/categories'
  *          401:
  *              description: access denied
- *              content:
- *                  application/json:
- *                      schema: array
- *                      items:
- *                          $ref:'#components/schemes/categories'
  */
 
 router.get('/', authMiddleware.isAdmin, categoriesController.getAll);
@@ -95,30 +86,21 @@ router.get('/', authMiddleware.isAdmin, categoriesController.getAll);
  *           schema:
  *             type: integer
  *             format: int64
- *             minimun: 1
+ *             minimum: 1
  *      tags: [Categories]
  *      responses:
  *          200:
- *              description: succes
+ *              description: success
  *              content:
  *                  application/json:
- *                      schema: array
- *                      items:
- *                          $ref:'#components/schemes/categories'
+ *                      schema: 
+ *                         type: array
+ *                         items:
+ *                            $ref:' #components/schemes/categories'
  *          400:
  *              description: invalid token
- *              content:
- *                  application/json:
- *                      schema: array
- *                      items:
- *                          $ref:'#components/schemes/categories'
  *          401:
  *              description: access denied
- *              content:
- *                  application/json:
- *                      schema: array
- *                      items:
- *                          $ref:'#components/schemes/categories'
  */
 router.get('/:id', authMiddleware.isAdmin, categoriesController.getById);
 /**
@@ -136,30 +118,22 @@ router.get('/:id', authMiddleware.isAdmin, categoriesController.getById);
  *           schema:
  *             type: integer
  *             format: int64
- *             minimun: 1
+ *             minimum: 1
  *      tags: [Categories]
  *      responses:
  *          200:
- *              description: succes
+ *              description: success
  *              content:
  *                  application/json:
- *                      schema: array
- *                      items:
- *                          $ref:'#components/schemes/categories'
+ *                      schema: 
+ *                         type: array
+ *                         items:
+ *                            $ref:' #components/schemes/categories'
  *          400:
  *              description: invalid token
- *              content:
- *                  application/json:
- *                      schema: array
- *                      items:
- *                          $ref:'#components/schemes/categories'
  *          401:
  *              description: access denied
- *              content:
- *                  application/json:
- *                      schema: array
- *                      items:
- *                          $ref:'#components/schemes/categories'
+
  */
 router.delete('/:id', authMiddleware.isAdmin, categoriesController.remove);
 /**
@@ -177,7 +151,7 @@ router.delete('/:id', authMiddleware.isAdmin, categoriesController.remove);
  *           schema:
  *             type: integer
  *             format: int64
- *             minimun: 1
+ *             minimum: 1
  *      requestBody:
  *       required: true
  *       content:
@@ -194,26 +168,17 @@ router.delete('/:id', authMiddleware.isAdmin, categoriesController.remove);
  *      tags: [Categories]
  *      responses:
  *          200:
- *              description: succes
+ *              description: success
  *              content:
  *                  application/json:
- *                      schema: array
- *                      items:
- *                          $ref:'#components/schemes/categories'
+ *                      schema: 
+ *                         type: array
+ *                         items:
+ *                            $ref:' #components/schemes/categories'
  *          400:
  *              description: invalid token
- *              content:
- *                  application/json:
- *                      schema: array
- *                      items:
- *                          $ref:'#components/schemes/categories'
  *          401:
  *              description: access denied
- *              content:
- *                  application/json:
- *                      schema: array
- *                      items:
- *                          $ref:'#components/schemes/categories'
  */
 router.put('/:id', authMiddleware.isAdmin, categoriesController.update);
 /**
@@ -239,26 +204,17 @@ router.put('/:id', authMiddleware.isAdmin, categoriesController.update);
  *      tags: [Categories]
  *      responses:
  *          200:
- *              description: succes
+ *              description: success
  *              content:
  *                  application/json:
- *                      schema: array
- *                      items:
- *                          $ref:'#components/schemes/categories'
+ *                      schema: 
+ *                         type: array
+ *                         items:
+ *                            $ref:' #components/schemes/categories'
  *          400:
  *              description: invalid token
- *              content:
- *                  application/json:
- *                      schema: array
- *                      items:
- *                          $ref:'#components/schemes/categories'
  *          401:
  *              description: access denied
- *              content:
- *                  application/json:
- *                      schema: array
- *                      items:
- *                          $ref:'#components/schemes/categories'
  */
 router.post('/', authMiddleware.isAdmin, categoriesMiddleware.categoriesInputValidation, categoriesController.create);
 
