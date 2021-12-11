@@ -4,6 +4,7 @@ const router = express.Router();
 const authMiddleware = require('../middlewares/auth');
 const testimonialsMiddleware = require('../middlewares/testimonials');
 const testimonialsController = require('../controllers/testimonials');
+const paginationMiddleware = require('../middlewares/pagination');
 
 /**
  * @swagger
@@ -52,13 +53,26 @@ const testimonialsController = require('../controllers/testimonials');
  *     security:
  *       - bearerAuth: []
  *     tags: [Testimonials]
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         required: false
+ *         description: Pagination page query
  *     responses:
  *       '200':
  *         description: A JSON array of testimonials with name, image and content
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#components/schemas/testimonials'
  *       '401':
  *         description: Unauthorized. Invalid or expired token
  */
-router.get('/', authMiddleware.isAdmin, testimonialsController.getAll);
+router.get('/', authMiddleware.isAuth, paginationMiddleware.pageValidation, testimonialsController.getAll);
 
 /**
  * @swagger
@@ -78,6 +92,12 @@ router.get('/', authMiddleware.isAdmin, testimonialsController.getAll);
  *     responses:
  *       '200':
  *         description: A JSON object of one testimonial with name, image and content
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#components/schemas/testimonials'
  *       '401':
  *         description: Unauthorized. Invalid or expired token
  *       '500':
@@ -118,6 +138,12 @@ router.get('/:id', authMiddleware.isAdmin, testimonialsController.getById);
  *     responses:
  *       '200':
  *         description: A JSON object of one testimonial with name, image and content
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#components/schemas/testimonials'
  *       '401':
  *         description: Unauthorized. Invalid or expired token
  *       '500':
@@ -162,6 +188,12 @@ router.post('/', authMiddleware.isAdmin, testimonialsMiddleware.inputValidation,
  *     responses:
  *       '200':
  *         description: A JSON object of one testimonial with id, name, image and content
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#components/schemas/testimonials'
  *       '401':
  *         description: Unauthorized. Invalid or expired token
  *       '500':
@@ -184,6 +216,12 @@ router.put('/:id', authMiddleware.isAdmin, testimonialsController.update);
  *     responses:
  *       '200':
  *         description: message Testimonial has been removed
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#components/schemas/testimonials'
  *       '401':
  *         description: Unauthorized. Invalid or expired token
  *       '500':
