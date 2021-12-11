@@ -1,12 +1,38 @@
 const testimonialsRepo = require('../repositories/testimonials');
+const paginationModule = require('../modules/paginationModule');
 
-const getAll = async () => {
-  const data = await testimonialsRepo.getAll();
-  return data;
+const limit = 10;
+
+const getAll = async (page, protocol, host, baseUrl) => {
+  const countTestimonials = await testimonialsRepo.count();
+
+  const pagination = paginationModule.pagination(
+    limit,
+    countTestimonials,
+    {
+      page,
+      protocol,
+      host,
+      baseUrl
+    },
+  );
+  const testimonials = await testimonialsRepo.getPages(
+    limit,
+    pagination.offset
+  );
+
+  const response = {
+    countTestimonials,
+    lastPage: pagination.lastPage,
+    previousPage: pagination.previousPageUrl,
+    nextPage: pagination.nextPageUrl,
+    data: testimonials
+  };
+  return response;
 };
 
 const getById = async (params) => {
-  const id = params.id;
+  const { id } = params;
   const data = await testimonialsRepo.getById(id);
   if (!data) {
     const error = new Error('The testimonial does not exist.');
@@ -21,13 +47,13 @@ const create = async (body) => {
 };
 
 const update = async (params, body) => {
-  const id = params.id;
+  const { id } = params;
   const data = await testimonialsRepo.update(id, body);
   return data;
 };
 
 const remove = async (params) => {
-  const id = params.id;
+  const { id } = params;
   const data = await testimonialsRepo.remove(id);
   if (data === 0) {
     const error = new Error('The testimonial does not exist.');
