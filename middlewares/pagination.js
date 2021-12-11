@@ -1,5 +1,5 @@
 const pageValidation = async (req, res, next) => {
-  const { page } = req.query;
+const page = req.query.page;
 
   if (page === '') return res.status(400).json({ error: 'You must provide a page number.' });
   if (!page) return next();
