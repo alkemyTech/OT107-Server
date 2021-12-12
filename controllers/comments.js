@@ -35,7 +35,7 @@ const update = async (req, res, next) => {
 
 const getByNovelty = async (req, res, next) => {
   try {
-    const comments = await commentsService.getByNovelty(req.body.id);
+    const comments = await commentsService.getByNovelty(req.params.id);
     res.status(200).json({
       comments,
     });
