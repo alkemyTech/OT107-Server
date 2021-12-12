@@ -1,8 +1,30 @@
 const membersRepository = require('../repositories/members');
+const paginationmModule = require('../modules/paginationModule');
 
-const getAll = async () => {
-  const members = await membersRepository.getAll();
-  return members;
+const limit = 10;
+
+const getAll = async (page, protocol, host, baseUrl) => {
+  const countMembers = await membersRepository.count();
+
+  const pagination = paginationmModule.pagination(
+    limit,
+    countMembers,
+    {
+      page, protocol, host, baseUrl
+    },
+  );
+  const members = await membersRepository.getPages(
+    limit,
+    pagination.offset
+  );
+  const response = {
+    countMembers,
+    lastPage: pagination.lastPage,
+    previousPage: pagination.previousPageUrl,
+    nextPage: pagination.nextPageUrl,
+    data: members
+  };
+  return response;
 };
 
 const create = async (body) => {

@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const membersController = require('../controllers/members');
 const authMiddleware = require('../middlewares/auth');
+const paginateMiddleware = require('../middlewares/pagination');
 const validationMiddleware = require('../middlewares/members');
 
 //schema
