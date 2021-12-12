@@ -17,7 +17,7 @@ const create = async (req, res, next) => {
 const getAll = async (req, res, next) => {
   try {
     const comments = await commentsService.getAll();
-    res.status(200).json({ comments });
+    res.status(200).json(comments);
   } catch (e) {
     next(e);
   }
@@ -27,7 +27,7 @@ const update = async (req, res, next) => {
   try {
     const bodyUpdate = req.body;
     const comment = await commentsService.update(req.params.id, bodyUpdate);
-    res.status(200).json({ comment });
+    res.status(200).json(comment);
   } catch (e) {
     next(e);
   }
