@@ -44,7 +44,10 @@ const update = async (id, body) => {
   if (!memberVerified) {
     throw new Error('Not matching member');
   }
-  const member = await membersRepository.update(id, body);
+  let member = await membersRepository.update(id, body);
+  if (!member[0]) throw new Error('error update');
+
+  member = await membersRepository.getById(id);
   return member;
 };
 

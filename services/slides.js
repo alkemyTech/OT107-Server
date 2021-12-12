@@ -14,7 +14,7 @@ const getById = async (id) => {
 };
 
 const create = async (image, body) => {
-  const uploadImage = await s3.uploadToBucket(image);
+  const uploadImage = await s3.uploadImage(image);
 
   const nextOrder = await slidesRepository.getLastOrder() + 1;
 
