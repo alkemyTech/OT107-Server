@@ -31,15 +31,15 @@ const paginationMiddleware = require('../middlewares/pagination');
  *         content:
  *           type: text
  *           nullable: false
- * example:
- *    id: 1
- *    name: Testimonial 1
- *    image: https://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg
- *    content:
- *      Soy Licenciada en Relaciones Institucionales y trabajo vinculando
- *      a la fundación con otras ongs, y con diferentes instituciones
- *      tanto privadas como estatales. Colaboro con la formación de
- *      grupos de voluntarios y en las acciones de desarrollo de fondos.
+ *       example:
+ *        id: 1
+ *        name: Testimonial 1
+ *        image: https://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg
+ *        content:
+ *          Soy Licenciada en Relaciones Institucionales y trabajo vinculando
+ *          a la fundación con otras ongs, y con diferentes instituciones
+ *          tanto privadas como estatales. Colaboro con la formación de
+ *          grupos de voluntarios y en las acciones de desarrollo de fondos.
  * tags:
  *   name: Testimonials
  *   description: Testimonials endpoints DOCs
