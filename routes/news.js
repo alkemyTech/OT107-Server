@@ -15,9 +15,9 @@ const paginateMiddleware = require('../middlewares/pagination');
  *      bearerAuth:
  *          type: http
  *          scheme: bearer
- *          beaarerFormat: JWT
+ *          bearerFormat: JWT
  *  schemas:
- *      News:
+ *      news:
  *        type: object
  *        required:
  *            -name
@@ -74,13 +74,13 @@ const paginateMiddleware = require('../middlewares/pagination');
  *    tags: [Comments]
  *    responses:
  *      '200':
- *          description: Success
- *          content:
+ *        description: Success
+ *        content:
  *            application/json:
  *              schema:
- *              type: array
- *              items:
- *                $ref:'#components/schemes/news'
+ *                type: array
+ *                items:
+ *                    $ref:'#components/schemas/news'
  *      '400':
  *          description: invalid token
  *      '401':
@@ -100,18 +100,18 @@ router
  *      - bearerAuth: [admin]
  *    tags: [News]
  *    responses:
- *        '200':
- *            description: Success
- *            content:
- *              application/json:
- *                schema:
- *                type: array
- *                items:
- *                  $ref:'#components/schemes/news'
- *        '400':
- *            description: invalid token
- *        '401':
- *            description: access denied
+ *          '204':
+ *              description: Success
+ *              content:
+ *                application/json:
+ *                  schema:
+ *                  type: array
+ *                  items:
+ *                    $ref:'#components/schemas/news'
+ *          '400':
+ *              description: invalid token
+ *          '401':
+ *              description: access denied
  */
 
 router.get("/", authMiddleware.isAdmin, paginateMiddleware.pageValidation, newsController.getAll);
@@ -124,34 +124,25 @@ router.get("/", authMiddleware.isAdmin, paginateMiddleware.pageValidation, newsC
  *     security:
  *       - bearerAuth: []
  *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *               content:
- *                 type: string
- *               image:
- *                 type: string
- *               categoryId:
- *                 type: integer
+ *         required: true
+ *         content:
+ *             application/json:
+ *                 schema:
+ *                     $ref: '#components/schemas/news'
  *     tags: [News]
  *     responses:
- *         '200':
- *             description: Success
- *             content:
- *               application/json:
- *                 schema:
- *                 type: array
- *                 items:
- *                   $ref:'#components/schemes/news'
- *         '400':
- *             description: invalid token
- *         '401':
- *             description: access denied
+ *          '204':
+ *              description: Success
+ *              content:
+ *                application/json:
+ *                  schema:
+ *                  type: array
+ *                  items:
+ *                    $ref:'#components/schemas/news'
+ *          '400':
+ *              description: invalid token
+ *          '401':
+ *              description: access denied
  */
 router.post(
   "/",
@@ -177,18 +168,18 @@ router.post(
  *            minimun: 1
  *     tags: [News]
  *     responses:
- *         '200':
- *             description: Success
- *             content:
- *               application/json:
- *                 schema:
- *                 type: array
- *                 items:
- *                   $ref:'#components/schemes/news'
- *         '400':
- *             description: invalid token
- *         '401':
- *             description: access denied
+ *          '204':
+ *              description: Success
+ *              content:
+ *                application/json:
+ *                  schema:
+ *                  type: array
+ *                  items:
+ *                    $ref:'#components/schemas/news'
+ *          '400':
+ *              description: invalid token
+ *          '401':
+ *              description: access denied
  */
 router.route("/:id").get(authMiddleware.isAdmin, newsController.getById);
 /**
@@ -208,34 +199,25 @@ router.route("/:id").get(authMiddleware.isAdmin, newsController.getById);
  *           format: int64
  *           minimun: 1
  *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *           type: object
- *           properties:
- *             name:
- *               type: string
- *             content:
- *               type: string
- *             image:
- *               type: string
- *             categoryId:
- *               type: integer
+ *        required: true
+ *        content:
+ *            application/json:
+ *                schema:
+ *                    $ref: '#components/schemas/news'
  *    tags: [News]
  *    responses:
- *        '200':
- *            description: Success
- *            content:
- *              application/json:
- *                schema:
- *                type: array
- *                items:
- *                  $ref:'#components/schemes/news'
- *        '400':
- *            description: invalid token
- *        '401':
- *            description: access denied
+ *          '204':
+ *              description: Success
+ *              content:
+ *                application/json:
+ *                  schema:
+ *                  type: array
+ *                  items:
+ *                    $ref:'#components/schemas/news'
+ *          '400':
+ *              description: invalid token
+ *          '401':
+ *              description: access denied
  */
 router
   .route("/:id")
@@ -269,7 +251,7 @@ router
  *                  schema:
  *                  type: array
  *                  items:
- *                    $ref:'#components/schemes/news'
+ *                    $ref:'#components/schemas/news'
  *          '400':
  *              description: invalid token
  *          '401':
