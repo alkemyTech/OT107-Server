@@ -4,6 +4,16 @@ const getAll = async () => {
   const data = await Models.Members.findAll();
   return data;
 };
+const getPages = async (limit, offset) => {
+  const members = await Models.Members.findAll({
+    attributes: {
+      exclude: ['deletedAt', 'createdAt', 'updatedAt']
+    },
+    limit,
+    offset
+  });
+  return members;
+};
 
 const create = async (body) => {
   const data = await Models.Members.create(
@@ -26,10 +36,17 @@ const remove = async (memberId) => {
   await Models.Members.destroy({ where: { id: memberId } });
 };
 
+const count = async () => {
+  const data = await Models.Members.count();
+  return data;
+};
+
 module.exports = {
   getAll,
   create,
   remove,
   update,
-  getById
+  getById,
+  getPages,
+  count
 };
