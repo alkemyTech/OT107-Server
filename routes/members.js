@@ -14,7 +14,7 @@ const validationMiddleware = require('../middlewares/members');
  *          type: http
  *          scheme: bearer
  *          bearerFormat: JWT
- *  schemes:
+ *  schemas:
  *      members:
  *          type: object
  *          require:
@@ -87,7 +87,7 @@ const validationMiddleware = require('../middlewares/members');
  *                      schema:
  *                          type: array
  *                          items:
- *                              $ref: '#components/schemes/members'
+ *                              $ref: '#components/schemas/members'
  *          '401':
  *              description: Unauthorize, Invalid or expired token
  *          '500':
@@ -109,14 +109,14 @@ router.get('/', authMiddleware.isAdmin, membersController.getAll);
  *          content:
  *              application/json:
  *                  schema:
- *                      $ref: '#components/schemes/members'
+ *                      $ref: '#components/schemas/members'
  *      responses:
  *          '200':
  *              description: member update successfully
  *              content:
  *                  application/json:
  *                      schema:
- *                          $ref: '#components/schemes/members'
+ *                          $ref: '#components/schemas/members'
  *          '401':
  *              description: Unauthorize, Invalid or expired token
  *          '500':
@@ -146,7 +146,7 @@ router.post('/', authMiddleware.isAuth, validationMiddleware.membersValidation, 
  *              content:
  *                  application/json:
  *                      schema:
- *                          $ref: '#components/schemes/members'
+ *                          $ref: '#components/schemas/members'
  *          '400':
  *              description: Not matching member
  *          '401':
@@ -177,14 +177,14 @@ router.delete('/:id', authMiddleware.isAuth, membersController.remove);
  *          content:
  *              application/json:
  *                  schema:
- *                      $ref: '#components/schemes/members'
+ *                      $ref: '#components/schemas/members'
  *      responses:
  *          '200':
  *              description: member update successfully
  *              content:
  *                  application/json:
  *                      schema:
- *                          $ref: '#components/schemes/members'
+ *                          $ref: '#components/schemas/members'
  *          '400':
  *              description: Not matching member
  *          '401':
