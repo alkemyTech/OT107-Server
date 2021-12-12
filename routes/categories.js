@@ -12,7 +12,7 @@ const categoriesMiddleware = require('../middlewares/categories');
  *  securitySchemes:
  *      bearerAuth:
  *          type: http
- *          scheme: bearer
+ *          schemas: bearer
  *          bearerFormat: JWT
  * schemes:
  *      categories:
@@ -63,7 +63,7 @@ const categoriesMiddleware = require('../middlewares/categories');
  *                      schema: 
  *                         type: array
  *                         items:
- *                            $ref:' #components/schemes/categories'
+ *                            $ref: '#components/schemas/categories'
  *          400:
  *              description: invalid token
  *          401:
@@ -96,7 +96,7 @@ router.get('/', authMiddleware.isAdmin, categoriesController.getAll);
  *                      schema: 
  *                         type: array
  *                         items:
- *                            $ref:' #components/schemes/categories'
+ *                            $ref: '#components/schemas/categories'
  *          400:
  *              description: invalid token
  *          401:
@@ -128,7 +128,7 @@ router.get('/:id', authMiddleware.isAdmin, categoriesController.getById);
  *                      schema: 
  *                         type: array
  *                         items:
- *                            $ref:' #components/schemes/categories'
+ *                            $ref: '#components/schemas/categories'
  *          400:
  *              description: invalid token
  *          401:
@@ -174,7 +174,7 @@ router.delete('/:id', authMiddleware.isAdmin, categoriesController.remove);
  *                      schema: 
  *                         type: array
  *                         items:
- *                            $ref:' #components/schemes/categories'
+ *                            $ref: '#components/schemas/categories'
  *          400:
  *              description: invalid token
  *          401:
@@ -210,7 +210,7 @@ router.put('/:id', authMiddleware.isAdmin, categoriesController.update);
  *                      schema: 
  *                         type: array
  *                         items:
- *                            $ref:' #components/schemes/categories'
+ *                            $ref: '#components/schemas/categories'
  *          400:
  *              description: invalid token
  *          401:
