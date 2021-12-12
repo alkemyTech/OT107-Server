@@ -14,7 +14,7 @@ const categoriesMiddleware = require('../middlewares/categories');
  *          type: http
  *          schemas: bearer
  *          bearerFormat: JWT
- * schemes:
+ * schemas:
  *      categories:
  *          type: object
  *          require:
