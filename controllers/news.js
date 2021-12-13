@@ -2,7 +2,7 @@ const newsService = require('../services/news');
 
 const getAll = async (req, res, next) => {
   try {
-    const news = await newsService.getAll();
+    const news = await newsService.getAll(req.query.page || 1, req.protocol, req.get('host'), req.baseUrl);;
 
     res.status(200).json(news);
   } catch (e) {

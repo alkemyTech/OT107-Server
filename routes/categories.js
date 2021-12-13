@@ -5,6 +5,8 @@ const router = express.Router();
 const categoriesController = require('../controllers/categories');
 const authMiddleware = require('../middlewares/auth');
 const categoriesMiddleware = require('../middlewares/categories');
+const paginateMiddleware = require('../middlewares/pagination');
+
 
 /**
  * @swagger
@@ -70,7 +72,7 @@ const categoriesMiddleware = require('../middlewares/categories');
  *              description: access denied
  */
 
-router.get('/', authMiddleware.isAdmin, categoriesController.getAll);
+router.get('/', authMiddleware.isAuth, paginateMiddleware.pageValidation, categoriesController.getAll);
 /**
  * @swagger
  * /categories/{categoryId}:
@@ -102,6 +104,7 @@ router.get('/', authMiddleware.isAdmin, categoriesController.getAll);
  *          401:
  *              description: access denied
  */
+
 router.get('/:id', authMiddleware.isAdmin, categoriesController.getById);
 /**
  * @swagger

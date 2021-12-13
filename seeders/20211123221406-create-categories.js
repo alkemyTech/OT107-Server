@@ -1,43 +1,35 @@
-'use strict';
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('Categories', [
+    const categories = [
       {
-        name: "Category 1",
-        description : "Description of a generic category.",
-        image: "image01.jpg",
-        updatedAt : new Date,
-        createdAt: new Date,
-      },
-      {
-        name: "Category 2",
-        description : "Description of a generic category.",
-        image: "image02.jpg",
-        updatedAt : new Date,
-        createdAt: new Date,
-      },
-      {
-        name: "Category 3",
-        description : "Description of a generic category.",
-        image: "image03.jpg",
-        updatedAt : new Date,
-        createdAt: new Date,
-      },
-      {
-        name: "news",
-        description : "News category.",
-        image: "image04.jpg",
-        updatedAt : new Date,
-        createdAt: new Date,
+        name: 'news',
+        description: 'News category.',
+        image: 'image04.jpg',
+        updatedAt: new Date(),
+        createdAt: new Date(),
       }
-    ], {});
+    ];
+    for (let index = 1; index < 38; index++) {
+      const category = {
+        name: `Category ${index}`,
+        description: 'Description of a generic category.',
+        image: 'image01.jpg',
+        updatedAt: new Date(),
+        createdAt: new Date(),
+      };
+      categories.push(category);
+    }
+    await queryInterface.bulkInsert(
+      'Categories',
+      categories,
+      {}
+    );
   },
 
   down: async (queryInterface, Sequelize) => {
     return Promise.all([
 
-      queryInterface.bulkDelete('Categories', null,{})
+      queryInterface.bulkDelete('Categories', null, {})
 
     ]);
   }
