@@ -95,7 +95,7 @@ const validationMiddleware = require('../middlewares/members');
  *              description: Error Internal Server Error
  */
 
-router.get('/', authMiddleware.isAdmin, membersController.getAll);
+router.get('/', authMiddleware.isAdmin, paginateMiddleware.pageValidation, membersController.getAll);
 
 /**
  * @swagger
@@ -194,7 +194,6 @@ router.delete('/:id', authMiddleware.isAuth, membersController.remove);
  *              description: Internal Server Error
  */
 
-router.put('/:id', authMiddleware.isAuth, validationMiddleware.membersValidation, /*validationMiddleware.memberExist,*/ membersController.update);
-
+router.put('/:id', authMiddleware.isAuth, validationMiddleware.membersValidation, membersController.update);
 
 module.exports = router;
