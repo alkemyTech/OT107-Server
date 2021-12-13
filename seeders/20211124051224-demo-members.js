@@ -9,7 +9,9 @@ module.exports = {
         instagramUrl: 'https://www.linkedin.com/in/Member',
         linkedinUrl: 'https://www.instagram.com/Member',
         image: 'MemberPic.jpeg',
-        description: 'descripcion corresponde al miembro numero: 1'
+        description: 'descripcion corresponde al miembro numero: 1',
+        updatedAt: new Date(),
+        createdAt: new Date(),
       }
     ];
     for (let i = 0; i < 10; i++) {
@@ -19,7 +21,9 @@ module.exports = {
         instagramUrl: `https://www.linkedin.com/in/Member${i}`,
         linkedinUrl: `https://www.instagram.com/Member${i}`,
         image: `Member${i}Pic.jpeg`,
-        description: `descripcion corresponde al miembro numero: ${i + 1}`
+        description: `descripcion corresponde al miembro numero: ${i + 1}`,
+        updatedAt: new Date(),
+        createdAt: new Date(),
       };
       members.push(member);
     }
