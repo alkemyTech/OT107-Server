@@ -152,8 +152,8 @@ router.post(
 );
 /**
  * @swagger
- * /news/{noveltyId}:
- *  post:
+ * /news/{id}:
+ *  get:
  *     summary: Get a novelty by id
  *     security:
  *       - bearerAuth: []
@@ -184,7 +184,7 @@ router.post(
 router.route("/:id").get(authMiddleware.isAdmin, newsController.getById);
 /**
  * @swagger
- * /news/{noveltyId}:
+ * /news/{id}:
  *  put:
  *    summary: Update novelty by id
  *    security:
@@ -228,7 +228,7 @@ router
   );
 /**
  * @swagger
- * /news/{noveltyId}:
+ * /news/{id}:
  *  delete:
  *     summary: Delete a novelty by id
  *     security:
