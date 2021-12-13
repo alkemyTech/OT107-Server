@@ -100,7 +100,7 @@ router
  *      - bearerAuth: [admin]
  *    tags: [News]
  *    responses:
- *          '204':
+ *          '200':
  *              description: Success
  *              content:
  *                application/json:
@@ -131,7 +131,7 @@ router.get("/", authMiddleware.isAdmin, paginateMiddleware.pageValidation, newsC
  *                     $ref: '#components/schemas/news'
  *     tags: [News]
  *     responses:
- *          '204':
+ *          '200':
  *              description: Success
  *              content:
  *                application/json:
@@ -168,7 +168,7 @@ router.post(
  *            minimun: 1
  *     tags: [News]
  *     responses:
- *          '204':
+ *          '200':
  *              description: Success
  *              content:
  *                application/json:
@@ -206,7 +206,7 @@ router.route("/:id").get(authMiddleware.isAdmin, newsController.getById);
  *                    $ref: '#components/schemas/news'
  *    tags: [News]
  *    responses:
- *          '204':
+ *          '200':
  *              description: Success
  *              content:
  *                application/json:
