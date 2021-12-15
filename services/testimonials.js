@@ -34,10 +34,7 @@ const getAll = async (page, protocol, host, baseUrl) => {
 const getById = async (params) => {
   const { id } = params;
   const data = await testimonialsRepo.getById(id);
-  if (!data) {
-    const error = new Error('The testimonial does not exist.');
-    throw error;
-  }
+  if (!data) throw new Error('Testimonial not found');
   return data;
 };
 
@@ -55,10 +52,7 @@ const update = async (params, body) => {
 const remove = async (params) => {
   const { id } = params;
   const data = await testimonialsRepo.remove(id);
-  if (data === 0) {
-    const error = new Error('The testimonial does not exist.');
-    throw error;
-  }
+  if (!data) throw new Error('Testimonial not found');
   return data;
 };
 

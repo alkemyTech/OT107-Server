@@ -21,7 +21,15 @@ const getById = async (req, res, next) => {
 const create = async (req, res, next) => {
   try {
     const data = await testimonialsService.create(req.body);
-    res.status(200).json(data);
+    const { id, name, image, content } = data;
+    const message = 'Testimonial has been created';
+    res.status(201).json({
+      message,
+      id,
+      name,
+      image,
+      content
+    });
   } catch (e) {
     next(e);
   }
@@ -40,7 +48,7 @@ const update = async (req, res, next) => {
 const remove = async (req, res, next) => {
   try {
     await testimonialsService.remove(req.params);
-    res.status(200).json('message: Testimonial has been removed');
+    res.status(200).json('Testimonial has been removed');
   } catch (e) {
     next(e);
   }
