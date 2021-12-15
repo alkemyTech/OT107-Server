@@ -16,7 +16,7 @@ const paginateMiddleware = require('../middlewares/pagination');
  *          type: http
  *          schemas: bearer
  *          bearerFormat: JWT
- * schemas:
+ *  schemas:
  *      categories:
  *          type: object
  *          require:

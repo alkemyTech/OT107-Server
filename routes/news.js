@@ -100,7 +100,7 @@ router
  *      - bearerAuth: [admin]
  *    tags: [News]
  *    responses:
- *          '204':
+ *          '200':
  *              description: Success
  *              content:
  *                application/json:
@@ -131,7 +131,7 @@ router.get("/", authMiddleware.isAdmin, paginateMiddleware.pageValidation, newsC
  *                     $ref: '#components/schemas/news'
  *     tags: [News]
  *     responses:
- *          '204':
+ *          '200':
  *              description: Success
  *              content:
  *                application/json:
@@ -152,8 +152,8 @@ router.post(
 );
 /**
  * @swagger
- * /news/{noveltyId}:
- *  post:
+ * /news/{id}:
+ *  get:
  *     summary: Get a novelty by id
  *     security:
  *       - bearerAuth: []
@@ -168,7 +168,7 @@ router.post(
  *            minimun: 1
  *     tags: [News]
  *     responses:
- *          '204':
+ *          '200':
  *              description: Success
  *              content:
  *                application/json:
@@ -184,7 +184,7 @@ router.post(
 router.route("/:id").get(authMiddleware.isAdmin, newsController.getById);
 /**
  * @swagger
- * /news/{noveltyId}:
+ * /news/{id}:
  *  put:
  *    summary: Update novelty by id
  *    security:
@@ -206,7 +206,7 @@ router.route("/:id").get(authMiddleware.isAdmin, newsController.getById);
  *                    $ref: '#components/schemas/news'
  *    tags: [News]
  *    responses:
- *          '204':
+ *          '200':
  *              description: Success
  *              content:
  *                application/json:
@@ -228,7 +228,7 @@ router
   );
 /**
  * @swagger
- * /news/{noveltyId}:
+ * /news/{id}:
  *  delete:
  *     summary: Delete a novelty by id
  *     security:
