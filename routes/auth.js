@@ -132,7 +132,7 @@ router.post(
  * @swagger
  * /auth/me:
  *  get:
- *      summary: login a user
+ *      summary: get user information
  *      security:
  *          - bearerAuth: []
  *      tags: [Auth]
