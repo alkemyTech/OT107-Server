@@ -1,0 +1,110 @@
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const app = require('../app');
+
+chai.should();
+chai.use(chaiHttp);
+let token;
+
+describe('test organization endpoints', () => {
+  const user = {
+    email: 'agustin_tafura@test.com',
+    password: '123456'
+  };
+
+  before(done => {
+    chai.request(app)
+      .post('/auth/login')
+      .send(user)
+      .end((err, response) => {
+        response.should.have.status(200);
+        token = response.body.token;
+        done();
+      });
+  });
+
+  describe('GET /organizations/public', () => {
+    it('it should get the organization data', (done) => {
+      chai.request(app)
+        .get('/organizations/public')
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.should.be.a('object');
+          response.body.should.have.property('name');
+          response.body.should.have.property('image');
+          response.body.should.have.property('phone');
+          response.body.should.have.property('address');
+          response.body.should.have.property('urlFacebook');
+          response.body.should.have.property('urlLinkedin');
+          response.body.should.have.property('urlInstagram');
+          response.body.should.have.property('Slides');
+          response.body.Slides.should.be.a('array');
+          done();
+        });
+    });
+
+    it('it should not get the organization data, page not found', (done) => {
+      chai.request(app)
+        .get('/organization/public')
+        .end((err, response) => {
+          response.should.have.status(404);
+          done();
+        });
+    });
+  });
+
+  describe('PUT /organizations/public', () => {
+    it('it should update organization data', (done) => {
+      const update = {
+        name: 'Ahora Somos Mas',
+        image: 'ong-somosmas.jpg',
+        phone: 1160112988,
+        email: 'somosmas@mail.com',
+        welcomeText: 'hola esta es la ong somos mas'
+      };
+      chai.request(app)
+        .put('/organizations/public')
+        .set({ Authorization: `Bearer ${token}` })
+        .send(update)
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.body.should.be.a('object');
+          done();
+        });
+    });
+
+    it('it should not update organization data, Invalid token', (done) => {
+      const update = {
+        name: 'Ahora Somos Mas',
+        image: 'ong-somosmas.jpg',
+        phone: 1160112988,
+        email: 'somosmas@mail.com',
+        welcomeText: 'hola esta es la ong somos mas'
+      };
+      chai.request(app)
+        .put('/organizations/public')
+        .set({ Authorization: 'Bearer invalidtoken' })
+        .send(update)
+        .end((err, response) => {
+          response.should.have.status(400);
+          response.body.should.be.a('object');
+          response.body.error.should.be.eq('Invalid token');
+          done();
+        });
+    });
+
+    it('it should not update organization data, mising require data', (done) => {
+      const update = { };
+      chai.request(app)
+        .put('/organizations/public')
+        .set({ Authorization: `Bearer ${token}` })
+        .send(update)
+        .end((err, response) => {
+          response.should.have.status(400);
+          response.body.should.be.a('object');
+          response.body.should.have.property('error');
+          done();
+        });
+    });
+  });
+});
