@@ -21,9 +21,8 @@ const getById = async (req, res, next) => {
 const create = async (req, res, next) => {
   try {
     const data = await testimonialsService.create(req.body);
-    const message = 'Testimonial has been created';
     res.status(200).json({
-      message,
+      message: 'Testimonial has been created',
       id: data.id,
       name: data.name,
       image: data.image,
