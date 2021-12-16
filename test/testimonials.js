@@ -90,7 +90,7 @@ describe('Somos más', () => {
         .send(testimonial)
         .set({ Authorization: `Bearer ${token}` })
         .end((err, response) => {
-          response.should.have.status(201);
+          response.should.have.status(200);
           response.body.should.be.a('object');
           response.body.should.have.property('name');
           response.body.should.have.property('image');
