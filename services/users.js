@@ -70,10 +70,12 @@ const update = async (req) => {
     lastName: req.body.lastName,
   };
   const userUpdate = await usersRepo.update(req.params.id, changes);
+  
   if (!userUpdate) {
     throw new Error('Error en los datos a actualizar');
   }
-  return userUpdate;
+  const user = await usersRepo.getById(req.params.id);
+  return user;
 };
 
 module.exports = {
