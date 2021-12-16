@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
@@ -41,14 +40,16 @@ describe('Category Tests', () => {
           done();
         });
     });
-    it('GET /categorie Category data should not be retrieved, category does not exist.', (done) => {
-      chai.request(app)
-        .get('/categorie')
-        .set({ Authorization: `Bearer ${tokenAdmin}` })
-        .end((err, response) => {
-          response.should.have.status(404);
-          done();
-        });
+    describe('GET /categorie', () => {
+      it('Category data should not be retrieved, categorie does not exist.', (done) => {
+        chai.request(app)
+          .get('/categorie')
+          .set({ Authorization: `Bearer ${tokenAdmin}` })
+          .end((err, response) => {
+            response.should.have.status(404);
+            done();
+          });
+      });
     });
     describe('GET /categories?page=h', () => {
       it('The page parameter must be a number.', (done) => {
@@ -111,7 +112,7 @@ describe('Category Tests', () => {
           });
       });
     });
-    describe('UPDATE the name of category with ID 2', () => {
+    describe('UPDATE the name of category with ID = 2', () => {
       it('Should update the name of category', (done) => {
         chai.request(app)
           .put('/categories/2')
@@ -144,8 +145,8 @@ describe('Category Tests', () => {
       });
     });
 
-    describe('Delete a category with id 5', () => {
-      it('Should delete the category with id 5', (done) => {
+    describe('Delete a category with id = 5', () => {
+      it('Should delete the category with id = 5', (done) => {
         chai.request(app)
           .delete('/categories/5')
           .set({ Authorization: `Bearer ${tokenAdmin}` })
