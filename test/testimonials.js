@@ -8,7 +8,7 @@ let token;
 
 describe('Somos más', () => {
   const user = {
-    email: 'agustin_tafura@test.com',
+    email: 'andrea_maccan@test.com',
     password: '123456'
   };
   before(done => {
@@ -30,11 +30,9 @@ describe('Somos más', () => {
         .end((err, response) => {
           response.should.have.status(200);
           response.should.be.a('object');
-          response.body.should.have.property('countTestimonials');
-          response.body.should.have.property('lastPage');
-          response.body.should.have.property('previousPage');
-          response.body.should.have.property('nextPage');
-          response.body.should.have.property('data');
+          response.body.should.have.keys('countTestimonials', 'lastPage', 'previousPage', 'nextPage', 'data');
+          response.body.data.should.have.lengthOf.within(1, 10);
+          response.body.data.map((obj) => obj.should.have.all.deep.keys('id', 'name', 'content', 'image'));
           done();
         });
     });
@@ -44,7 +42,47 @@ describe('Somos más', () => {
         .get('/testimonial')
         .set({ Authorization: `Bearer ${token}` })
         .end((err, response) => {
-          response.should.have.status(404);
+          response.should.have.status(400);
+          done();
+        });
+    });
+
+    it('The page parameter must be a number', (done) => {
+      chai.request(app)
+        .get('/testimonials?page=a')
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.text.should.include('The page parameter must be a number');
+          done();
+        });
+    });
+
+    it('You must provide a page number', (done) => {
+      chai.request(app)
+        .get('/testimonials?page=')
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.text.should.include('You must provide a page number');
+          done();
+        });
+    });
+
+    it('The page must be greater than one', (done) => {
+      chai.request(app)
+        .get('/testimonials?page=-1')
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.text.should.include('The page must be greater than one');
+          done();
+        });
+    });
+
+    it('The requested page is greater than the last page', (done) => {
+      chai.request(app)
+        .get('/testimonials?page=200')
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.text.should.include('The requested page is greater than the last page');
           done();
         });
     });
@@ -57,9 +95,7 @@ describe('Somos más', () => {
         .end((err, response) => {
           response.should.have.status(200);
           response.body.should.be.a('object');
-          response.body.should.have.property('name');
-          response.body.should.have.property('image');
-          response.body.should.have.property('content');
+          response.body.should.have.keys('id', 'name', 'image', 'content');
           response.body.should.have.property('id').eq(1);
           done();
         });
@@ -71,8 +107,8 @@ describe('Somos más', () => {
         .get('/testimonials/' + id)
         .set({ Authorization: `Bearer ${token}` })
         .end((err, response) => {
-          response.should.have.status(500);
-          response.text.should.include('Error: Testimonial not found');
+          response.should.have.status(404);
+          response.text.should.include('Testimonial not found');
           done();
         });
     });
@@ -92,9 +128,7 @@ describe('Somos más', () => {
         .end((err, response) => {
           response.should.have.status(200);
           response.body.should.be.a('object');
-          response.body.should.have.property('name');
-          response.body.should.have.property('image');
-          response.body.should.have.property('content');
+          response.body.should.have.keys('message', 'id', 'name', 'image', 'content');
           done();
         });
     });
@@ -148,9 +182,7 @@ describe('Somos más', () => {
           response.should.have.status(200);
           response.body.should.be.a('object');
           response.body.should.have.property('id').eq(2);
-          response.body.should.have.property('name');
-          response.body.should.have.property('image');
-          response.body.should.have.property('content');
+          response.body.should.have.keys('id', 'name', 'image', 'content');
           done();
         });
     });
@@ -175,8 +207,8 @@ describe('Somos más', () => {
         .delete('/testimonials/' + id)
         .set({ Authorization: `Bearer ${token}` })
         .end((err, response) => {
-          response.should.have.status(500);
-          response.text.should.include('Error: Testimonial not found');
+          response.should.have.status(404);
+          response.text.should.include('Testimonial not found');
           done();
         });
     });
