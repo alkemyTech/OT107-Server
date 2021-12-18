@@ -24,7 +24,7 @@ describe('test organization endpoints', () => {
   });
 
   describe('GET /organizations/public', () => {
-    it('it should get the organization data', (done) => {
+    it('get the organization data', (done) => {
       chai.request(app)
         .get('/organizations/public')
         .end((err, response) => {
@@ -43,7 +43,7 @@ describe('test organization endpoints', () => {
         });
     });
 
-    it('it should not get the organization data, page not found', (done) => {
+    it('page not found', (done) => {
       chai.request(app)
         .get('/organization/public')
         .end((err, response) => {
@@ -54,7 +54,7 @@ describe('test organization endpoints', () => {
   });
 
   describe('PUT /organizations/public', () => {
-    it('it should update organization data', (done) => {
+    it('update organization data', (done) => {
       const update = {
         name: 'Ahora Somos Mas',
         image: 'ong-somosmas.jpg',
@@ -73,7 +73,7 @@ describe('test organization endpoints', () => {
         });
     });
 
-    it('it should not update organization data, Invalid token', (done) => {
+    it('Invalid token', (done) => {
       const update = {
         name: 'Ahora Somos Mas',
         image: 'ong-somosmas.jpg',
@@ -93,7 +93,7 @@ describe('test organization endpoints', () => {
         });
     });
 
-    it('it should not update organization data, mising require data', (done) => {
+    it('missing require data', (done) => {
       const update = { };
       chai.request(app)
         .put('/organizations/public')
