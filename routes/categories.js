@@ -7,7 +7,6 @@ const authMiddleware = require('../middlewares/auth');
 const categoriesMiddleware = require('../middlewares/categories');
 const paginateMiddleware = require('../middlewares/pagination');
 
-
 /**
  * @swagger
  * components:
@@ -62,7 +61,7 @@ const paginateMiddleware = require('../middlewares/pagination');
  *              description: Success
  *              content:
  *                  application/json:
- *                      schema: 
+ *                      schema:
  *                         type: array
  *                         items:
  *                            $ref: '#components/schemas/categories'
@@ -95,7 +94,7 @@ router.get('/', authMiddleware.isAuth, paginateMiddleware.pageValidation, catego
  *              description: success
  *              content:
  *                  application/json:
- *                      schema: 
+ *                      schema:
  *                         type: array
  *                         items:
  *                            $ref: '#components/schemas/categories'
@@ -128,7 +127,7 @@ router.get('/:id', authMiddleware.isAdmin, categoriesController.getById);
  *              description: success
  *              content:
  *                  application/json:
- *                      schema: 
+ *                      schema:
  *                         type: array
  *                         items:
  *                            $ref: '#components/schemas/categories'
@@ -174,7 +173,7 @@ router.delete('/:id', authMiddleware.isAdmin, categoriesController.remove);
  *              description: success
  *              content:
  *                  application/json:
- *                      schema: 
+ *                      schema:
  *                         type: array
  *                         items:
  *                            $ref: '#components/schemas/categories'
@@ -210,7 +209,7 @@ router.put('/:id', authMiddleware.isAdmin, categoriesController.update);
  *              description: success
  *              content:
  *                  application/json:
- *                      schema: 
+ *                      schema:
  *                         type: array
  *                         items:
  *                            $ref: '#components/schemas/categories'
