@@ -32,7 +32,7 @@ describe('Somos más', () => {
           response.should.be.a('object');
           response.body.should.have.keys('countTestimonials', 'lastPage', 'previousPage', 'nextPage', 'data');
           response.body.data.should.have.lengthOf.within(1, 10);
-          response.body.data.map((obj) => obj.should.have.all.deep.keys('id', 'name', 'content', 'image'));
+          response.body.data[0].should.have.keys('id', 'name', 'content', 'image');
           done();
         });
     });
