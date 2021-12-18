@@ -29,68 +29,122 @@ describe('Set Token - POST /auth/login', () => {
  * Test Api  - News endpoint
  */
   describe('GET /news', () => {
-    const pageValue = [0, 1, 2, 3, 4, 5, 10000, 'a', ''];
-    pageValue.forEach((page) => {
-      it('It should return news list or correct errors msg', (done) => {
-        chai.request(app)
-          .get(`/news?page=${page}`)
-          .set({ Authorization: `Bearer ${token}` })
-          .end((err, response) => {
-            if (response.status === 400) {
-              if (page === 'a') { response.text.should.include('The page parameter must be a number.'); }
-              if (page === '') { response.text.should.include('You must provide a page number.'); }
-              if (page === 0) { response.text.should.include('The page must be greater than one.'); }
-              if (page > 0) { response.text.should.include('The requested page is greater than the last page.'); }
-            } else {
-              response.should.have.status(200);
-              response.should.be.a('object');
-              response.body.should.have.keys('countNews', 'lastPage', 'previousPage', 'nextPage', 'data');
-              response.body.data.should.have.lengthOf.within(1, 10);
-              response.body.data.map((obj) => obj.should.have.all.deep.keys('id', 'name', 'content', 'image', 'categoryId'));
-            }
-            done();
-          });
-      });
+    it('Return first page results news list', (done) => {
+      const page = 1;
+      chai.request(app)
+        .get(`/news?page=${page}`)
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.should.be.a('object');
+          response.body.should.have.keys('countNews', 'lastPage', 'previousPage', 'nextPage', 'data');
+          response.body.should.have.property('previousPage').equal(null);
+          response.body.data.should.have.lengthOf.within(1, 10);
+          response.body.data.map((obj) => obj.should.have.all.deep.keys('id', 'name', 'content', 'image', 'categoryId'));
+          done();
+        });
+    });
+
+    it('Return last page results news list', (done) => {
+      const page = 4; // In this case News last page in DB is 4
+      chai.request(app)
+        .get(`/news?page=${page}`)
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.should.be.a('object');
+          response.body.should.have.keys('countNews', 'lastPage', 'previousPage', 'nextPage', 'data');
+          response.body.should.have.property('nextPage').equal(null);
+          response.body.data.should.have.lengthOf.within(1, 10);
+          response.body.data.map((obj) => obj.should.have.all.deep.keys('id', 'name', 'content', 'image', 'categoryId'));
+          done();
+        });
+    });
+
+    it('Return error message. Require a provide a number as a parameter of page', (done) => {
+      const page = '';
+      chai.request(app)
+        .get(`/news?page=${page}`)
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.should.have.status(400);
+          response.text.should.include('You must provide a page number.');
+          done();
+        });
+    });
+
+    it('Return error message. Require a number as a parameter of page', (done) => {
+      const page = 'abc';
+      chai.request(app)
+        .get(`/news?page=${page}`)
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.should.have.status(400);
+          response.text.should.include('The page parameter must be a number.');
+          done();
+        });
+    });
+
+    it('Return error message. Require a number greater than zero', (done) => {
+      const page = -5;
+      chai.request(app)
+        .get(`/news?page=${page}`)
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.should.have.status(400);
+          response.text.should.include('The page must be greater than one.');
+          done();
+        });
+    });
+
+    it('Return error message. Require a number greater than zero', (done) => {
+      const page = 1000;
+      chai.request(app)
+        .get(`/news?page=${page}`)
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.should.have.status(400);
+          response.text.should.include('The requested page is greater than the last page.');
+          done();
+        });
     });
   });
 
   describe('POST /news', () => {
-    const news = [
-      {
-        msg: 'It should returns the noelty created',
-        novelty: {
-          name: 'News testing',
-          content: 'Content news testing',
-          image: 'http://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
-          categoryId: 1
-        }
-      },
-      {
-        msg: 'It should returns an error - can\'t creat a news without name',
-        novelty: {
-          content: 'Content news testing',
-          image: 'http://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
-          categoryId: 1
-        }
-      }
-    ];
-    news.forEach((obj) => {
-      it(obj.msg, (done) => {
-        chai.request(app)
-          .post('/news')
-          .send(obj.novelty)
-          .set({ Authorization: `Bearer ${token}` })
-          .end((err, response) => {
-            if (response.status === 400) {
-              response.body.should.have.property('error');
-              response.body.error.map((err) => err.should.deep.keys('msg', 'param', 'location'));
-            } else {
-              response.should.have.status(200);
-              response.body.should.be.a('object').with.keys('id', 'name', 'content', 'image', 'categoryId', 'updatedAt', 'createdAt');
-            }
-            done();
-          });
-      });
+    it('Return the noelty created', (done) => {
+      const novelty = {
+        name: 'News testing',
+        content: 'Content news testing',
+        image: 'http://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
+        categoryId: 1
+      };
+      chai.request(app)
+        .post('/news')
+        .send(novelty)
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.body.should.be.a('object').with.keys('id', 'name', 'content', 'image', 'categoryId', 'updatedAt', 'createdAt');
+          done();
+        });
+    });
+
+    it('Return an error - can\'t creat a news without name', (done) => {
+      const novelty = {
+        content: 'Content news testing',
+        image: 'http://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
+        categoryId: 1
+      };
+      chai.request(app)
+        .post('/news')
+        .send(novelty)
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.body.should.have.property('error');
+          response.body.error.map((err) => err.should.deep.keys('msg', 'param', 'location'));
+          response.should.have.status(400);
+          done();
+        });
     });
   });
 
@@ -113,65 +167,66 @@ describe('Set Token - POST /auth/login', () => {
   });
 
   describe('GET /news/:id', () => {
-    const news = [
-      { id: 4, msg: 'It should returns a novelty if exist the id in DB' },
-      { id: 10000, msg: 'It should returns a bad request status 500' }
-    ];
-    news.forEach((novelty) => {
-      it(novelty.msg, (done) => {
-        chai.request(app)
-          .get(`/news/${novelty.id}`)
-          .set({ Authorization: `Bearer ${token}` })
-          .end((err, response) => {
-            if (response.status === 500) {
-              response.text.should.include('Error: bad request');
-            } else {
-              response.should.have.status(200);
-              response.body.should.be.a('object').with.keys('id', 'name', 'content', 'image', 'categoryId', 'updatedAt', 'createdAt', 'deletedAt');
-              response.body.id.should.be.equal(novelty.id);
-            }
-            done();
-          });
-      });
+    it('Returns a novelty', (done) => {
+      const id = 4;
+      chai.request(app)
+        .get(`/news/${id}`)
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.body.should.be.a('object').with.keys('id', 'name', 'content', 'image', 'categoryId', 'updatedAt', 'createdAt', 'deletedAt');
+          response.body.id.should.be.equal(id);
+          done();
+        });
+    });
+
+    it('Returns a bad request status 500', (done) => {
+      const id = 10000;
+      chai.request(app)
+        .get(`/news/${id}`)
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.should.have.status(500);
+          response.text.should.include('Error: bad request');
+          done();
+        });
     });
   });
 
   describe('PUT /news/:id', () => {
-    const news = [
-      {
-        msg: 'It should returns the novelty updated if exist the id in DB',
-        id: 4,
-        body: {
-          name: 'name changed',
-          content: 'Content news 1',
-          image: 'https://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
-          categoryId: 1
-        }
-      },
-      {
-        msg: 'It should returns a bad request status 400',
-        id: 10000,
-        body: { name: 'name changed' }
-      }
-    ];
-    news.forEach((novelty) => {
-      it(novelty.msg, (done) => {
-        chai.request(app)
-          .put(`/news/${novelty.id}`)
-          .send(novelty.body)
-          .set({ Authorization: `Bearer ${token}` })
-          .end((err, response) => {
-            if (response.status === 400) {
-              response.body.should.have.property('error');
-              response.body.error.map((err) => err.should.deep.keys('msg', 'param', 'location'));
-            } else {
-              response.should.have.status(200);
-              response.body.should.be.a('object').with.keys('id', 'name', 'content', 'image', 'categoryId', 'updatedAt', 'createdAt', 'deletedAt');
-              response.body.id.should.be.equal(novelty.id);
-            }
-            done();
-          });
-      });
+    it('Returns the novelty updated', (done) => {
+      const id = 4;
+      const body = {
+        name: 'name changed',
+        content: 'Content news 1',
+        image: 'https://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
+        categoryId: 1
+      };
+      chai.request(app)
+        .put(`/news/${id}`)
+        .send(body)
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.body.should.be.a('object').with.keys('id', 'name', 'content', 'image', 'categoryId', 'updatedAt', 'createdAt', 'deletedAt');
+          response.body.id.should.be.equal(id);
+          done();
+        });
+    });
+
+    it('Returns a bad request status 400', (done) => {
+      const id = 10000;
+      const body = { name: 'name changed' };
+      chai.request(app)
+        .put(`/news/${id}`)
+        .send(body)
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, response) => {
+          response.body.should.have.property('error');
+          response.body.error.map((err) => err.should.deep.keys('msg', 'param', 'location'));
+          response.should.have.status(400);
+          done();
+        });
     });
   });
 });
