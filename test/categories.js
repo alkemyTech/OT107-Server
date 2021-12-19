@@ -305,9 +305,9 @@ describe('Category Tests', () => {
   });
 
   describe('DELETE /categories', () => {
-    it('Should delete the category with id = 5', (done) => {
+    it('Should delete the category with id = 11', (done) => {
       chai.request(app)
-        .delete('/categories/5')
+        .delete('/categories/11')
         .set({ Authorization: `Bearer ${token}` })
         .end((err, response) => {
           response.should.have.status(200);
@@ -334,7 +334,7 @@ describe('Category Tests', () => {
     });
     it('It should not be removed, it has an associated novelty', (done) => {
       chai.request(app)
-        .delete('/categories/1')
+        .delete('/categories/6')
         .set({ Authorization: `Bearer ${token}` })
         .end((err, response) => {
           response.should.have.status(401);
