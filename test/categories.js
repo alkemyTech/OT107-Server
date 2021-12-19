@@ -54,8 +54,17 @@ describe('Category Tests', () => {
       chai.request(app)
         .get('/categorie')
         .set({ Authorization: `Bearer ${token}` })
-        .end((err, response) => {
-          response.should.have.status(404);
+        .end((err, res) => {
+          res.should.have.status(404);
+          done();
+        });
+    });
+    it('You should get the category data on page 3.', (done) => {
+      chai.request(app)
+        .get('/categories?page=3')
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, res) => {
+          res.should.have.status(200);
           done();
         });
     });
@@ -63,8 +72,9 @@ describe('Category Tests', () => {
       chai.request(app)
         .get('/categories?page=h')
         .set({ Authorization: `Bearer ${token}` })
-        .end((err, response) => {
-          response.text.should.include('The page parameter must be a number.');
+        .end((err, res) => {
+          res.text.should.include('The page parameter must be a number.');
+          res.should.have.status(400);
           done();
         });
     });
@@ -72,8 +82,9 @@ describe('Category Tests', () => {
       chai.request(app)
         .get('/categories?page=')
         .set({ Authorization: `Bearer ${token}` })
-        .end((err, response) => {
-          response.text.should.include('You must provide a page number.');
+        .end((err, res) => {
+          res.text.should.include('You must provide a page number.');
+          res.should.have.status(400);
           done();
         });
     });
@@ -81,8 +92,9 @@ describe('Category Tests', () => {
       chai.request(app)
         .get('/categories?page=-5')
         .set({ Authorization: `Bearer ${token}` })
-        .end((err, response) => {
-          response.text.should.include('The page must be greater than one.');
+        .end((err, res) => {
+          res.text.should.include('The page must be greater than one.');
+          res.should.have.status(400);
           done();
         });
     });
@@ -90,8 +102,9 @@ describe('Category Tests', () => {
       chai.request(app)
         .get('/categories?page=300')
         .set({ Authorization: `Bearer ${token}` })
-        .end((err, response) => {
-          response.text.should.include('The requested page is greater than the last page.');
+        .end((err, res) => {
+          res.text.should.include('The requested page is greater than the last page.');
+          res.should.have.status(400);
           done();
         });
     });
@@ -108,6 +121,15 @@ describe('Category Tests', () => {
             res.body.category.should.have.property('name');
             res.body.category.should.have.property('description');
             res.body.category.should.have.property('image');
+            done();
+          });
+      });
+      it("Should't get the category whith id = g", (done) => {
+        chai.request(app)
+          .get('/categories/g')
+          .set({ Authorization: `Bearer ${token}` })
+          .end((err, res) => {
+            res.should.have.status(404);
             done();
           });
       });
@@ -210,6 +232,16 @@ describe('Category Tests', () => {
           done();
         });
     });
+    it("Should't update category, the id parameter must be a number.", (done) => {
+      chai.request(app)
+        .put('/categories/k')
+        .set({ Authorization: `Bearer ${token}` })
+        .send({ name: 'Update Categoria' })
+        .end((err, res) => {
+          res.should.have.status(404);
+          done();
+        });
+    });
     it("It shouldn't update, the category name is required.", (done) => {
       chai.request(app)
         .put('/categories/2')
@@ -242,7 +274,7 @@ describe('Category Tests', () => {
     });
     it("It shouldn't update, the name must be a String.", (done) => {
       chai.request(app)
-        .put('/categories/456')
+        .put('/categories/2')
         .set({ Authorization: `Bearer ${token}` })
         .send({ name: 13245 })
         .end((err, res) => {
@@ -252,7 +284,7 @@ describe('Category Tests', () => {
     });
     it("It shouldn't update, the name must be a String.", (done) => {
       chai.request(app)
-        .put('/categories/456')
+        .put('/categories/2')
         .set({ Authorization: `Bearer ${token}` })
         .send({ name: true })
         .end((err, res) => {
@@ -262,7 +294,7 @@ describe('Category Tests', () => {
     });
     it("It shouldn't update, the name must be a String.", (done) => {
       chai.request(app)
-        .put('/categories/456')
+        .put('/categories/2')
         .set({ Authorization: `Bearer ${token}` })
         .send({ name: [] })
         .end((err, res) => {
