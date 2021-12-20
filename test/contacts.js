@@ -7,6 +7,7 @@ chai.should();
 chai.use(chaiHttp);
 let tokenAdmin;
 let tokenUser;
+const tokenInvalid = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImZpcnN0TmFtZSI6IkVsb24iLCJsYXN0TmFtZSI6Ik11c2siLCJlbWFpbCI6ImVfbXVza0B0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MiwiaWF0IjoxNjQwMDMzNjQwLCJleHAiOjE2NDAwNjI0NDB9.MUeeUm_WfSy6LOPgZGbF4jQYRyETURqx7iUQVqB0Pf_naVXjJSThx0mXRcM8MWb2bFv-7zOM0CvCeyhtuPDveSone7mzUzA3oA6Qxhtz_pcCB3huNpugnE1jC0PSw_EDd8OsKl8Z0se0aDmicL5YkURl0aifbyejD4RxqDDBstA';
 
 describe('Contacts API', () => {
   const admin = {
@@ -56,6 +57,28 @@ describe('Contacts API', () => {
         .set({ Authorization: `Bearer ${tokenUser}` })
         .end((err, response) => {
           response.should.have.status(401);
+          response.body.should.have.property('error').eq('Access denied');
+          done();
+        });
+    });
+
+    it('GET all - (tokenInvalid)', (done) => {
+      chai.request(server)
+        .get('/backoffice/contacts')
+        .set({ Authorization: `Bearer ${tokenInvalid}` })
+        .end((err, response) => {
+          response.should.have.status(400);
+          response.body.should.have.property('error').eq('Invalid token');
+          done();
+        });
+    });
+
+    it('GET all - (no token)', (done) => {
+      chai.request(server)
+        .get('/backoffice/contacts')
+        .end((err, response) => {
+          response.should.have.status(401);
+          response.body.should.have.property('error').eq('Access denied');
           done();
         });
     });
