@@ -28,6 +28,7 @@ before((done) => {
       done();
     });
 });
+
 before((done) => {
   chai.request(app)
     .post('/auth/login')
@@ -40,11 +41,20 @@ before((done) => {
 });
 
 describe('Category Tests', () => {
-  describe('GET /categories isAuth [fakeToken]', () => {
-    it('Invalid Token', (done) => {
+  describe('GET /categories isAuth', () => {
+    it('Invalid Token isAuth [fake Token]', (done) => {
       chai.request(app)
         .get('/categories')
         .set({ Authorization: 'Bearer fakeToken' })
+        .end((err, res) => {
+          res.should.have.status(403);
+          done();
+        });
+    });
+    it('Invalid Token [no token]', (done) => {
+      chai.request(app)
+        .get('/categories')
+        .set({ Authorization: '' })
         .end((err, res) => {
           res.should.have.status(403);
           done();
@@ -89,7 +99,16 @@ describe('Category Tests', () => {
           done();
         });
     });
-    it('GET /categories?page=3.', (done) => {
+    it('GET /categories?page=3. [Admin]', (done) => {
+      chai.request(app)
+        .get('/categories?page=3')
+        .set({ Authorization: `Bearer ${tokenAdmin}` })
+        .end((err, res) => {
+          res.should.have.status(200);
+          done();
+        });
+    });
+    it('GET /categories?page=3. [Standard]', (done) => {
       chai.request(app)
         .get('/categories?page=3')
         .set({ Authorization: `Bearer ${tokenStandard}` })
@@ -172,6 +191,15 @@ describe('Category Tests', () => {
             done();
           });
       });
+      it('GET categories/:id isAdmin [no token] id = 1', (done) => {
+        chai.request(app)
+          .get('/categories/1')
+          .set({ Authorization: '' })
+          .end((err, res) => {
+            res.should.have.status(401);
+            done();
+          });
+      });
       it('GET categories/:id isAdmin [Admin] id = g', (done) => {
         chai.request(app)
           .get('/categories/g')
@@ -183,7 +211,6 @@ describe('Category Tests', () => {
       });
     });
   });
-
   describe('POST /categories', () => {
     it('POST /categories isAdmin [Admin]', (done) => {
       chai.request(app)
@@ -230,6 +257,22 @@ describe('Category Tests', () => {
         })
         .end((err, res) => {
           res.should.have.status(400);
+          done();
+        });
+    });
+    it('POST /categories isAdmin [no token]', (done) => {
+      chai.request(app)
+        .post('/categories')
+        .set({ Authorization: '' })
+        .send({
+          name: 'Nueva Categoria Test',
+          description: 'Description de una nueva categoria',
+          image: 'image21.jpg',
+          updatedAt: new Date(),
+          createdAt: new Date(),
+        })
+        .end((err, res) => {
+          res.should.have.status(401);
           done();
         });
     });
@@ -312,7 +355,7 @@ describe('Category Tests', () => {
           done();
         });
     });
-    it('PUT /categories/2 [Standard] update the name', (done) => {
+    it("PUT /categories/2 [Standard] Don't update the name", (done) => {
       chai.request(app)
         .put('/categories/2')
         .set({ Authorization: `Bearer ${tokenStandard}` })
@@ -322,13 +365,23 @@ describe('Category Tests', () => {
           done();
         });
     });
-    it('PUT /categories/2 [fakeToken] update the name', (done) => {
+    it("PUT /categories/2 [fake Token] Don't update the name", (done) => {
       chai.request(app)
         .put('/categories/2')
         .set({ Authorization: 'Bearer fakeToken' })
         .send({ name: 'Update Categoria' })
         .end((err, res) => {
           res.should.have.status(400);
+          done();
+        });
+    });
+    it("PUT /categories/2 [no token] Don't update the name", (done) => {
+      chai.request(app)
+        .put('/categories/2')
+        .set({ Authorization: '' })
+        .send({ name: 'Update Categoria' })
+        .end((err, res) => {
+          res.should.have.status(401);
           done();
         });
     });
@@ -459,6 +512,15 @@ describe('Category Tests', () => {
         .set({ Authorization: 'Bearer fakeToken' })
         .end((err, response) => {
           response.should.have.status(400);
+          done();
+        });
+    });
+    it('DELETE /categories/11 [no token]', (done) => {
+      chai.request(app)
+        .delete('/categories/11')
+        .set({ Authorization: '' })
+        .end((err, response) => {
+          response.should.have.status(401);
           done();
         });
     });
