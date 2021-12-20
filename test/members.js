@@ -104,7 +104,7 @@ describe('Get all members', () => {
           .send({ name: 'Update member' })
           .end((err, res) => {
             res.body.should.have.property('id').to.be.equal(2);
-            res.body.should.have.property('name').to.be.equal('members name');
+            res.body.should.have.property('name').to.be.equal('membersName');
             res.should.have.status(200);
             done();
           });
@@ -116,7 +116,7 @@ describe('Get all members', () => {
           .post('/members')
           .set({ Authorization: `Bearer ${tokenAdmin}` })
           .send({
-            name: 'New Member',
+            name: 'NewMember',
             description: 'description',
             image: 'aimage',
             facebookUrl: 'aurl',
@@ -131,8 +131,8 @@ describe('Get all members', () => {
       });
     });
 
-    describe('Delete a member with id = 5', () => {
-      it('Delete the member with id = 5', (done) => {
+    describe('Delete a member with id = 1', () => {
+      it('Delete the member with id = 1', (done) => {
         chai.request(app)
           .delete('/members/5')
           .set({ Authorization: `Bearer ${tokenAdmin}` })
