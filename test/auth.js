@@ -112,58 +112,113 @@ describe('Error cases route /auth', () => {
     password: 'testing@It59',
   };
 
-  const userLogin = {
+  const userCase_lastName = {
+    firstName: 'Franco',
+    lastName: '',
+    email: 'fgaratests@gmail.com',
+    image: 'bold.jpeg',
+    password: 'testing@It59',
+  };
+
+  const userCase_email = {
+    firstName: 'Franco',
+    lastName: 'Garancini',
+    email: '',
+    image: 'bold.jpeg',
+    password: 'testing@It59',
+  };
+
+  it('Should fail registration, no email', (done) => {
+    chai
+      .request(app)
+      .post('/auth/register')
+      .send(userCase_email)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.error[0].should.be
+          .an('object')
+          .with.keys('value', 'msg', 'param', 'location');
+        res.body.error[0].msg.should.include('Invalid Email');
+        done();
+      });
+  });
+  it('Should fail registration, no lastname', (done) => {
+    chai
+      .request(app)
+      .post('/auth/register')
+      .send(userCase_lastName)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.error[0].should.be
+          .an('object')
+          .with.keys('value', 'msg', 'param', 'location');
+        res.body.error[0].msg.should.include('Last Name Required');
+        done();
+      });
+  });
+  it('Should fail registration, wrong password format', (done) => {
+    chai
+      .request(app)
+      .post('/auth/register')
+      .send(userCase_password)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.error[0].should.be
+          .an('object')
+          .with.keys('value', 'msg', 'param', 'location');
+        res.body.error[0].msg.should.include('Invalid Password');
+        done();
+      });
+  });
+  it('Should fail registration, First name required', (done) => {
+    chai
+      .request(app)
+      .post('/auth/register')
+      .send(userCase_firstName)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.error[0].should.be
+          .an('object')
+          .with.keys('value', 'msg', 'param', 'location');
+        res.body.error[0].msg.should.include('First Name Required');
+        done();
+      });
+  });
+});
+
+describe('Error cases /auth/login', () => {
+  const userLoginWrongEmail = {
     email: 'btc@test_com',
     password: '123456',
   };
-  describe('Route /auth/register', () => {
-    it('Should fail registration, wrong password format', (done) => {
-      chai
-        .request(app)
-        .post('/auth/register')
-        .send(userCase_password)
-        .end((err, res) => {
-          res.should.have.status(400);
-          res.body.error[0].should.be
-            .an('object')
-            .with.keys('value', 'msg', 'param', 'location');
-          res.body.error[0].msg.should.include('Invalid Password');
-          done();
-        });
-    });
-  });
-  describe('Route /auth/register', () => {
-    it('Should fail registration, First name required', (done) => {
-      chai
-        .request(app)
-        .post('/auth/register')
-        .send(userCase_firstName)
-        .end((err, res) => {
-          res.should.have.status(400);
-          res.body.error[0].should.be
-            .an('object')
-            .with.keys('value', 'msg', 'param', 'location');
-          res.body.error[0].msg.should.include('First Name Required');
-          done();
-        });
-    });
+  const userLoginWrongPassword = {
+    email: 'btc@test.com',
+    password: '123',
+  };
+  it('Should fail login, Invalid Email', (done) => {
+    chai
+      .request(app)
+      .post('/auth/login')
+      .send(userLoginWrongEmail)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.error[0].should.be
+          .an('object')
+          .with.keys('value', 'msg', 'param', 'location');
+        res.body.error[0].msg.should.include('Invalid value');
+        res.body.error[0].param.should.include('email');
+        done();
+      });
   });
 
-  describe('Route /auth/login', () => {
-    it('Should fail login, Invalid Email', (done) => {
-      chai
-        .request(app)
-        .post('/auth/login')
-        .send(userLogin)
-        .end((err, res) => {
-          res.should.have.status(400);
-          res.body.error[0].should.be
-            .an('object')
-            .with.keys('value', 'msg', 'param', 'location');
-          res.body.error[0].msg.should.include('Invalid value');
-          res.body.error[0].param.should.include('email');
-          done();
-        });
-    });
+  it('Should fail login, Invalid password', (done) => {
+    chai
+      .request(app)
+      .post('/auth/login')
+      .send(userLoginWrongPassword)
+      .end((err, res) => {
+        res.should.have.status(500);
+        done();
+      });
   });
 });
