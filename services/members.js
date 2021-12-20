@@ -5,7 +5,9 @@ const limit = 10;
 
 const getAll = async (page, protocol, host, baseUrl) => {
   const countMembers = await membersRepository.count();
-
+  if (!countMembers) {
+    return { info: '0 row returned.' };
+  }
   const pagination = paginationmModule.pagination(
     limit,
     countMembers,
@@ -18,7 +20,7 @@ const getAll = async (page, protocol, host, baseUrl) => {
     pagination.offset
   );
   const response = {
-    countMembers,
+    count: countMembers,
     lastPage: pagination.lastPage,
     previousPage: pagination.previousPageUrl,
     nextPage: pagination.nextPageUrl,
@@ -42,7 +44,10 @@ const update = async (id, body) => {
   if (!memberVerified) {
     throw new Error('Not matching member');
   }
-  const member = await membersRepository.update(id, body);
+  let member = await membersRepository.update(id, body);
+  if (!member[0]) throw new Error('error update');
+
+  member = await membersRepository.getById(id);
   return member;
 };
 
