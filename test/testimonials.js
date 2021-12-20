@@ -11,6 +11,12 @@ const adminUser = {
   email: 'andrea_maccan@test.com',
   password: '123456'
 };
+
+const authUser = {
+  email: 'e_musk@test.com',
+  password: '123456'
+};
+
 before(done => {
   chai.request(app)
     .post('/auth/login')
@@ -18,15 +24,7 @@ before(done => {
     .end((err, response) => {
       response.should.have.status(200);
       adminToken = response.body.token;
-      done();
-    });
-});
 
-const authUser = {
-  email: 'e_musk@test.com',
-  password: '123456'
-};
-before(done => {
   chai.request(app)
     .post('/auth/login')
     .send(authUser)
