@@ -106,5 +106,39 @@ describe('test organization endpoints', () => {
           done();
         });
     });
+
+    it('authenticated user', (done) => {
+      chai.request(app)
+        .post('/auth/login')
+        .send({
+          email: 'facebook@facebook.com',
+          password: '123456'
+        })
+        .end((err, response) => {
+          response.should.have.status(200);
+          token = response.body.token;
+          done()
+        });
+    });
+
+    it('not admin user update', (done) => {
+      const update = {
+        name: 'Ahora Somos Mas',
+        image: 'ong-somosmas.jpg',
+        phone: 1160112988,
+        email: 'somosmas@mail.com',
+        welcomeText: 'hola esta es la ong somos mas'
+      };
+      chai.request(app)
+        .put('/organizations/public')
+        .set({ Authorization: `Bearer ${token}` })
+        .send(update)
+        .end((err, response) => {
+          response.should.have.status(401);
+          response.body.should.be.a('object');
+          response.body.error.should.be.eq('Access denied');
+          done();
+        });
+    });
   });
 });
