@@ -24,6 +24,7 @@ before(done => {
     .end((err, response) => {
       response.should.have.status(200);
       adminToken = response.body.token;
+    });
 
   chai.request(app)
     .post('/auth/login')
