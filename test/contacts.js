@@ -5,30 +5,43 @@ const server = require('../app');
 chai.should();
 
 chai.use(chaiHttp);
-let token;
+let tokenAdmin;
+let tokenUser;
 
 describe('Contacts API', () => {
-  const user = {
+  const admin = {
     email: 'agustin_tafura@test.com',
+    password: '123456'
+  };
+
+  const user = {
+    email: 'e_musk@test.com',
     password: '123456'
   };
 
   before((done) => {
     chai.request(server)
       .post('/auth/login')
+      .send(admin)
+      .end((err, response) => {
+        response.should.have.status(200);
+        tokenAdmin = response.body.token;
+      });
+    chai.request(server)
+      .post('/auth/login')
       .send(user)
       .end((err, response) => {
         response.should.have.status(200);
-        token = response.body.token;
+        tokenUser = response.body.token;
         done();
       });
   });
 
-  describe('GET /backoffice/contacts', () => {
-    it('It should GET all the contacts', (done) => {
+  describe('GET /backoffice/contacts isAdmin', () => {
+    it('GET all - (tokenAdmin)', (done) => {
       chai.request(server)
         .get('/backoffice/contacts')
-        .set({ Authorization: `Bearer ${token}` })
+        .set({ Authorization: `Bearer ${tokenAdmin}` })
         .end((err, response) => {
           response.should.have.status(200);
           response.body.should.be.a('array');
@@ -36,28 +49,38 @@ describe('Contacts API', () => {
           done();
         });
     });
+
+    it('GET all - (tokenUser)', (done) => {
+      chai.request(server)
+        .get('/backoffice/contacts')
+        .set({ Authorization: `Bearer ${tokenUser}` })
+        .end((err, response) => {
+          response.should.have.status(401);
+          done();
+        });
+    });
+
+    it('page not found', (done) => {
+      chai.request(server)
+        .get('/backoffice')
+        .end((err, response) => {
+          response.should.have.status(404);
+          done();
+        });
+    });
+
+    it('page not found', (done) => {
+      chai.request(server)
+        .get('/backoffice/contacts/1')
+        .end((err, response) => {
+          response.should.have.status(404);
+          done();
+        });
+    });
   });
 
-  it('it should not get the contacts, page not found', (done) => {
-    chai.request(server)
-      .get('/backoffice')
-      .end((err, response) => {
-        response.should.have.status(404);
-        done();
-      });
-  });
-
-  it('it should not get the contacts, page not found', (done) => {
-    chai.request(server)
-      .get('/backoffice/contacts/1')
-      .end((err, response) => {
-        response.should.have.status(404);
-        done();
-      });
-  });
-
-  describe('POST /contacts', () => {
-    it('It should POST a new contacts', (done) => {
+  describe('POST /contacts isAuth', () => {
+    it('POST a new contacts - (tokenAdmin)', (done) => {
       const contact = {
         name: 'test',
         phone: '123456',
@@ -67,7 +90,7 @@ describe('Contacts API', () => {
       chai.request(server)
         .post('/contacts')
         .send(contact)
-        .set({ Authorization: `Bearer ${token}` })
+        .set({ Authorization: `Bearer ${tokenAdmin}` })
         .end((err, response) => {
           response.should.have.status(200);
           response.body.should.be.a('object');
@@ -86,12 +109,41 @@ describe('Contacts API', () => {
         });
     });
 
-    it('It should not post a new contacts, invalid contact', (done) => {
+    it('POST a new contacts - (tokenUser)', (done) => {
+      const contact = {
+        name: 'test',
+        phone: '123456',
+        email: 'test@test.com',
+        message: 'test',
+      };
+      chai.request(server)
+        .post('/contacts')
+        .send(contact)
+        .set({ Authorization: `Bearer ${tokenUser}` })
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.body.should.be.a('object');
+          response.body.should.have.property('id');
+          response.body.should.have.property('name');
+          response.body.should.have.property('phone');
+          response.body.should.have.property('email');
+          response.body.should.have.property('message');
+          response.body.should.have.property('createdAt');
+          response.body.should.have.property('updatedAt');
+          response.body.should.have.property('name').eq('test');
+          response.body.should.have.property('phone').eq('123456');
+          response.body.should.have.property('email').eq('test@test.com');
+          response.body.should.have.property('message').eq('test');
+          done();
+        });
+    });
+
+    it('invalid contact', (done) => {
       const invalidContact = { };
       chai.request(server)
         .post('/contacts')
         .send(invalidContact)
-        .set({ Authorization: `Bearer ${token}` })
+        .set({ Authorization: `Bearer ${tokenAdmin}` })
         .end((err, response) => {
           response.should.have.status(400);
           response.body.should.have.property('error');
@@ -99,7 +151,7 @@ describe('Contacts API', () => {
         });
     });
 
-    it('It should not post a new contacts, name required', (done) => {
+    it('name required', (done) => {
       const invalidContact1 = {
         phone: '123456',
         email: 'test@test.com',
@@ -108,7 +160,7 @@ describe('Contacts API', () => {
       chai.request(server)
         .post('/contacts')
         .send(invalidContact1)
-        .set({ Authorization: `Bearer ${token}` })
+        .set({ Authorization: `Bearer ${tokenAdmin}` })
         .end((err, response) => {
           response.should.have.status(400);
           response.body.should.have.property('error');
@@ -116,7 +168,7 @@ describe('Contacts API', () => {
         });
     });
 
-    it('It should not post a new contacts, empty name', (done) => {
+    it('empty name', (done) => {
       const invalidContact2 = {
         name: '',
         phone: '123456',
@@ -126,7 +178,7 @@ describe('Contacts API', () => {
       chai.request(server)
         .post('/contacts')
         .send(invalidContact2)
-        .set({ Authorization: `Bearer ${token}` })
+        .set({ Authorization: `Bearer ${tokenAdmin}` })
         .end((err, response) => {
           response.should.have.status(400);
           response.body.should.have.property('error');
@@ -134,7 +186,7 @@ describe('Contacts API', () => {
         });
     });
 
-    it('It should not post a new contacts, email required', (done) => {
+    it('email required', (done) => {
       const invalidContact3 = {
         name: 'test',
         phone: '123456',
@@ -143,7 +195,7 @@ describe('Contacts API', () => {
       chai.request(server)
         .post('/contacts')
         .send(invalidContact3)
-        .set({ Authorization: `Bearer ${token}` })
+        .set({ Authorization: `Bearer ${tokenAdmin}` })
         .end((err, response) => {
           response.should.have.status(400);
           response.body.should.have.property('error');
@@ -151,7 +203,7 @@ describe('Contacts API', () => {
         });
     });
 
-    it('It should not post a new contacts, empty email', (done) => {
+    it('empty email', (done) => {
       const invalidContact4 = {
         name: 'test',
         email: '',
@@ -161,7 +213,7 @@ describe('Contacts API', () => {
       chai.request(server)
         .post('/contacts')
         .send(invalidContact4)
-        .set({ Authorization: `Bearer ${token}` })
+        .set({ Authorization: `Bearer ${tokenAdmin}` })
         .end((err, response) => {
           response.should.have.status(400);
           response.body.should.have.property('error');
