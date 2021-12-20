@@ -154,7 +154,7 @@ describe('Category Tests', () => {
             done();
           });
       });
-      it('GET categories/:id isAdmin [Standar] id = 1', (done) => {
+      it('GET categories/:id isAdmin [Standard] id = 1', (done) => {
         chai.request(app)
           .get('/categories/1')
           .set({ Authorization: `Bearer ${tokenStandard}` })
@@ -201,7 +201,7 @@ describe('Category Tests', () => {
           done();
         });
     });
-    it('POST /categories isAdmin [Standar]', (done) => {
+    it('POST /categories isAdmin [Standard]', (done) => {
       chai.request(app)
         .post('/categories')
         .set({ Authorization: `Bearer ${tokenStandard}` })
@@ -312,7 +312,7 @@ describe('Category Tests', () => {
           done();
         });
     });
-    it('PUT /categories/2 [Standar] update the name', (done) => {
+    it('PUT /categories/2 [Standard] update the name', (done) => {
       chai.request(app)
         .put('/categories/2')
         .set({ Authorization: `Bearer ${tokenStandard}` })
