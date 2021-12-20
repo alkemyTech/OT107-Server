@@ -72,7 +72,7 @@ const paginationMiddleware = require('../middlewares/pagination');
  *       '401':
  *         description: Unauthorized. Invalid or expired token
  */
-router.get('/', authMiddleware.isAuth, paginationMiddleware.pageValidation, testimonialsController.getAll);
+router.get('/', authMiddleware.isAdmin, paginationMiddleware.pageValidation, testimonialsController.getAll);
 
 /**
  * @swagger

@@ -43,18 +43,18 @@ const isAdmin = async (req, res, next) => {
 
 const isAuth = async (req, res, next) => {
   const bearertoken = req.headers.authorization;
-  if (!bearertoken) return res.status(403).json({ message: 'Access denied' });
+  if (!bearertoken) return res.status(401).json({ message: 'Access denied' });
 
   try {
     const token = bearertoken.split(' ')[1];
-    const { id } = await auth.decodeToken(token);
+    const { id } = auth.decodeToken(token);
     const userAuth = await usersServices.getById(id);
     req.params.tokenizedUserId = userAuth.id;
-    if (!userAuth) return res.status(403).json({ message: 'El usuario no existe' });
+    if (!userAuth) return res.status(401).json({ message: 'El usuario no existe' });
 
     next();
   } catch (error) {
-    res.status(403).json(`Invalid token - ${error.message}`);
+    res.status(401).json(`Invalid token - ${error.message}`);
   }
 };
 
