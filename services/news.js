@@ -19,7 +19,7 @@ const getAll = async (page, protocol, host, baseUrl) => {
     pagination.offset
   );
   const response = {
-    countNews,
+    count: countNews,
     lastPage: pagination.lastPage,
     previousPage: pagination.previousPageUrl,
     nextPage: pagination.nextPageUrl,
