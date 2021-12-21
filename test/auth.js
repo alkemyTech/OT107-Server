@@ -222,3 +222,17 @@ describe('Error cases /auth/login', () => {
       });
   });
 });
+
+describe('Wrong cases /auth/me', () => {
+  it('Should fail the attempt to get the user info', (done) => {
+    chai
+      .request(app)
+      .post('/auth/me')
+      .set({Authorization:})
+      .end((err, res) => {
+        res.should.have.status(403);
+        res.body.message.should.include('Access denied');
+        done();
+      });
+  });
+});
