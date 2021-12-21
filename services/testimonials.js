@@ -34,7 +34,11 @@ const getAll = async (page, protocol, host, baseUrl) => {
 const getById = async (params) => {
   const { id } = params;
   const data = await testimonialsRepo.getById(id);
-  if (!data) throw new Error('Testimonial not found');
+  if (!data) {
+    const error = new Error('Testimonial not found');
+    error.status = 404;
+    throw error;
+  }
   return data;
 };
 
@@ -52,7 +56,11 @@ const update = async (params, body) => {
 const remove = async (params) => {
   const { id } = params;
   const data = await testimonialsRepo.remove(id);
-  if (!data) throw new Error('Testimonial not found');
+  if (!data) {
+    const error = new Error('Testimonial not found');
+    error.status = 404;
+    throw error;
+  }
   return data;
 };
 

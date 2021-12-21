@@ -154,7 +154,7 @@ describe('GET /testimonials/:id', () => {
       .set({ Authorization: `Bearer ${adminToken}` })
       .end((err, response) => {
         response.should.have.status(404);
-        response.text.should.include('"Access denied"');
+        response.text.should.include('Testimonial not found');
         done();
       });
   });
