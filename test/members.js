@@ -39,17 +39,6 @@ describe('GET /members', () => {
         done();
       });
   });
-  describe('GET /member should not be found', () => {
-    it('Page not found', (done) => {
-      chai.request(app)
-        .get('/member')
-        .set({ Authorization: `Bearer ${tokenAdmin}` })
-        .end((err, response) => {
-          response.should.have.status(404);
-          done();
-        });
-    });
-  });
   describe('GET /members?page=h', () => {
     it('The page parameter must be a number.', (done) => {
       chai.request(app)
