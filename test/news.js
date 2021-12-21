@@ -123,11 +123,12 @@ describe('Set Token - POST /auth/login', () => {
         });
     });
 
-    it('Return error => Invalid token: need admin token', (done) => {
+    it('Return error => Access denied: need admin token', (done) => {
       chai.request(app)
         .get('/news?page=1')
         .set({ Authorization: `Bearer ${authToken}` })
         .end((err, response) => {
+          response.should.have.status(401);
           response.text.should.include('"Access denied"');
           done();
         });
@@ -139,6 +140,7 @@ describe('Set Token - POST /auth/login', () => {
         .get('/news?page=1')
         .set({ Authorization: `Bearer ${oldToken}` })
         .end((err, response) => {
+          response.should.have.status(400);
           response.text.should.include('Invalid token');
           done();
         });
@@ -182,7 +184,7 @@ describe('Set Token - POST /auth/login', () => {
         });
     });
 
-    it('Return error => Invalid token: need admin token', (done) => {
+    it('Return error => Access denied: need admin token', (done) => {
       const novelty = {
         name: 'News testing',
         content: 'Content news testing',
@@ -194,6 +196,7 @@ describe('Set Token - POST /auth/login', () => {
         .send(novelty)
         .set({ Authorization: `Bearer ${authToken}` })
         .end((err, response) => {
+          response.should.have.status(401);
           response.text.should.include('"Access denied"');
           done();
         });
@@ -223,6 +226,7 @@ describe('Set Token - POST /auth/login', () => {
         .delete(`/news/${noveltyId}`)
         .set({ Authorization: `Bearer ${authToken}` })
         .end((err, response) => {
+          response.should.have.status(401);
           response.text.should.include('"Access denied"');
           done();
         });
@@ -261,6 +265,7 @@ describe('Set Token - POST /auth/login', () => {
         .get(`/news/${id}`)
         .set({ Authorization: `Bearer ${authToken}` })
         .end((err, response) => {
+          response.should.have.status(401);
           response.text.should.include('"Access denied"');
           done();
         });
@@ -301,6 +306,7 @@ describe('Set Token - POST /auth/login', () => {
         .send(body)
         .set({ Authorization: `Bearer ${authToken}` })
         .end((err, response) => {
+          response.should.have.status(401);
           response.text.should.include('"Access denied"');
           done();
         });
