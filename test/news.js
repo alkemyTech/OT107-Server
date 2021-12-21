@@ -51,7 +51,7 @@ describe('Set Token - POST /auth/login', () => {
         .end((err, response) => {
           response.should.have.status(200);
           response.should.be.a('object');
-          response.body.should.have.keys('countNews', 'lastPage', 'previousPage', 'nextPage', 'data');
+          response.body.should.have.keys('count', 'lastPage', 'previousPage', 'nextPage', 'data');
           response.body.should.have.property('previousPage').equal(null);
           response.body.data.should.have.lengthOf.within(1, 10);
           response.body.data.map((obj) => obj.should.have.all.deep.keys('id', 'name', 'content', 'image', 'categoryId'));
@@ -67,7 +67,7 @@ describe('Set Token - POST /auth/login', () => {
         .end((err, response) => {
           response.should.have.status(200);
           response.should.be.a('object');
-          response.body.should.have.keys('countNews', 'lastPage', 'previousPage', 'nextPage', 'data');
+          response.body.should.have.keys('count', 'lastPage', 'previousPage', 'nextPage', 'data');
           response.body.should.have.property('nextPage').equal(null);
           response.body.data.should.have.lengthOf.within(1, 10);
           response.body.data.map((obj) => obj.should.have.all.deep.keys('id', 'name', 'content', 'image', 'categoryId'));
@@ -130,6 +130,16 @@ describe('Set Token - POST /auth/login', () => {
         .end((err, response) => {
           response.should.have.status(401);
           response.text.should.include('"Access denied"');
+          done();
+        });
+    });
+
+    it('Return error => Access denied: no token passed', (done) => {
+      chai.request(app)
+        .get('/news?page=1')
+        .set({ Authorization: '' })
+        .end((err, response) => {
+          response.should.have.status(401);
           done();
         });
     });
