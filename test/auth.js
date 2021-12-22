@@ -7,6 +7,7 @@ chai.should();
 chai.use(chaihttp);
 
 let token;
+let userID;
 
 /**
  * /auth/register
@@ -14,7 +15,7 @@ let token;
  * /auth/me
  */
 
-describe('Post /auth/register', () => {
+describe('Post /auth', () => {
   const user = {
     firstName: 'Franco',
     lastName: 'Garancini',
@@ -23,80 +24,75 @@ describe('Post /auth/register', () => {
     password: 'testing@It59',
   };
 
-  let userID;
 
   const login = {
     email: 'fgaratests@gmail.com',
     password: 'testing@It59',
   };
-  describe('Route /auth/register', () => {
-    it('Should register a new user', (done) => {
-      chai
-        .request(app)
-        .post('/auth/register')
-        .send(user)
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.have.property('token');
-          res.body.should.have.property('user');
-          res.body.user.should.have.property('firstName');
-          res.body.user.should.have.property('lastName');
-          res.body.user.should.have.property('image');
-          done();
-        });
-    });
+
+  it('Should register a new user', (done) => {
+    chai
+      .request(app)
+      .post('/auth/register')
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('token');
+        res.body.should.have.property('user');
+        res.body.user.should.have.property('firstName');
+        res.body.user.should.have.property('lastName');
+        res.body.user.should.have.property('image');
+        done();
+      });
   });
 
-  describe('Route /auth/login', () => {
-    it('Should login and return a token', (done) => {
-      chai
-        .request(app)
-        .post('/auth/login')
-        .send(login)
-        .end((err, res) => {
-          token = res.body.token;
+  it('Should login and return a token', (done) => {
+    chai
+      .request(app)
+      .post('/auth/login')
+      .send(login)
+      .end((err, res) => {
+        token = res.body.token;
 
-          res.body.should.have.property('token');
-          done();
-        });
-    });
+        res.body.should.have.property('token');
+        done();
+      });
   });
 
-  describe('Route /auth/me', () => {
-    it('Should return the information of the user logged', (done) => {
-      chai
-        .request(app)
-        .get('/auth/me')
-        .set({ Authorization: `Bearer ${token}` })
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.user.should.have.property('id');
-          res.body.user.should.have.property('firstName');
-          res.body.user.should.have.property('lastName');
-          res.body.user.should.have.property('email');
-          res.body.user.should.have.property('image');
-          res.body.user.should.have.property('createdAt');
-          res.body.user.should.have.property('updatedAt');
-          userID = res.body.user.id;
-          done();
-        });
-    });
-  });
-  describe('DELETE /user/:id', () => {
-    it('Shoud delete an user', (done) => {
-      chai
-        .request(app)
-        .delete(`/users/${userID}`)
-        .set({ Authorization: `Bearer ${token}` })
-        .end((err, res) => {
-          res.should.have.status(204);
-          done();
-        });
-    });
+  it('Should return the information of the user logged', (done) => {
+    chai
+      .request(app)
+      .get('/auth/me')
+      .set({ Authorization: `Bearer ${token}` })
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.user.should.have.property('id');
+        res.body.user.should.have.property('firstName');
+        res.body.user.should.have.property('lastName');
+        res.body.user.should.have.property('email');
+        res.body.user.should.have.property('image');
+        res.body.user.should.have.property('createdAt');
+        res.body.user.should.have.property('updatedAt');
+        userID = res.body.user.id;
+        done();
+      });
   });
 });
 
-describe('Error cases route /auth', () => {
+describe('DELETE /user/:id', () => {
+  it('Shoud delete an user', (done) => {
+    chai
+      .request(app)
+      .delete(`/users/${userID}`)
+      .set({ Authorization: `Bearer ${token}` })
+      .end((err, res) => {
+        res.should.have.status(204);
+        done();
+      });
+  });
+});
+
+describe('Error cases route /auth/register', () => {
   const userCase_password = {
     firstName: 'Franco',
     lastName: 'Garancini',
