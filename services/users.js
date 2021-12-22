@@ -44,6 +44,7 @@ const login = async (body) => {
       image: data.image,
       roleId: data.roleId,
     };
+
     const token = jwt.createToken(userData);
     return token;
   }

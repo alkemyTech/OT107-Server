@@ -228,9 +228,12 @@ describe('Wrong cases /auth/me', () => {
     chai
       .request(app)
       .post('/auth/me')
-      .set({Authorization:})
+      .set({
+        Authorization:
+          'X3RyaWNvQGdtYWlsLmNvbSIsImltYWdlIjpudWxsLCJyb2xlSWQiOm51bGwsImlhdCI6MTY0MDIwNTQ3OCwiZXhwIjoxNjQwMjM0Mjc4fQ.DLl_2hPF-0AThRm5Gn_YHCEdUqx2Kl9jw1Wf4Gn_aAnbS0mdUGF2Gzkc6DK-mFKo7EEkQ7OmNJR2XOaNBYi-',
+      })
       .end((err, res) => {
-        res.should.have.status(403);
+        res.should.have.status(401);
         res.body.message.should.include('Access denied');
         done();
       });
