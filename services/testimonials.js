@@ -4,14 +4,14 @@ const paginationModule = require('../modules/paginationModule');
 const limit = 10;
 
 const getAll = async (page, protocol, host, baseUrl) => {
-  const countTestimonials = await testimonialsRepo.count();
-  if (!countTestimonials) {
+  const count = await testimonialsRepo.count();
+  if (!count) {
     return { info: '0 row returned.' };
   }
 
   const pagination = paginationModule.pagination(
     limit,
-    countTestimonials,
+    count,
     {
       page,
       protocol,
@@ -25,7 +25,7 @@ const getAll = async (page, protocol, host, baseUrl) => {
   );
 
   const response = {
-    count: countTestimonials,
+    count,
     lastPage: pagination.lastPage,
     previousPage: pagination.previousPageUrl,
     nextPage: pagination.nextPageUrl,
