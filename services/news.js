@@ -36,19 +36,31 @@ const create = async (data) => {
 
   const novelty = await newsRepository.create(data);
 
-  if (!novelty) throw new Error('bad request');
+  if (!novelty) {
+    const error = new Error('Novelty not found');
+    error.status = 404;
+    throw error;
+  }
   return novelty;
 };
 
 const getById = async (id) => {
   const novelty = await newsRepository.getById(id);
-  if (!novelty) throw new Error('bad request');
+  if (!novelty) {
+    const error = new Error('Novelty not found');
+    error.status = 404;
+    throw error;
+  }
   return novelty;
 };
 
 const update = async (id, body) => {
   const existNovelty = await newsRepository.getById(id);
-  if (!existNovelty) throw new Error('bad request');
+  if (!existNovelty) {
+    const error = new Error('Novelty not found');
+    error.status = 404;
+    throw error;
+  }
 
   if (body.categoryId) {
     const checkCategoryId = await categoriesRepository.getById(body.categoryId);
@@ -56,7 +68,11 @@ const update = async (id, body) => {
   }
 
   const updateNovelty = await newsRepository.update(id, body);
-  if (!updateNovelty) throw new Error('bad request');
+  if (!updateNovelty) {
+    const error = new Error('Novelty not found');
+    error.status = 404;
+    throw error;
+  }
 
   const novelty = await newsRepository.getById(id);
   return novelty;
@@ -64,7 +80,11 @@ const update = async (id, body) => {
 
 const remove = async (id) => {
   const existNovelty = await newsRepository.getById(id);
-  if (!existNovelty) throw new Error('bad request');
+  if (!existNovelty) {
+    const error = new Error('Novelty not found');
+    error.status = 404;
+    throw error;
+  }
 
   await newsRepository.remove(id);
 };
