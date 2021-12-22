@@ -75,7 +75,7 @@ describe('Set Token - POST /auth/login', () => {
         });
     });
 
-    it('Return error message. Require a provide a number as a parameter of page', (done) => {
+    it('Return error message. Require a number as a parameter of page', (done) => {
       const page = '';
       chai.request(app)
         .get(`/news?page=${page}`)
@@ -111,7 +111,7 @@ describe('Set Token - POST /auth/login', () => {
         });
     });
 
-    it('Return error message. Require a number greater than zero', (done) => {
+    it('Return error message. Page greater than the last page', (done) => {
       const page = 1000;
       chai.request(app)
         .get(`/news?page=${page}`)
@@ -140,12 +140,13 @@ describe('Set Token - POST /auth/login', () => {
         .set({ Authorization: '' })
         .end((err, response) => {
           response.should.have.status(401);
+          response.text.should.include('"Access denied"');
           done();
         });
     });
 
     it('Return error => sending old token ', (done) => {
-      const oldToken = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM5OTQwNjkwLCJleHAiOjE2Mzk5Njk0OTB9.aWxY-Bb5xSCXgzkb6UQRQqEuM5P9j0elwyc-fK7jEy7wj5981pV0fpCwBbgtrFnm3Da1fgqU61YKeZ8bvDUklcL-b4I45_RmPO5YrzZbq5FqyWETpvSHjwoHslnpT4xs-nXf5VOuDr2_OqiwUSTcTCV0byjER0Gw2E2_K_Ui0Mw'
+      const oldToken = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM5OTQwNjkwLCJleHAiOjE2Mzk5Njk0OTB9.aWxY-Bb5xSCXgzkb6UQRQqEuM5P9j0elwyc-fK7jEy7wj5981pV0fpCwBbgtrFnm3Da1fgqU61YKeZ8bvDUklcL-b4I45_RmPO5YrzZbq5FqyWETpvSHjwoHslnpT4xs-nXf5VOuDr2_OqiwUSTcTCV0byjER0Gw2E2_K_Ui0Mw';
       chai.request(app)
         .get('/news?page=1')
         .set({ Authorization: `Bearer ${oldToken}` })
@@ -176,7 +177,7 @@ describe('Set Token - POST /auth/login', () => {
         });
     });
 
-    it('Return an error - can\'t creat a news without name', (done) => {
+    it('Return error - can\'t creat a news without a required parameter', (done) => {
       const novelty = {
         content: 'Content news testing',
         image: 'http://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
@@ -211,33 +212,103 @@ describe('Set Token - POST /auth/login', () => {
           done();
         });
     });
-  });
 
-  describe('DELETE /news/:id', () => {
-    it('It should delete a novelty if exist id in DB', (done) => {
-      const noveltyId = 3;
+    it('Return error => Access denied: no token passed', (done) => {
+      const novelty = {
+        name: 'News testing',
+        content: 'Content news testing',
+        image: 'http://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
+        categoryId: 1
+      };
       chai.request(app)
-        .delete(`/news/${noveltyId}`)
-        .set({ Authorization: `Bearer ${adminToken}` })
+        .post('/news')
+        .set({ Authorization: '' })
+        .send(novelty)
         .end((err, response) => {
-          if (response.status === 500) {
-            response.text.should.include('Error: bad request');
-          } else {
-            response.should.have.status(204);
-            response.body.should.be.empty;
-          }
+          response.should.have.status(401);
+          response.text.should.include('"Access denied"');
           done();
         });
     });
 
-    it('It should delete a novelty if exist id in DB', (done) => {
-      const noveltyId = 2;
+    it('Return error => sending old token ', (done) => {
+      const novelty = {
+        name: 'News testing',
+        content: 'Content news testing',
+        image: 'http://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
+        categoryId: 1
+      };
+      const oldToken = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM5OTQwNjkwLCJleHAiOjE2Mzk5Njk0OTB9.aWxY-Bb5xSCXgzkb6UQRQqEuM5P9j0elwyc-fK7jEy7wj5981pV0fpCwBbgtrFnm3Da1fgqU61YKeZ8bvDUklcL-b4I45_RmPO5YrzZbq5FqyWETpvSHjwoHslnpT4xs-nXf5VOuDr2_OqiwUSTcTCV0byjER0Gw2E2_K_Ui0Mw';
       chai.request(app)
-        .delete(`/news/${noveltyId}`)
+        .post('/news')
+        .set({ Authorization: `Bearer ${oldToken}` })
+        .send(novelty)
+        .end((err, response) => {
+          response.should.have.status(400);
+          response.text.should.include('Invalid token');
+          done();
+        });
+    });
+  });
+
+  describe('DELETE /news/:id', () => {
+    it('It should delete a novelty', (done) => {
+      const id = 3;
+      chai.request(app)
+        .delete(`/news/${id}`)
+        .set({ Authorization: `Bearer ${adminToken}` })
+        .end((err, response) => {
+          response.should.have.status(204);
+          response.body.should.be.empty;
+          done();
+        });
+    });
+
+    it('Returns error: Novelty not exist', (done) => {
+      const id = 10000;
+      chai.request(app)
+        .get(`/news/${id}`)
+        .set({ Authorization: `Bearer ${adminToken}` })
+        .end((err, response) => {
+          response.should.have.status(404);
+          response.text.should.include('Novelty not found');
+          done();
+        });
+    });
+
+    it('Return error => Access denied: need admin token', (done) => {
+      const id = 2;
+      chai.request(app)
+        .delete(`/news/${id}`)
         .set({ Authorization: `Bearer ${authToken}` })
         .end((err, response) => {
           response.should.have.status(401);
           response.text.should.include('"Access denied"');
+          done();
+        });
+    });
+
+    it('Return error => Access denied: no token passed', (done) => {
+      const id = 3;
+      chai.request(app)
+        .delete(`/news/${id}`)
+        .set({ Authorization: '' })
+        .end((err, response) => {
+          response.should.have.status(401);
+          response.text.should.include('"Access denied"');
+          done();
+        });
+    });
+
+    it('Return error => sending old token ', (done) => {
+      const id = 3;
+      const oldToken = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM5OTQwNjkwLCJleHAiOjE2Mzk5Njk0OTB9.aWxY-Bb5xSCXgzkb6UQRQqEuM5P9j0elwyc-fK7jEy7wj5981pV0fpCwBbgtrFnm3Da1fgqU61YKeZ8bvDUklcL-b4I45_RmPO5YrzZbq5FqyWETpvSHjwoHslnpT4xs-nXf5VOuDr2_OqiwUSTcTCV0byjER0Gw2E2_K_Ui0Mw';
+      chai.request(app)
+        .delete(`/news/${id}`)
+        .set({ Authorization: `Bearer ${oldToken}` })
+        .end((err, response) => {
+          response.should.have.status(400);
+          response.text.should.include('Invalid token');
           done();
         });
     });
@@ -263,8 +334,8 @@ describe('Set Token - POST /auth/login', () => {
         .get(`/news/${id}`)
         .set({ Authorization: `Bearer ${adminToken}` })
         .end((err, response) => {
-          response.should.have.status(500);
-          response.text.should.include('Error: bad request');
+          response.should.have.status(404);
+          response.text.should.include('Novelty not found');
           done();
         });
     });
@@ -277,6 +348,43 @@ describe('Set Token - POST /auth/login', () => {
         .end((err, response) => {
           response.should.have.status(401);
           response.text.should.include('"Access denied"');
+          done();
+        });
+    });
+
+    it('Return error => Access denied: need admin token', (done) => {
+      const id = 1;
+      chai.request(app)
+        .get(`/news/${id}`)
+        .set({ Authorization: `Bearer ${authToken}` })
+        .end((err, response) => {
+          response.should.have.status(401);
+          response.text.should.include('"Access denied"');
+          done();
+        });
+    });
+
+    it('Return error => Access denied: no token passed', (done) => {
+      const id = 1;
+      chai.request(app)
+        .get(`/news/${id}`)
+        .set({ Authorization: '' })
+        .end((err, response) => {
+          response.should.have.status(401);
+          response.text.should.include('"Access denied"');
+          done();
+        });
+    });
+
+    it('Return error => sending old token ', (done) => {
+      const oldToken = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM5OTQwNjkwLCJleHAiOjE2Mzk5Njk0OTB9.aWxY-Bb5xSCXgzkb6UQRQqEuM5P9j0elwyc-fK7jEy7wj5981pV0fpCwBbgtrFnm3Da1fgqU61YKeZ8bvDUklcL-b4I45_RmPO5YrzZbq5FqyWETpvSHjwoHslnpT4xs-nXf5VOuDr2_OqiwUSTcTCV0byjER0Gw2E2_K_Ui0Mw';
+      const id = 1;
+      chai.request(app)
+        .get(`/news/${id}`)
+        .set({ Authorization: `Bearer ${oldToken}` })
+        .end((err, response) => {
+          response.should.have.status(400);
+          response.text.should.include('Invalid token');
           done();
         });
     });
@@ -303,26 +411,7 @@ describe('Set Token - POST /auth/login', () => {
         });
     });
 
-    it('Returns the novelty updated', (done) => {
-      const id = 4;
-      const body = {
-        name: 'name changed',
-        content: 'Content news 1',
-        image: 'https://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
-        categoryId: 1
-      };
-      chai.request(app)
-        .put(`/news/${id}`)
-        .send(body)
-        .set({ Authorization: `Bearer ${authToken}` })
-        .end((err, response) => {
-          response.should.have.status(401);
-          response.text.should.include('"Access denied"');
-          done();
-        });
-    });
-
-    it('Returns a bad request status 400', (done) => {
+    it('Return errors list with status 400', (done) => {
       const id = 10000;
       const body = { name: 'name changed' };
       chai.request(app)
@@ -333,6 +422,64 @@ describe('Set Token - POST /auth/login', () => {
           response.body.should.have.property('error');
           response.body.error.map((err) => err.should.deep.keys('msg', 'param', 'location'));
           response.should.have.status(400);
+          done();
+        });
+    });
+
+    it('Return error => Access denied: need admin token', (done) => {
+      const id = 1;
+      const body = {
+        name: 'name changed',
+        content: 'Content news 1',
+        image: 'https://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
+        categoryId: 1
+      };
+      chai.request(app)
+        .put(`/news/${id}`)
+        .set({ Authorization: `Bearer ${authToken}` })
+        .send(body)
+        .end((err, response) => {
+          response.should.have.status(401);
+          response.text.should.include('"Access denied"');
+          done();
+        });
+    });
+
+    it('Return error => Access denied: no token passed', (done) => {
+      const id = 1;
+      const body = {
+        name: 'name changed',
+        content: 'Content news 1',
+        image: 'https://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
+        categoryId: 1
+      };
+      chai.request(app)
+        .put(`/news/${id}`)
+        .set({ Authorization: '' })
+        .send(body)
+        .end((err, response) => {
+          response.should.have.status(401);
+          response.text.should.include('"Access denied"');
+          done();
+        });
+    });
+
+    it('Return error => sending old token ', (done) => {
+      const oldToken = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM5OTQwNjkwLCJleHAiOjE2Mzk5Njk0OTB9.aWxY-Bb5xSCXgzkb6UQRQqEuM5P9j0elwyc-fK7jEy7wj5981pV0fpCwBbgtrFnm3Da1fgqU61YKeZ8bvDUklcL-b4I45_RmPO5YrzZbq5FqyWETpvSHjwoHslnpT4xs-nXf5VOuDr2_OqiwUSTcTCV0byjER0Gw2E2_K_Ui0Mw';
+      const id = 1;
+      const body = {
+        name: 'name changed',
+        content: 'Content news 1',
+        image: 'https://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
+        categoryId: 1
+      };
+      chai.request(app)
+        .put(`/news/${id}`)
+        .set({ Authorization: `Bearer ${oldToken}` })
+        .send(body)
+        .end((err, response) => {
+          response.should.have.status(400);
+          response.text.should.include('Invalid token');
           done();
         });
     });
