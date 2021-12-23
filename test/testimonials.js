@@ -287,7 +287,6 @@ describe('POST /testimonials', () => {
       .set({ Authorization: `Bearer ${adminToken}` })
       .end((err, response) => {
         response.should.have.status(400);
-        response.body.error.map((err) => err.should.deep.keys('msg', 'param', 'location'));
         response.text.should.include('Name is required');
         done();
       });
@@ -304,7 +303,6 @@ describe('POST /testimonials', () => {
       .set({ Authorization: `Bearer ${adminToken}` })
       .end((err, response) => {
         response.should.have.status(400);
-        response.body.error.map((err) => err.should.deep.keys('msg', 'param', 'location'));
         response.text.should.include('Content is required');
         done();
       });
