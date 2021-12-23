@@ -5,7 +5,7 @@ const categoriesInputValidation = [
     .notEmpty()
     .withMessage('You must provide a category name.')
     .bail()
-    .isAlpha()
+    .isString()
     .withMessage('The name can only contain letters.')
     .bail(),
   (req, res, next) => {

@@ -21,7 +21,7 @@ const isOwnUser = async (req, res, next) => {
     const e = new Error();
     throw e;
   } catch (error) {
-    res.status(400).json({ error: 'Access denied' });
+    res.status(401).json({ error: 'Access denied' });
   }
 };
 

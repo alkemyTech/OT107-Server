@@ -183,7 +183,7 @@ router.delete('/:id', authMiddleware.isAdmin, categoriesController.remove);
  *          401:
  *              description: access denied
  */
-router.put('/:id', authMiddleware.isAdmin, categoriesController.update);
+router.put('/:id', authMiddleware.isAdmin, categoriesMiddleware.categoriesInputValidation, categoriesController.update);
 /**
  * @swagger
  * /categories:
