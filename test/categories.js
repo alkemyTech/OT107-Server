@@ -6,6 +6,8 @@ const app = require('../app');
 
 chai.should();
 chai.use(chaiHttp);
+
+const invalidToken = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImZpcnN0TmFtZSI6IkVsb24iLCJsYXN0TmFtZSI6Ik11c2siLCJlbWFpbCI6ImVfbXVza0B0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MiwiaWF0IjoxNjQwMDMzNjQwLCJleHAiOjE2NDAwNjI0NDB9.MUeeUm_WfSy6LOPgZGbF4jQYRyETURqx7iUQVqB0Pf_naVXjJSThx0mXRcM8MWb2bFv-7zOM0CvCeyhtuPDveSone7mzUzA3oA6Qxhtz_pcCB3huNpugnE1jC0PSw_EDd8OsKl8Z0se0aDmicL5YkURl0aifbyejD4RxqDDBstA';
 let tokenAdmin;
 let tokenStandard;
 
@@ -22,41 +24,37 @@ before((done) => {
   chai.request(app)
     .post('/auth/login')
     .send(userAdmin)
-    .end((err, res) => {
-      res.should.have.status(200);
-      tokenAdmin = res.body.token;
-      done();
+    .end((err, response) => {
+      response.should.have.status(200);
+      tokenAdmin = response.body.token;
     });
-});
-
-before((done) => {
   chai.request(app)
     .post('/auth/login')
     .send(userStandard)
-    .end((err, res) => {
-      res.should.have.status(200);
-      tokenStandard = res.body.token;
+    .end((err, response) => {
+      response.should.have.status(200);
+      tokenStandard = response.body.token;
       done();
     });
 });
 
 describe('Category Tests', () => {
   describe('GET /categories isAuth', () => {
-    it('Invalid Token isAuth [fake Token]', (done) => {
+    it('Invalid Token isAuth [invalidToken]', (done) => {
       chai.request(app)
         .get('/categories')
-        .set({ Authorization: 'Bearer fakeToken' })
+        .set({ Authorization: `Bearer ${invalidToken}` })
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           done();
         });
     });
     it('Invalid Token [no token]', (done) => {
       chai.request(app)
         .get('/categories')
-        .set({ Authorization: '' })
+        // .set({ Authorization: '' })
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           done();
         });
     });
@@ -90,25 +88,22 @@ describe('Category Tests', () => {
           done();
         });
     });
-    it('GET /categorie, categorie does not exist.', (done) => {
-      chai.request(app)
-        .get('/categorie')
-        .set({ Authorization: `Bearer ${tokenAdmin}` })
-        .end((err, res) => {
-          res.should.have.status(404);
-          done();
-        });
-    });
-    it('GET /categories?page=3. [Admin]', (done) => {
+    it('GET /categories?page=3 [Admin]', (done) => {
       chai.request(app)
         .get('/categories?page=3')
         .set({ Authorization: `Bearer ${tokenAdmin}` })
         .end((err, res) => {
           res.should.have.status(200);
+          res.should.be.a('object');
+          res.body.should.have.property('count');
+          res.body.should.have.property('lastPage');
+          res.body.should.have.property('previousPage');
+          res.body.should.have.property('nextPage');
+          res.body.should.have.property('data');
           done();
         });
     });
-    it('GET /categories?page=3. [Standard]', (done) => {
+    it('GET /categories?page=3 [Standard]', (done) => {
       chai.request(app)
         .get('/categories?page=3')
         .set({ Authorization: `Bearer ${tokenStandard}` })
@@ -117,7 +112,7 @@ describe('Category Tests', () => {
           done();
         });
     });
-    it('GET /categories?page=h.', (done) => {
+    it('GET /categories?page=h', (done) => {
       chai.request(app)
         .get('/categories?page=h')
         .set({ Authorization: `Bearer ${tokenStandard}` })
@@ -127,7 +122,7 @@ describe('Category Tests', () => {
           done();
         });
     });
-    it('GET /categories?page=.', (done) => {
+    it('GET /categories?page=', (done) => {
       chai.request(app)
         .get('/categories?page=')
         .set({ Authorization: `Bearer ${tokenStandard}` })
@@ -137,7 +132,7 @@ describe('Category Tests', () => {
           done();
         });
     });
-    it('GET /categories?page=-5.', (done) => {
+    it('GET /categories?page=-5', (done) => {
       chai.request(app)
         .get('/categories?page=-5')
         .set({ Authorization: `Bearer ${tokenStandard}` })
@@ -147,7 +142,7 @@ describe('Category Tests', () => {
           done();
         });
     });
-    it('GET /categories?page=300.', (done) => {
+    it('GET /categories?page=300', (done) => {
       chai.request(app)
         .get('/categories?page=300')
         .set({ Authorization: `Bearer ${tokenStandard}` })
@@ -182,12 +177,12 @@ describe('Category Tests', () => {
             done();
           });
       });
-      it('GET categories/:id isAdmin [fakeToken] id = 1', (done) => {
+      it('GET categories/:id isAdmin [invalidToken] id = 1', (done) => {
         chai.request(app)
           .get('/categories/1')
-          .set({ Authorization: 'Bearer fakeToken' })
+          .set({ Authorization: `Bearer ${invalidToken}` })
           .end((err, res) => {
-            res.should.have.status(400);
+            res.should.have.status(401);
             done();
           });
       });
@@ -200,7 +195,7 @@ describe('Category Tests', () => {
             done();
           });
       });
-      it('GET categories/:id isAdmin [Admin] id = g', (done) => {
+      it('GET categories/:id isAdmin [Admin] id = g invalid', (done) => {
         chai.request(app)
           .get('/categories/g')
           .set({ Authorization: `Bearer ${tokenAdmin}` })
@@ -244,10 +239,10 @@ describe('Category Tests', () => {
           done();
         });
     });
-    it('POST /categories isAdmin [fakeToken]', (done) => {
+    it('POST /categories isAdmin [invalidToken]', (done) => {
       chai.request(app)
         .post('/categories')
-        .set({ Authorization: 'Bearer faketoken' })
+        .set({ Authorization: `Bearer ${invalidToken}` })
         .send({
           name: 'Nueva Categoria Test',
           description: 'Description de una nueva categoria',
@@ -256,7 +251,7 @@ describe('Category Tests', () => {
           createdAt: new Date(),
         })
         .end((err, res) => {
-          res.should.have.status(400);
+          res.should.have.status(401);
           done();
         });
     });
@@ -365,13 +360,13 @@ describe('Category Tests', () => {
           done();
         });
     });
-    it("PUT /categories/2 [fake Token] Don't update the name", (done) => {
+    it("PUT /categories/2 [invalidToken] Don't update the name", (done) => {
       chai.request(app)
         .put('/categories/2')
-        .set({ Authorization: 'Bearer fakeToken' })
+        .set({ Authorization: `Bearer ${invalidToken}` })
         .send({ name: 'Update Categoria' })
         .end((err, res) => {
-          res.should.have.status(400);
+          res.should.have.status(401);
           done();
         });
     });
@@ -465,26 +460,6 @@ describe('Category Tests', () => {
           done();
         });
     });
-    it('PUT /categories/2, the name must be a String.', (done) => {
-      chai.request(app)
-        .put('/categories/2')
-        .set({ Authorization: `Bearer ${tokenAdmin}` })
-        .send({ name: true })
-        .end((err, res) => {
-          res.should.have.status(401);
-          done();
-        });
-    });
-    it('PUT /categories/2, the name must be a String.', (done) => {
-      chai.request(app)
-        .put('/categories/2')
-        .set({ Authorization: `Bearer ${tokenAdmin}` })
-        .send({ name: [] })
-        .end((err, res) => {
-          res.should.have.status(401);
-          done();
-        });
-    });
   });
 
   describe('DELETE /categories/:id isAdmin', () => {
@@ -506,12 +481,12 @@ describe('Category Tests', () => {
           done();
         });
     });
-    it('DELETE /categories/11 [fakeToken]', (done) => {
+    it('DELETE /categories/11 [invalidToken]', (done) => {
       chai.request(app)
         .delete('/categories/11')
-        .set({ Authorization: 'Bearer fakeToken' })
+        .set({ Authorization: `Bearer ${invalidToken}` })
         .end((err, response) => {
-          response.should.have.status(400);
+          response.should.have.status(401);
           done();
         });
     });
