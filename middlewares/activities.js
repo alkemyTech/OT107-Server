@@ -1,8 +1,8 @@
 const { check, validationResult } = require('express-validator');
 
 const activitiesInputValidation = [
-  check('name', 'Activity Name Required').not().isEmpty(),
-  check('content', 'Activity Content Required').not().isEmpty(),
+  check('name', 'Activity Name Required').not().isEmpty().withMessage('Name is required'),
+  check('content', 'Activity Content Required').not().isEmpty().withMessage('Content is required'),
   check('image', 'Activity Image Required').not().isEmpty(),
   async (req, res, next) => {
     const errors = validationResult(req);
