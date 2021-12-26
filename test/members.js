@@ -150,7 +150,7 @@ describe('Members Endpoints', () => {
         facebookUrl: 'urlfacebook',
         instagramUrl: 'instagramUrl',
         linkedinUrl: 'linkedinUrl',
-        image: 'well imagine that',
+        image: 'image.jpg',
         description: 'a description'
       };
       chai.request(server)
@@ -171,7 +171,7 @@ describe('Members Endpoints', () => {
           res.body.should.have.property('facebookUrl').eq('urlfacebook');
           res.body.should.have.property('instagramUrl').eq('instagramUrl');
           res.body.should.have.property('linkedinUrl').eq('linkedinUrl');
-          res.body.should.have.property('image').eq('well imagine that');
+          res.body.should.have.property('image').eq('image.jpg');
           res.body.should.have.property('description').eq('a description');
           done();
         });
