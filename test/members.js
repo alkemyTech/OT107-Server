@@ -198,10 +198,10 @@ describe('Members Endpoints', () => {
     });
 
     it('empty member', (done) => {
-      const invalidContact = { };
+      const emptyMember = { };
       chai.request(server)
         .post('/members')
-        .send(invalidContact)
+        .send(emptyMember)
         .set({ Authorization: `Bearer ${tokenAdmin}` })
         .end((err, response) => {
           response.should.have.status(400);
@@ -211,13 +211,13 @@ describe('Members Endpoints', () => {
     });
 
     it('name required', (done) => {
-      const invalidContact1 = {
+      const invalidData = {
         name: '',
         image: 'image.jpg'
       };
       chai.request(server)
         .post('/members')
-        .send(invalidContact1)
+        .send(invalidData)
         .set({ Authorization: `Bearer ${tokenAdmin}` })
         .end((err, response) => {
           response.should.have.status(400);
@@ -227,13 +227,13 @@ describe('Members Endpoints', () => {
     });
 
     it('empty name', (done) => {
-      const invalidContact2 = {
+      const invalidData2 = {
         name: '',
         image: 'image.jpg'
       };
       chai.request(server)
         .post('/members')
-        .send(invalidContact2)
+        .send(invalidData2)
         .set({ Authorization: `Bearer ${tokenAdmin}` })
         .end((err, response) => {
           response.should.have.status(400);
