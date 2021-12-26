@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
+    "test": "mocha",
     "lint": "eslint controllers/organizations.js",
     "db": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all"
   },
