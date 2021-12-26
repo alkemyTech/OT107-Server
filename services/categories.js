@@ -6,7 +6,9 @@ const paginationModule = require('../modules/paginationModule');
 const limit = 10;
 const getAll = async (page, protocol, host, baseUrl) => {
   const countCategories = await categoriesRepository.count();
-
+  if (!countCategories) {
+    return { info: '0 row returned.' };
+  }
   const pagination = paginationModule.pagination(
     limit,
     countCategories,

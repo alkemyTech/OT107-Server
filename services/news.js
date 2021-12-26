@@ -6,7 +6,9 @@ const limit = 10;
 
 const getAll = async (page, protocol, host, baseUrl) => {
   const countNews = await newsRepository.count();
-
+  if (!countNews) {
+    throw new Error('Not matching member');
+  }
   const pagination = paginationModule.pagination(
     limit,
     countNews,
@@ -19,7 +21,7 @@ const getAll = async (page, protocol, host, baseUrl) => {
     pagination.offset
   );
   const response = {
-    countNews,
+    count: countNews,
     lastPage: pagination.lastPage,
     previousPage: pagination.previousPageUrl,
     nextPage: pagination.nextPageUrl,

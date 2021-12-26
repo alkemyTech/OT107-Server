@@ -49,7 +49,7 @@ const remove = async (req, res, next) => {
     const { id } = req.params;
     await newsService.remove(id);
 
-    res.sendStatus(204);
+    res.status(200).json({ msg: 'News removed succesfully' });
   } catch (e) {
     next(e);
   }
