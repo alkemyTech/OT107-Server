@@ -33,8 +33,8 @@ before(done => {
     .end((err, response) => {
       response.should.have.status(200);
       authToken = response.body.token;
+      done();
     });
-  done();
 });
 
 describe('GET /testimonials [isAdmin]', () => {
