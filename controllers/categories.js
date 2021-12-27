@@ -7,8 +7,8 @@ const getAll = async (req, res, next) => {
     const host = req.get('host');
     const categories = await categoriesService.getAll(page, protocol, host, baseUrl);
     res.status(200).json(categories);
-  } catch (error) {
-    next(error);
+  } catch (e) {
+    next(e);
   }
 };
 
@@ -16,8 +16,8 @@ const getById = async (req, res, next) => {
   try {
     const category = await categoriesService.getById(req.params.id);
     res.status(200).json({ category });
-  } catch (error) {
-    next(error);
+  } catch (e) {
+    next(e);
   }
 };
 
@@ -28,8 +28,8 @@ const create = async (req, res, next) => {
       msg: `Category created: ${req.body.name}`,
       category
     });
-  } catch (error) {
-    next(error);
+  } catch (e) {
+    next(e);
   }
 };
 
@@ -37,8 +37,8 @@ const remove = async (req, res, next) => {
   try {
     await categoriesService.remove(req.params.id);
     res.status(200).json({ msg: `Category ${req.params.id} removed succesfully` });
-  } catch (error) {
-    next(error);
+  } catch (e) {
+    next(e);
   }
 };
 
@@ -46,8 +46,8 @@ const update = async (req, res, next) => {
   try {
     const category = await categoriesService.update(req.params.id, req.body);
     res.status(200).json(category);
-  } catch (error) {
-    next(error);
+  } catch (e) {
+    next(e);
   }
 };
 

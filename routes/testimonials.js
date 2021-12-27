@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 
 const authMiddleware = require('../middlewares/auth');
@@ -85,10 +86,7 @@ router.get('/', authMiddleware.isAuth, paginationMiddleware.pageValidation, test
  *     parameters:
  *       - in: path
  *         name: id
- *         schema:
- *           type: integer
  *         required: true
- *         description: Numeric id of the testimonial to get
  *     responses:
  *       '200':
  *         description: A JSON object of one testimonial with name, image and content
