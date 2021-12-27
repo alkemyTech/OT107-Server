@@ -6,8 +6,10 @@ const app = require('../app');
 chai.should();
 chai.use(chaihttp);
 
-let token;
-let userID;
+let tokenAdmin;
+let tokenUser;
+const tokenInvalid =
+  'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImZpcnN0TmFtZSI6IkVsb24iLCJsYXN0TmFtZSI6Ik11c2siLCJlbWFpbCI6ImVfbXVza0B0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MiwiaWF0IjoxNjQwMDMzNjQwLCJleHAiOjE2NDAwNjI0NDB9.MUeeUm_WfSy6LOPgZGbF4jQYRyETURqx7iUQVqB0Pf_naVXjJSThx0mXRcM8MWb2bFv-7zOM0CvCeyhtuPDveSone7mzUzA3oA6Qxhtz_pcCB3huNpugnE1jC0PSw_EDd8OsKl8Z0se0aDmicL5YkURl0aifbyejD4RxqDDBstA';
 
 /**
  * /auth/register
@@ -23,7 +25,6 @@ describe('Post /auth', () => {
     image: 'bold.jpeg',
     password: 'testing@It59',
   };
-
 
   const login = {
     email: 'fgaratests@gmail.com',
@@ -52,7 +53,7 @@ describe('Post /auth', () => {
       .post('/auth/login')
       .send(login)
       .end((err, res) => {
-        token = res.body.token;
+        tokenUser = res.body.token;
 
         res.body.should.have.property('token');
         done();
@@ -63,7 +64,7 @@ describe('Post /auth', () => {
     chai
       .request(app)
       .get('/auth/me')
-      .set({ Authorization: `Bearer ${token}` })
+      .set({ Authorization: `Bearer ${tokenUser}` })
       .end((err, res) => {
         res.should.have.status(200);
         res.body.user.should.have.property('id');
@@ -84,7 +85,7 @@ describe('DELETE /user/:id', () => {
     chai
       .request(app)
       .delete(`/users/${userID}`)
-      .set({ Authorization: `Bearer ${token}` })
+      .set({ Authorization: `Bearer ${tokenUser}` })
       .end((err, res) => {
         res.should.have.status(204);
         done();
@@ -224,9 +225,9 @@ describe('Wrong cases /auth/me', () => {
     chai
       .request(app)
       .get('/auth/me')
-      .set({ Authorization: 'Bearer invalidtoken' })
+      .set({ Authorization: `Bearer ${tokenInvalid}` })
       .end((err, res) => {
-        res.should.have.status(403);
+        res.should.have.status(401);
         done();
       });
   });
