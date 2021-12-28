@@ -89,7 +89,7 @@ const paginateMiddleware = require('../middlewares/pagination');
 
 router
   .route("/:id/comments")
-  .get(authMiddleware.isAuth, commentsController.getByNovelty);
+  .get(commentsController.getByNovelty);
 
 /**
  * @swagger
@@ -114,7 +114,7 @@ router
  *              description: access denied
  */
 
-router.get("/", authMiddleware.isAdmin, paginateMiddleware.pageValidation, newsController.getAll);
+router.get("/", paginateMiddleware.pageValidation, newsController.getAll);
 
 /**
  * @swagger
@@ -181,7 +181,7 @@ router.post(
  *          '401':
  *              description: access denied
  */
-router.route("/:id").get(authMiddleware.isAdmin, newsController.getById);
+router.route("/:id").get(newsController.getById);
 /**
  * @swagger
  * /news/{id}:
