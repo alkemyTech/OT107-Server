@@ -7,8 +7,19 @@ const newsInputValidation = [
   check('categoryId').exists().notEmpty().isNumeric(),
   (req, res, next) => {
     const errors = validationResult(req);
-    const file = req.files.image;
-    if (!filesModule.isImage(file.name)) {
+    const files = req.files || false;
+    const image = files.image || false;
+
+    if (!image) {
+      errors.errors.push(
+        {
+          msg: 'Image file is required',
+          param: 'image',
+          location: 'files'
+        }
+      );
+    }
+    if (image && !filesModule.isImage(image.name)) {
       errors.errors.push(
         {
           msg: 'Invalid image extension',
