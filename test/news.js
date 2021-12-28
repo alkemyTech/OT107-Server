@@ -259,8 +259,8 @@ describe('Set Tokens - POST /auth/login', () => {
           .delete(`/news/${id}`)
           .set({ Authorization: `Bearer ${adminToken}` })
           .end((err, response) => {
-            response.should.have.status(204);
-            response.body.should.be.empty;
+            response.should.have.status(200);
+            response.text.should.include('News removed succesfully');
             done();
           });
       });
@@ -290,7 +290,7 @@ describe('Set Tokens - POST /auth/login', () => {
       });
 
       it('delete novelty - (no token)', (done) => {
-        const id = 3;
+        const id = 2;
         chai.request(app)
           .delete(`/news/${id}`)
           .set({ Authorization: '' })
@@ -302,7 +302,7 @@ describe('Set Tokens - POST /auth/login', () => {
       });
 
       it('delete novelty - (expired token)', (done) => {
-        const id = 3;
+        const id = 2;
         const oldToken = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM5OTQwNjkwLCJleHAiOjE2Mzk5Njk0OTB9.aWxY-Bb5xSCXgzkb6UQRQqEuM5P9j0elwyc-fK7jEy7wj5981pV0fpCwBbgtrFnm3Da1fgqU61YKeZ8bvDUklcL-b4I45_RmPO5YrzZbq5FqyWETpvSHjwoHslnpT4xs-nXf5VOuDr2_OqiwUSTcTCV0byjER0Gw2E2_K_Ui0Mw';
         chai.request(app)
           .delete(`/news/${id}`)
