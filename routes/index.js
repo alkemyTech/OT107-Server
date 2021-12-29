@@ -15,6 +15,7 @@ const commentsRoutes = require('./comments');
 const slidesRoute = require('./slides');
 const backofficeRouter = require('./backoffice');
 const apiDocsRouter = require('./api-docs');
+const donationsRouter = require('./donations');
 
 router.use('/organizations', organizationRoutes);
 router.use('/activities', activitiesRouter);
@@ -29,5 +30,6 @@ router.use('/comments', commentsRoutes);
 router.use('/slides', slidesRoute);
 router.use('/backoffice', backofficeRouter);
 router.use('/api-docs', apiDocsRouter);
+router.use('/donations', donationsRouter);
 
 module.exports = router;
