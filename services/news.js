@@ -1,13 +1,15 @@
+/* eslint-disable no-param-reassign */
 const newsRepository = require('../repositories/news');
 const categoriesRepository = require('../repositories/categories');
 const paginationModule = require('../modules/paginationModule');
+const s3 = require('../modules/aws/s3');
 
 const limit = 10;
 
 const getAll = async (page, protocol, host, baseUrl) => {
   const countNews = await newsRepository.count();
   if (!countNews) {
-    throw new Error('Not matching member');
+    return { info: '0 row returned.' };
   }
   const pagination = paginationModule.pagination(
     limit,
@@ -31,11 +33,10 @@ const getAll = async (page, protocol, host, baseUrl) => {
 };
 
 const create = async (data) => {
-  // assignment news categoryId from Categories
   const newsCategory = await categoriesRepository.getByName('news');
-  // eslint-disable-next-line no-param-reassign
+  const imageUploaded = await s3.uploadImage(data.image);
   data.categoryId = newsCategory.id;
-
+  data.image = imageUploaded.Location;
   const novelty = await newsRepository.create(data);
 
   if (!novelty) {
@@ -46,7 +47,8 @@ const create = async (data) => {
   return novelty;
 };
 
-const getById = async (id) => {
+const getById = async (params) => {
+  const { id } = params;
   const novelty = await newsRepository.getById(id);
   if (!novelty) {
     const error = new Error('Novelty not found');
@@ -56,7 +58,8 @@ const getById = async (id) => {
   return novelty;
 };
 
-const update = async (id, body) => {
+const update = async (params, data) => {
+  const { id } = params;
   const existNovelty = await newsRepository.getById(id);
   if (!existNovelty) {
     const error = new Error('Novelty not found');
@@ -64,19 +67,15 @@ const update = async (id, body) => {
     throw error;
   }
 
-  if (body.categoryId) {
-    const checkCategoryId = await categoriesRepository.getById(body.categoryId);
+  if (data.categoryId) {
+    const checkCategoryId = await categoriesRepository.getById(data.categoryId);
     if (!checkCategoryId) throw new Error('CategoryId does not exist');
   }
 
-  const updateNovelty = await newsRepository.update(id, body);
-  if (!updateNovelty) {
-    const error = new Error('Novelty not found');
-    error.status = 404;
-    throw error;
-  }
+  const imageUploaded = await s3.uploadImage(data.image);
+  data.image = imageUploaded.Location;
 
-  const novelty = await newsRepository.getById(id);
+  const novelty = await newsRepository.update(id, data);
   return novelty;
 };
 
