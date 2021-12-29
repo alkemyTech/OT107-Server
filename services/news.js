@@ -37,6 +37,7 @@ const create = async (data) => {
   const imageUploaded = await s3.uploadImage(data.image);
   data.categoryId = newsCategory.id;
   data.image = imageUploaded.Location;
+  delete data.id;
   const novelty = await newsRepository.create(data);
 
   if (!novelty) {
@@ -74,6 +75,8 @@ const update = async (params, data) => {
 
   const imageUploaded = await s3.uploadImage(data.image);
   data.image = imageUploaded.Location;
+
+  delete data.id;
 
   const novelty = await newsRepository.update(id, data);
   return novelty;

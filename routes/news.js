@@ -35,7 +35,7 @@ const paginateMiddleware = require('../middlewares/pagination');
  *            type: string
  *            description: The novelty content
  *          image:
- *            type: string
+ *            type: file
  *            description: The novelty image
  *          categoryId:
  *            type: string
@@ -44,7 +44,7 @@ const paginateMiddleware = require('../middlewares/pagination');
  *          id: 2
  *          name: SOMOS MAS ABRE SU NUEVA LANDING PAGE
  *          content: Presentamos la nueva landing page hecha por el equipo de alkemy
- *          image: https://pbs.twimg.com/profile_images/835135487207690240/An3qhCfv_400x400.jpg
+ *          image: imageTest.jpg
  *          categoryId: 1
  */
 
@@ -57,11 +57,9 @@ const paginateMiddleware = require('../middlewares/pagination');
 
 /**
  * @swagger
- * /news/{noveltyId}/comments:
+ * /news/{id}/comments:
  *  get:
  *    summary: return comments by novelty id
- *    security:
- *        - bearerAuth: []
  *    parameters:
  *        - name: id
  *          in: path
@@ -78,7 +76,7 @@ const paginateMiddleware = require('../middlewares/pagination');
  *        content:
  *            application/json:
  *              schema:
- *                type: array
+ *                type: object
  *                items:
  *                    $ref:'#components/schemas/news'
  *      '400':
@@ -96,8 +94,6 @@ router
  * /news/:
  *  get:
  *    summary: return all news
- *    security:
- *      - bearerAuth: [admin]
  *    tags: [News]
  *    responses:
  *          '200':
@@ -126,7 +122,7 @@ router.get("/", paginateMiddleware.pageValidation, newsController.getAll);
  *     requestBody:
  *         required: true
  *         content:
- *             application/json:
+ *             multipart/form-data:
  *                 schema:
  *                     $ref: '#components/schemas/news'
  *     tags: [News]
@@ -136,7 +132,7 @@ router.get("/", paginateMiddleware.pageValidation, newsController.getAll);
  *              content:
  *                application/json:
  *                  schema:
- *                  type: array
+ *                  type: object
  *                  items:
  *                    $ref:'#components/schemas/news'
  *          '400':
@@ -155,8 +151,6 @@ router.post(
  * /news/{id}:
  *  get:
  *     summary: Get a novelty by id
- *     security:
- *       - bearerAuth: []
  *     parameters:
  *        - name: id
  *          in: path
@@ -201,7 +195,7 @@ router.route("/:id").get(newsController.getById);
  *    requestBody:
  *        required: true
  *        content:
- *            application/json:
+ *            multipart/form-data:
  *                schema:
  *                    $ref: '#components/schemas/news'
  *    tags: [News]
