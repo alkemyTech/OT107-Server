@@ -1,6 +1,7 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../app');
+const fs = require('fs');
 
 chai.should();
 chai.use(chaiHttp);
@@ -123,40 +124,6 @@ describe('Set Tokens - POST /auth/login', () => {
             done();
           });
       });
-
-      it('get all - (invalid token)', (done) => {
-        chai.request(app)
-          .get('/news?page=1')
-          .set({ Authorization: `Bearer ${authToken}` })
-          .end((err, response) => {
-            response.should.have.status(401);
-            response.text.should.include('Access denied');
-            done();
-          });
-      });
-
-      it('get all - (no token)', (done) => {
-        chai.request(app)
-          .get('/news?page=1')
-          .set({ Authorization: '' })
-          .end((err, response) => {
-            response.should.have.status(401);
-            response.text.should.include('Access denied');
-            done();
-          });
-      });
-
-      it('get all - (expired token)', (done) => {
-        const oldToken = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM5OTQwNjkwLCJleHAiOjE2Mzk5Njk0OTB9.aWxY-Bb5xSCXgzkb6UQRQqEuM5P9j0elwyc-fK7jEy7wj5981pV0fpCwBbgtrFnm3Da1fgqU61YKeZ8bvDUklcL-b4I45_RmPO5YrzZbq5FqyWETpvSHjwoHslnpT4xs-nXf5VOuDr2_OqiwUSTcTCV0byjER0Gw2E2_K_Ui0Mw';
-        chai.request(app)
-          .get('/news?page=1')
-          .set({ Authorization: `Bearer ${oldToken}` })
-          .end((err, response) => {
-            response.should.have.status(400);
-            response.text.should.include('Invalid token');
-            done();
-          });
-      });
     });
 
     describe('POST /news', () => {
@@ -164,13 +131,15 @@ describe('Set Tokens - POST /auth/login', () => {
         const novelty = {
           name: 'News testing',
           content: 'Content news testing',
-          image: 'http://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
           categoryId: 1
         };
         chai.request(app)
           .post('/news')
-          .send(novelty)
+          .field('name', novelty.name)
+          .field('content', novelty.content)
+          .field('categoryId', novelty.categoryId)
           .set({ Authorization: `Bearer ${adminToken}` })
+          .attach('image', fs.readFileSync('test/imageTest.jpg'), 'imageTest.jpg')
           .end((err, response) => {
             response.should.have.status(200);
             response.body.should.be.a('object').with.keys('id', 'name', 'content', 'image', 'categoryId', 'updatedAt', 'createdAt');
@@ -340,57 +309,22 @@ describe('Set Tokens - POST /auth/login', () => {
             done();
           });
       });
-
-      it('get by id - (invalid token)', (done) => {
-        const id = 1;
-        chai.request(app)
-          .get(`/news/${id}`)
-          .set({ Authorization: `Bearer ${authToken}` })
-          .end((err, response) => {
-            response.should.have.status(401);
-            response.text.should.include('Access denied');
-            done();
-          });
-      });
-
-      it('get by id - (no token)', (done) => {
-        const id = 1;
-        chai.request(app)
-          .get(`/news/${id}`)
-          .set({ Authorization: '' })
-          .end((err, response) => {
-            response.should.have.status(401);
-            response.text.should.include('Access denied');
-            done();
-          });
-      });
-
-      it('get by id - (expired token)', (done) => {
-        const oldToken = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQWd1c3RpbiIsImxhc3ROYW1lIjoiVGFmdXJhIiwiZW1haWwiOiJhZ3VzdGluX3RhZnVyYUB0ZXN0LmNvbSIsImltYWdlIjoiaHR0cHM6Ly93d3cuZGVzaWduZXZvLmNvbS9yZXMvdGVtcGxhdGVzL3RodW1iX3NtYWxsL2NvbG9yZnVsLWhhbmQtYW5kLXdhcm0tY29tbXVuaXR5LnBuZyIsInJvbGVJZCI6MSwiaWF0IjoxNjM5OTQwNjkwLCJleHAiOjE2Mzk5Njk0OTB9.aWxY-Bb5xSCXgzkb6UQRQqEuM5P9j0elwyc-fK7jEy7wj5981pV0fpCwBbgtrFnm3Da1fgqU61YKeZ8bvDUklcL-b4I45_RmPO5YrzZbq5FqyWETpvSHjwoHslnpT4xs-nXf5VOuDr2_OqiwUSTcTCV0byjER0Gw2E2_K_Ui0Mw';
-        const id = 1;
-        chai.request(app)
-          .get(`/news/${id}`)
-          .set({ Authorization: `Bearer ${oldToken}` })
-          .end((err, response) => {
-            response.should.have.status(400);
-            response.text.should.include('Invalid token');
-            done();
-          });
-      });
     });
 
     describe('PUT /news/:id', () => {
       it('update by id - (adminToken)', (done) => {
         const id = 4;
-        const body = {
+        const novelty = {
           name: 'name changed',
           content: 'Content news 1',
-          image: 'https://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
           categoryId: 1
         };
         chai.request(app)
           .put(`/news/${id}`)
-          .send(body)
+          .field('name', novelty.name)
+          .field('content', novelty.content)
+          .field('categoryId', novelty.categoryId)
+          .attach('image', fs.readFileSync('test/imageTest.jpg'), 'imageTest.jpg')
           .set({ Authorization: `Bearer ${adminToken}` })
           .end((err, response) => {
             response.should.have.status(200);
