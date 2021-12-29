@@ -94,6 +94,11 @@ router
  * /news/:
  *  get:
  *    summary: return all news
+ *    parameters:
+ *      - in: query
+ *        name: page
+ *        type: integer
+ *        description: The page number to collect the result set.
  *    tags: [News]
  *    responses:
  *          '200':
