@@ -1,7 +1,7 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const app = require('../app');
 const fs = require('fs');
+const app = require('../app');
 
 chai.should();
 chai.use(chaiHttp);
@@ -159,7 +159,7 @@ describe('Set Tokens - POST /auth/login', () => {
           .set({ Authorization: `Bearer ${adminToken}` })
           .end((err, response) => {
             response.body.should.have.property('error');
-            response.body.error.map((err) => err.should.deep.keys('msg', 'param', 'location'));
+            response.body.error.map((error) => error.should.deep.keys('msg', 'param', 'location'));
             response.should.have.status(400);
             done();
           });
