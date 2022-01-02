@@ -27,10 +27,7 @@ before((done) => {
     .end((err, response) => {
       response.should.have.status(200);
       adminToken = response.body.token;
-      done();
     });
-});
-before((done) => {
   chai.request(app)
     .post('/auth/login')
     .send(standardUser)
@@ -185,7 +182,7 @@ describe('Category Tests', () => {
           .get('/categories/1')
           .set({ Authorization: `Bearer ${invalidToken}` })
           .end((err, res) => {
-            res.should.have.status(401);
+            res.should.have.status(400);
             done();
           });
       });
@@ -254,7 +251,7 @@ describe('Category Tests', () => {
           createdAt: new Date(),
         })
         .end((err, res) => {
-          res.should.have.status(401);
+          res.should.have.status(400);
           done();
         });
     });
@@ -369,7 +366,7 @@ describe('Category Tests', () => {
         .set({ Authorization: `Bearer ${invalidToken}` })
         .send({ name: 'Update Categoria' })
         .end((err, res) => {
-          res.should.have.status(401);
+          res.should.have.status(400);
           done();
         });
     });
@@ -489,7 +486,7 @@ describe('Category Tests', () => {
         .delete('/categories/11')
         .set({ Authorization: `Bearer ${invalidToken}` })
         .end((err, response) => {
-          response.should.have.status(401);
+          response.should.have.status(400);
           done();
         });
     });
