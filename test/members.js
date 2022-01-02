@@ -46,7 +46,7 @@ describe('Members Endpoints', () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.should.be.a('object');
-          res.body.should.have.property('countMembers');
+          res.body.should.have.property('count');
           res.body.should.have.property('lastPage');
           res.body.should.have.property('previousPage');
           res.body.should.have.property('nextPage');
@@ -70,7 +70,7 @@ describe('Members Endpoints', () => {
     describe('GET /members?page=" "', () => {
       it('Should take you to page 1', (done) => {
         chai.request(server)
-          .get('/members?page=')
+          .get('/members')
           .set({ Authorization: `Bearer ${tokenAdmin}` })
           .end((err, response) => {
             response.should.have.status(200);
@@ -84,7 +84,7 @@ describe('Members Endpoints', () => {
           .get('/members?page=-5')
           .set({ Authorization: `Bearer ${tokenAdmin}` })
           .end((err, response) => {
-            response.should.have.status(500);
+            response.should.have.status(400);
             done();
           });
       });
