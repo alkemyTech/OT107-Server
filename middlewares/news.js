@@ -2,9 +2,9 @@ const { check, validationResult } = require('express-validator');
 const filesModule = require('../modules/filesHandler');
 
 const newsInputValidation = [
-  check('name').exists().notEmpty().isLength({ min: 3 }),
-  check('content').exists().notEmpty().isLength({ min: 3 }),
-  check('categoryId').exists().notEmpty().isNumeric(),
+  check('name').exists().notEmpty().isLength({ min: 3 }).withMessage('must be at least 3 chars long'),
+  check('content').exists().notEmpty().isLength({ min: 3 }).withMessage('must be at least 3 chars long'),
+  check('categoryId').exists().notEmpty().isNumeric().withMessage('must be numeric'),
   (req, res, next) => {
     const errors = validationResult(req);
     const files = req.files || false;
