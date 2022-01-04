@@ -162,7 +162,7 @@ describe('Route /users', () => {
       .delete(`/users/${standardUserId}`)
       .set({ Authorization: `Bearer ${standardToken}` })
       .end((err, res) => {
-        res.should.have.status(204);
+        res.should.have.status(200);
         done();
       });
   });
