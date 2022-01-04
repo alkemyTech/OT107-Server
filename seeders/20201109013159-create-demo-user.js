@@ -7,7 +7,7 @@ module.exports = {
       lastName: 'Tafura',
       email: 'agustin_tafura@test.com',
       // Important: Password not encrypted yet! 
-      password: '$2b$10$oA9KaOX81D.szm.wG0zPo.QsFIDj0PiYYRwBbGDsL285YZbavAQSK',
+      password: '$2b$10$ny3WovtabsdnmDXpsWYTuuJ4PzQ6QAPiNZqo4NxBbRcq.SpaDAsYG',
       roleId: 1,
       image: 'https://www.designevo.com/res/templates/thumb_small/colorful-hand-and-warm-community.png',
       createdAt: new Date,
@@ -17,7 +17,7 @@ module.exports = {
       lastName: 'Maccan',
       email: 'andrea_maccan@test.com',
       // Important: Password not encrypted yet! 
-      password: '$2b$10$oA9KaOX81D.szm.wG0zPo.QsFIDj0PiYYRwBbGDsL285YZbavAQSK',
+      password: '$2b$10$ny3WovtabsdnmDXpsWYTuuJ4PzQ6QAPiNZqo4NxBbRcq.SpaDAsYG',
       roleId: 1,
       image: 'https://www.designevo.com/res/templates/thumb_small/colorful-hand-and-warm-community.png',
       createdAt: new Date,
@@ -27,7 +27,7 @@ module.exports = {
       lastName: 'Astrada',
       email: 'ezequiel_astrada@test.com',
       // Important: Password not encrypted yet! 
-      password: '$2b$10$oA9KaOX81D.szm.wG0zPo.QsFIDj0PiYYRwBbGDsL285YZbavAQSK',
+      password: '$2b$10$ny3WovtabsdnmDXpsWYTuuJ4PzQ6QAPiNZqo4NxBbRcq.SpaDAsYG',
       roleId: 1,
       image: 'https://www.designevo.com/res/templates/thumb_small/colorful-hand-and-warm-community.png',
       createdAt: new Date,
@@ -37,7 +37,7 @@ module.exports = {
       lastName: 'Garancini',
       email: 'franco_garancini@test.com',
       // Important: Password not encrypted yet! 
-      password: '$2b$10$oA9KaOX81D.szm.wG0zPo.QsFIDj0PiYYRwBbGDsL285YZbavAQSK',
+      password: '$2b$10$ny3WovtabsdnmDXpsWYTuuJ4PzQ6QAPiNZqo4NxBbRcq.SpaDAsYG',
       roleId: 1,
       image: 'https://www.designevo.com/res/templates/thumb_small/colorful-hand-and-warm-community.png',
       createdAt: new Date,
@@ -47,7 +47,7 @@ module.exports = {
       lastName: 'Bascur',
       email: 'bascur@test.com',
       // Important: Password not encrypted yet! 
-      password: '$2b$10$oA9KaOX81D.szm.wG0zPo.QsFIDj0PiYYRwBbGDsL285YZbavAQSK',
+      password: '$2b$10$ny3WovtabsdnmDXpsWYTuuJ4PzQ6QAPiNZqo4NxBbRcq.SpaDAsYG',
       roleId: 1,
       image: 'https://www.designevo.com/res/templates/thumb_small/colorful-hand-and-warm-community.png',
       createdAt: new Date,
@@ -57,7 +57,7 @@ module.exports = {
       lastName: 'Choter',
       email: 'juantablo_ch@test.com',
       // Important: Password not encrypted yet! 
-      password: '$2b$10$oA9KaOX81D.szm.wG0zPo.QsFIDj0PiYYRwBbGDsL285YZbavAQSK',
+      password: '$2b$10$ny3WovtabsdnmDXpsWYTuuJ4PzQ6QAPiNZqo4NxBbRcq.SpaDAsYG',
       roleId: 1,
       image: 'https://www.designevo.com/res/templates/thumb_small/colorful-hand-and-warm-community.png',
       createdAt: new Date,
@@ -67,7 +67,7 @@ module.exports = {
       lastName: 'Dalceggio',
       email: 'matias_dalceggio@test.com',
       // Important: Password not encrypted yet! 
-      password: '$2b$10$oA9KaOX81D.szm.wG0zPo.QsFIDj0PiYYRwBbGDsL285YZbavAQSK',
+      password: '$2b$10$ny3WovtabsdnmDXpsWYTuuJ4PzQ6QAPiNZqo4NxBbRcq.SpaDAsYG',
       roleId: 1,
       image: 'https://www.designevo.com/res/templates/thumb_small/colorful-hand-and-warm-community.png',
       createdAt: new Date,
@@ -77,7 +77,7 @@ module.exports = {
       lastName: 'Galvan',
       email: 'seba_galvan@test.com',
       // Important: Password not encrypted yet! 
-      password: '$2b$10$oA9KaOX81D.szm.wG0zPo.QsFIDj0PiYYRwBbGDsL285YZbavAQSK',
+      password: '$2b$10$ny3WovtabsdnmDXpsWYTuuJ4PzQ6QAPiNZqo4NxBbRcq.SpaDAsYG',
       roleId: 1,
       image: 'https://www.designevo.com/res/templates/thumb_small/colorful-hand-and-warm-community.png',
       createdAt: new Date,
@@ -87,7 +87,7 @@ module.exports = {
       lastName: 'Francisco',
       email: 'manu_f@test.com',
       // Important: Password not encrypted yet! 
-      password: '$2b$10$oA9KaOX81D.szm.wG0zPo.QsFIDj0PiYYRwBbGDsL285YZbavAQSK',
+      password: '$2b$10$ny3WovtabsdnmDXpsWYTuuJ4PzQ6QAPiNZqo4NxBbRcq.SpaDAsYG',
       roleId: 1,
       image: 'https://www.designevo.com/res/templates/thumb_small/colorful-hand-and-warm-community.png',
       createdAt: new Date,
@@ -97,7 +97,7 @@ module.exports = {
       lastName: 'Musk',
       email: 'e_musk@test.com',
       // Important: Password not encrypted yet! 
-      password: '$2b$10$oA9KaOX81D.szm.wG0zPo.QsFIDj0PiYYRwBbGDsL285YZbavAQSK',
+      password: '$2b$10$ny3WovtabsdnmDXpsWYTuuJ4PzQ6QAPiNZqo4NxBbRcq.SpaDAsYG',
       roleId: 2,
       image: 'https://www.designevo.com/res/templates/thumb_small/colorful-hand-and-warm-community.png',
       createdAt: new Date,
@@ -107,7 +107,7 @@ module.exports = {
       lastName: 'Jobs',
       email: 'steeve_j@test.com',
       // Important: Password not encrypted yet! 
-      password: '$2b$10$oA9KaOX81D.szm.wG0zPo.QsFIDj0PiYYRwBbGDsL285YZbavAQSK',
+      password: '$2b$10$ny3WovtabsdnmDXpsWYTuuJ4PzQ6QAPiNZqo4NxBbRcq.SpaDAsYG',
       roleId: 2,
       image: 'https://www.designevo.com/res/templates/thumb_small/colorful-hand-and-warm-community.png',
       createdAt: new Date,
@@ -117,7 +117,7 @@ module.exports = {
       lastName: 'Zuckerberg',
       email: 'facebook@facebook.com',
       // Important: Password not encrypted yet! 
-      password: '$2b$10$oA9KaOX81D.szm.wG0zPo.QsFIDj0PiYYRwBbGDsL285YZbavAQSK',
+      password: '$2b$10$ny3WovtabsdnmDXpsWYTuuJ4PzQ6QAPiNZqo4NxBbRcq.SpaDAsYG',
       roleId: 2,
       image: 'https://www.designevo.com/res/templates/thumb_small/colorful-hand-and-warm-community.png',
       createdAt: new Date,
@@ -127,7 +127,7 @@ module.exports = {
       lastName: 'Naka',
       email: 'btc@test.com',
       // Important: Password not encrypted yet! 
-      password: '$2b$10$oA9KaOX81D.szm.wG0zPo.QsFIDj0PiYYRwBbGDsL285YZbavAQSK',
+      password: '$2b$10$ny3WovtabsdnmDXpsWYTuuJ4PzQ6QAPiNZqo4NxBbRcq.SpaDAsYG',
       roleId: 2,
       image: 'https://www.designevo.com/res/templates/thumb_small/colorful-hand-and-warm-community.png',
       createdAt: new Date,
