@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('../modules/auth');
 const usersRepo = require('../repositories/users');
 const welcomeEmail = require('../modules/sendWelcomeEmailModule');
+const configuration = require('../config/config');
 
 const getAll = async () => {
   const data = await usersRepo.getAll();
@@ -10,6 +11,7 @@ const getAll = async () => {
 
 const create = async (body) => {
   body.password = bcrypt.hashSync(body.password, 10);
+  body.roleId = configuration.idUsuarioStandar;
   const checkEmail = await usersRepo.findByEmail(body.email);
   if (checkEmail) {
     throw new Error('Email already registered');
