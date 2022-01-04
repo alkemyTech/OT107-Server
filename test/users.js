@@ -152,7 +152,7 @@ describe('Route /users', () => {
       .delete('/users/0')
       .set({ Authorization: `Bearer ${adminToken}` })
       .end((err, res) => {
-        res.should.have.status(500);
+        res.should.have.status(404);
         done();
       });
   });

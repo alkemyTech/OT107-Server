@@ -57,7 +57,9 @@ const remove = async (req) => {
   }
   const user = await usersRepo.getById(req.params.id);
   if (!user) {
-    throw new Error('Usuario inexistente');
+    const error = new Error('Usuario inexistente');
+    error.status = 404;
+    throw error;
   }
   const deletedUser = await usersRepo.remove(req.params.id);
   return deletedUser;
@@ -65,7 +67,9 @@ const remove = async (req) => {
 
 const update = async (req) => {
   if (req.params.id !== req.params.tokenizedUserId.toString() && req.params.adminRole >= 2) {
-    throw new Error('Sin autorizacion');
+    const error = new Error('Sin autorizacion');
+    error.status = 401;
+    throw error;
   }
   const changes = {
     firstName: req.body.firstName,
@@ -74,7 +78,9 @@ const update = async (req) => {
   const userUpdate = await usersRepo.update(req.params.id, changes);
   
   if (!userUpdate) {
-    throw new Error('Error en los datos a actualizar');
+    const error = new Error('Error en los datos a actualizar');
+    error.status = 404;
+    throw error;
   }
   const user = await usersRepo.getById(req.params.id);
   return user;
