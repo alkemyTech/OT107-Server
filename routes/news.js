@@ -35,7 +35,7 @@ const paginateMiddleware = require('../middlewares/pagination');
  *            type: string
  *            description: The novelty content
  *          image:
- *            type: string
+ *            type: file
  *            description: The novelty image
  *          categoryId:
  *            type: string
@@ -44,7 +44,7 @@ const paginateMiddleware = require('../middlewares/pagination');
  *          id: 2
  *          name: SOMOS MAS ABRE SU NUEVA LANDING PAGE
  *          content: Presentamos la nueva landing page hecha por el equipo de alkemy
- *          image: https://pbs.twimg.com/profile_images/835135487207690240/An3qhCfv_400x400.jpg
+ *          image: imageTest.jpg
  *          categoryId: 1
  */
 
@@ -57,11 +57,9 @@ const paginateMiddleware = require('../middlewares/pagination');
 
 /**
  * @swagger
- * /news/{noveltyId}/comments:
+ * /news/{id}/comments:
  *  get:
  *    summary: return comments by novelty id
- *    security:
- *        - bearerAuth: []
  *    parameters:
  *        - name: id
  *          in: path
@@ -78,7 +76,7 @@ const paginateMiddleware = require('../middlewares/pagination');
  *        content:
  *            application/json:
  *              schema:
- *                type: array
+ *                type: object
  *                items:
  *                    $ref:'#components/schemas/news'
  *      '400':
@@ -89,15 +87,18 @@ const paginateMiddleware = require('../middlewares/pagination');
 
 router
   .route("/:id/comments")
-  .get(authMiddleware.isAuth, commentsController.getByNovelty);
+  .get(commentsController.getByNovelty);
 
 /**
  * @swagger
  * /news/:
  *  get:
  *    summary: return all news
- *    security:
- *      - bearerAuth: [admin]
+ *    parameters:
+ *      - in: query
+ *        name: page
+ *        type: integer
+ *        description: The page number to collect the result set.
  *    tags: [News]
  *    responses:
  *          '200':
@@ -114,7 +115,7 @@ router
  *              description: access denied
  */
 
-router.get("/", authMiddleware.isAdmin, paginateMiddleware.pageValidation, newsController.getAll);
+router.get("/", paginateMiddleware.pageValidation, newsController.getAll);
 
 /**
  * @swagger
@@ -126,7 +127,7 @@ router.get("/", authMiddleware.isAdmin, paginateMiddleware.pageValidation, newsC
  *     requestBody:
  *         required: true
  *         content:
- *             application/json:
+ *             multipart/form-data:
  *                 schema:
  *                     $ref: '#components/schemas/news'
  *     tags: [News]
@@ -136,7 +137,7 @@ router.get("/", authMiddleware.isAdmin, paginateMiddleware.pageValidation, newsC
  *              content:
  *                application/json:
  *                  schema:
- *                  type: array
+ *                  type: object
  *                  items:
  *                    $ref:'#components/schemas/news'
  *          '400':
@@ -155,8 +156,6 @@ router.post(
  * /news/{id}:
  *  get:
  *     summary: Get a novelty by id
- *     security:
- *       - bearerAuth: []
  *     parameters:
  *        - name: id
  *          in: path
@@ -181,7 +180,7 @@ router.post(
  *          '401':
  *              description: access denied
  */
-router.route("/:id").get(authMiddleware.isAdmin, newsController.getById);
+router.route("/:id").get(newsController.getById);
 /**
  * @swagger
  * /news/{id}:
@@ -201,7 +200,7 @@ router.route("/:id").get(authMiddleware.isAdmin, newsController.getById);
  *    requestBody:
  *        required: true
  *        content:
- *            application/json:
+ *            multipart/form-data:
  *                schema:
  *                    $ref: '#components/schemas/news'
  *    tags: [News]

@@ -9,7 +9,7 @@ const isImage = (filename) => {
     '.png'
   ];
   if (!validImageExtensions.includes(extension)) {
-    throw new Error('Invalid image extension');
+    return false
   }
 
   return true;

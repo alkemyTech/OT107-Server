@@ -37,8 +37,6 @@ const update = async (id, body) => {
       id
     },
   });
-
-
   return novelty;
 };
 
