@@ -4,7 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('Organizations', [{
       name: 'Somos Más',
-      image: 'https://lh3.googleusercontent.com/bqawgTRP_o3EkHu-lLrB9_Mqy-AuRfXEvraQkY09EY3f6-EmQ75o2ZWwydNSzlvn42o5BR5PiCMYupnCSv49=w1366-h667',
+      image: 'https://i.pinimg.com/564x/56/bd/7b/56bd7b9674b854572295b31fa333cea2.jpg',
       address: 'barrio La Cava',
       phone: 1160112988,
       email: 'somosfundacionmas@gmail.com',

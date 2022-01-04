@@ -38,7 +38,7 @@ const authMiddleware = require('../middlewares/auth');
  *        example:
  *          firstName: Carlos
  *          lastName: Alkemy
- *          email: carlosalkemy@alkemy.com.ar
+ *          email: testalkemi@gmail.com
  *          password: 123456789Ab!
  */
 
@@ -105,7 +105,7 @@ router.post(
  *                          type: string
  *                          description: The user password
  *                      example:
- *                        email: carlosalkemy@alkemy.com.ar
+ *                        email: agustin_tafura@test.com
  *                        password: 123456789Ab!
  *      responses:
  *          '200':

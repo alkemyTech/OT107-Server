@@ -15,7 +15,7 @@ const send = async (email, lastName, firstName) => {
   const ejsView = ejs.compile(view);
   const template = ejsView({
     org,
-    welcomeText: `¡Welcome ${lastName}, ${firstName}. 🥳!`,
+    welcomeText: `¡Bienvenid@, ${firstName}. 🥳!`,
   });
   await emailSender.send(email, template, subject);
 };
