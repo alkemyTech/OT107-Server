@@ -4,14 +4,14 @@ const paginationModule = require('../modules/paginationModule');
 const limit = 10;
 
 const getAll = async (page, protocol, host, baseUrl) => {
-  const countTestimonials = await testimonialsRepo.count();
-  if (!countTestimonials) {
+  const count = await testimonialsRepo.count();
+  if (!count) {
     return { info: '0 row returned.' };
   }
 
   const pagination = paginationModule.pagination(
     limit,
-    countTestimonials,
+    count,
     {
       page,
       protocol,
@@ -25,7 +25,7 @@ const getAll = async (page, protocol, host, baseUrl) => {
   );
 
   const response = {
-    count: countTestimonials,
+    count,
     lastPage: pagination.lastPage,
     previousPage: pagination.previousPageUrl,
     nextPage: pagination.nextPageUrl,
@@ -38,7 +38,8 @@ const getById = async (params) => {
   const { id } = params;
   const data = await testimonialsRepo.getById(id);
   if (!data) {
-    const error = new Error('The testimonial does not exist.');
+    const error = new Error('Testimonial not found');
+    error.status = 404;
     throw error;
   }
   return data;
@@ -58,8 +59,9 @@ const update = async (params, body) => {
 const remove = async (params) => {
   const { id } = params;
   const data = await testimonialsRepo.remove(id);
-  if (data === 0) {
-    const error = new Error('The testimonial does not exist.');
+  if (!data) {
+    const error = new Error('Testimonial not found');
+    error.status = 404;
     throw error;
   }
   return data;

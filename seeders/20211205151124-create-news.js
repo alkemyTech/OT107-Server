@@ -1,33 +1,18 @@
-'use strict';
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('News', [
-      {
-        name: 'News 1',
-        content: 'Content news 1',
+    const news = [];
+    for (let index = 1; index < 38; index++) {
+      const novelty = {
+        name: `News ${index}`,
+        content: `Content news ${index}`,
         image: 'https://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
-        categoryId: 1,
+        categoryId: Math.floor(Math.random() * (10 - 1 + 1) + 1),
         createdAt: new Date(),
         updatedAt: new Date()
-      },
-      {
-        name: 'News 2',
-        content: 'Content news 2',
-        image: 'https://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
-        categoryId: 1,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        name: 'News 3',
-        content: 'Content news 3',
-        image: 'https://cdn2.hubspot.net/hubfs/4759614/ayudas-para-ong.jpg',
-        categoryId: 1,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
-    ], {});
+      };
+      news.push(novelty);
+    }
+    await queryInterface.bulkInsert('News', news, {});
   },
 
   down: async (queryInterface, Sequelize) => {
