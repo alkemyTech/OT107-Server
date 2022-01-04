@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "test":"mocha test/*.js --timeout 15000",
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
     "lint": "eslint controllers/organizations.js",
