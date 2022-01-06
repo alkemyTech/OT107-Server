@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somos más - Donaciones</title>
+</head>
+<body>
+    <button id="checkout">Doná $100</button>
+
+    <script>
+        const checkout = document.getElementById('checkout');
+
+        checkout.addEventListener('click', async function() {
+            const response = await fetch('/donations/create-order', {
+                method: 'POST'
+            })
+            const data = await response.json()
+            console.log(data)
+
+            window.location.href = data.links[1].href
+        })
+    </script>
+</body>
+</html>
